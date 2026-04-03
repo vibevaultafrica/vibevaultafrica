@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VibeVault Africa — solar-powered smart locker pods for nightlife and beach safety in Cape Town. Smart lockers, wellness vending, emergency ride home, and a wellness check-in for people who deserve to enjoy their night safely." />
+  <meta property="og:title" content="VibeVault Africa — Safe by Design" />
+  <meta property="og:description" content="The city's safest place to leave your bag. And maybe your fear." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vibevaultafrica.co.za" />
+  <title>VibeVault Africa — Safe by Design</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #40E0D0;
+      --teal-deep: #00CED1;
+      --teal-glow: rgba(64,224,208,0.10);
+      --teal-border: rgba(64,224,208,0.20);
+      --midnight: #0D1B2A;
+      --black: #0A0A0A;
+      --surface: #0F1620;
+      --card: #141E2A;
+      --amber: #C9A84C;
+      --white: #FFFFFF;
+      --muted: rgba(255,255,255,0.52);
+      --faint: rgba(255,255,255,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    h3 { font-size: 1rem; font-weight: 600; line-height: 1.4; }
+    p { color: var(--muted); line-height: 1.8; }
+
+    .teal { color: var(--teal); }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--teal-border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px; max-width: 1080px; margin: 0 auto;
+    }
+    .logo { font-size: 1.15rem; font-weight: 700; color: var(--teal); text-decoration: none; letter-spacing: 0.03em; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-btn {
+      border: 1px solid var(--teal); color: var(--teal);
+      padding: 7px 18px; border-radius: 20px; font-size: 0.82rem;
+      background: transparent; cursor: pointer; transition: background 0.2s;
+      text-decoration: none;
+    }
+    .nav-btn:hover { background: var(--teal-glow); }
+    @media (max-width: 620px) { .nav-links { display: none; } }
+
+    /* HERO */
+    .hero { padding: 150px 0 90px; position: relative; overflow: hidden; }
+    .hero-glow {
+      position: absolute; top: -240px; left: -160px;
+      width: 640px; height: 640px;
+      background: radial-gradient(circle, rgba(64,224,208,0.07) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 22px; font-weight: 500;
+    }
+    .hero h1 { max-width: 720px; margin-bottom: 22px; }
+    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 500px; margin-bottom: 44px; }
+    .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--teal); color: var(--black);
+      padding: 13px 28px; border-radius: 28px;
+      font-weight: 700; font-size: 0.92rem;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: opacity 0.2s; display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-outline {
+      background: transparent; color: var(--muted);
+      padding: 13px 28px; border-radius: 28px;
+      font-size: 0.92rem; text-decoration: none;
+      border: 1px solid var(--faint); cursor: pointer;
+      transition: border-color 0.2s, color 0.2s; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* STATS */
+    .stats { padding: 64px 0; border-top: 1px solid var(--teal-border); border-bottom: 1px solid var(--teal-border); }
+    .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; }
+    .stat { border-left: 2px solid var(--teal); padding-left: 22px; }
+    .stat-num { font-size: 2.2rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: 8px; }
+    .stat-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 620px) { .stats-row { grid-template-columns: 1fr; gap: 24px; } }
+
+    /* SECTION SHARED */
+    section { padding: 96px 0; }
+    .alt { background: var(--surface); }
+    .s-head { margin-bottom: 56px; max-width: 620px; }
+    .s-head h2 { margin-bottom: 14px; }
+
+    /* PROBLEM */
+    .gap-quote {
+      margin-top: 36px; padding: 26px 28px;
+      border-left: 3px solid var(--teal);
+      background: var(--teal-glow); border-radius: 0 12px 12px 0;
+    }
+    .gap-quote p { color: rgba(255,255,255,0.78); font-size: 1rem; }
+    .gap-quote strong { color: var(--white); }
+
+    /* PILLARS */
+    .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .pillar {
+      background: var(--card); border: 1px solid var(--teal-border);
+      border-radius: 16px; padding: 34px 26px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pillar:hover { border-color: var(--teal); transform: translateY(-4px); }
+    .pillar-dot-wrap {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--teal-glow); border: 1px solid var(--teal-border);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+    }
+    .p-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); }
+    .pillar h3 { color: var(--white); margin-bottom: 10px; }
+    .pillar p { font-size: 0.88rem; }
+    @media (max-width: 720px) { .pillars { grid-template-columns: 1fr; } }
+
+    /* FEATURES GRID */
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 52px; }
+    .feat {
+      background: var(--card); border: 1px solid var(--teal-border);
+      border-radius: 12px; padding: 26px 22px;
+    }
+    .feat h3 { color: var(--teal); font-size: 0.9rem; margin-bottom: 8px; }
+    .feat p { font-size: 0.85rem; }
+    @media (max-width: 560px) { .features-grid { grid-template-columns: 1fr; } }
+
+    /* TIERS */
+    .tiers-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; margin-top: 52px; }
+    .tier {
+      background: var(--card); border: 1px solid var(--teal-border);
+      border-radius: 14px; padding: 26px 18px; text-align: center;
+    }
+    .tier.pop { border-color: var(--teal); }
+    .pop-badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      background: var(--teal-glow); color: var(--teal);
+      border: 1px solid var(--teal-border); border-radius: 20px;
+      padding: 3px 9px; margin-bottom: 12px;
+    }
+    .tier-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+    .tier-price { font-size: 1.7rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .tier-per { font-size: 0.72rem; color: var(--muted); margin-bottom: 14px; }
+    .tier-perks { list-style: none; text-align: left; }
+    .tier-perks li {
+      font-size: 0.78rem; color: var(--muted);
+      padding: 4px 0 4px 14px; position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .tier-perks li::before { content:"→"; position:absolute; left:0; color:var(--teal); font-size:0.7rem; }
+    @media (max-width: 940px) { .tiers-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 500px) { .tiers-grid { grid-template-columns: 1fr; } }
+
+    /* FOUNDER */
+    .founder-card {
+      max-width: 760px; margin: 0 auto;
+      background: var(--card); border: 1px solid var(--teal-border);
+      border-radius: 20px; padding: 52px 44px;
+    }
+    blockquote {
+      font-size: clamp(1.05rem, 2.2vw, 1.22rem);
+      color: rgba(255,255,255,0.82); font-style: italic; line-height: 1.8;
+      border-left: 3px solid var(--teal); padding-left: 22px; margin-bottom: 28px;
+    }
+    .f-meta { display: flex; align-items: center; gap: 14px; }
+    .f-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--teal); color: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.05rem; flex-shrink: 0;
+    }
+    .f-name { font-weight: 600; color: var(--white); font-size: 0.95rem; }
+    .f-role { font-size: 0.82rem; color: var(--muted); }
+    @media (max-width: 600px) { .founder-card { padding: 30px 22px; } }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .c-left h2 { margin-bottom: 14px; }
+    .c-left p { margin-bottom: 28px; }
+    .c-details { display: flex; flex-direction: column; gap: 10px; }
+    .c-detail { display: flex; align-items: center; gap: 10px; }
+    .c-detail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+    .c-detail a { color: var(--teal); text-decoration: none; font-size: 0.92rem; }
+    .c-detail span { color: var(--muted); font-size: 0.92rem; }
+    .cform { display: flex; flex-direction: column; gap: 14px; }
+    .fg { display: flex; flex-direction: column; gap: 7px; }
+    .fg label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
+    .fg input, .fg textarea, .fg select {
+      background: var(--card); border: 1px solid var(--teal-border);
+      color: var(--white); border-radius: 10px; padding: 13px 15px;
+      font-size: 0.92rem; font-family: inherit; outline: none; width: 100%;
+      transition: border-color 0.2s;
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--teal); }
+    .fg textarea { resize: vertical; min-height: 110px; }
+    .fg select option { background: var(--card); }
+    .cform-btn {
+      background: var(--teal); color: var(--black); border: none;
+      border-radius: 28px; padding: 13px 28px;
+      font-size: 0.92rem; font-weight: 700; cursor: pointer;
+      transition: opacity 0.2s; width: 100%;
+    }
+    .cform-btn:hover { opacity: 0.86; }
+    .cform-note { font-size: 0.78rem; color: var(--muted); text-align: center; }
+    @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; gap: 44px; } }
+
+    /* FOOTER */
+    footer { padding: 36px 0; border-top: 1px solid var(--teal-border); }
+    .foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .foot-left { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
+    .foot-right { font-size: 0.78rem; color: var(--muted); }
+
+    /* ANIMATIONS */
+    .fu { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fu.vis { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">VibeVault</a>
+    <div class="nav-links">
+      <a href="#problem">The problem</a>
+      <a href="#solution">The solution</a>
+      <a href="#founder">The founder</a>
+      <a href="#contact" class="nav-btn">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="eyebrow fu">Cape Town, South Africa · Est. 2025</div>
+    <h1 class="fu">
+      The city's <span class="teal">safest place</span><br>
+      to leave your bag.<br>
+      And maybe your fear.
+    </h1>
+    <p class="hero-sub fu">
+      VibeVault is smart street infrastructure for people who deserve 
+      to enjoy their night without holding everything together by themselves.
+    </p>
+    <div class="btn-row fu">
+      <a href="#solution" class="btn-primary">See the vision</a>
+      <a href="#contact" class="btn-outline">Partner with us</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat fu">
+        <div class="stat-num">4,200+</div>
+        <div class="stat-desc">theft and robbery cases annually in Cape Town Central precinct (SAPS 2023/24)</div>
+      </div>
+      <div class="stat fu">
+        <div class="stat-num">68%</div>
+        <div class="stat-desc">of incidents occur between 6pm and 6am — when people are out living their lives</div>
+      </div>
+      <div class="stat fu">
+        <div class="stat-num">43%</div>
+        <div class="stat-desc">of stranded tourist cases involve a dead phone battery (Cape Town CCID 2023)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="alt" id="problem">
+  <div class="container">
+    <div class="s-head fu">
+      <div class="eyebrow">The problem</div>
+      <h2>Every night, thousands of people navigate the space between <span class="teal">joy and vulnerability</span>.</h2>
+      <p>Existing safety apps are reactive — they require you to press a button when you are already scared. They don't prevent. They don't hold space.</p>
+    </div>
+    <div class="gap-quote fu">
+      <p>What is missing is <strong>proactive infrastructure</strong> — something that makes Cape Town nights feel like Berlin or Tokyo. Safe enough to be intrinsically free. A space that holds you before you need to ask for it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <div class="s-head fu">
+      <div class="eyebrow">The solution</div>
+      <h2>Three interlocking layers of care.</h2>
+      <p>VibeVault is the guardian at the intersection of safety, freedom, and nightlife culture. Solar-powered. Always on. Designed for the city at 2am.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar fu">
+        <div class="pillar-dot-wrap"><div class="p-dot"></div></div>
+        <h3>Physical safety infrastructure</h3>
+        <p>Smart lockers on high-traffic nightlife and beach routes. Solar-powered, weatherproof, glowing with soft turquoise light. Drop your bag. Charge your phone. Go live your night.</p>
+      </div>
+      <div class="pillar fu">
+        <div class="pillar-dot-wrap"><div class="p-dot"></div></div>
+        <h3>The emergency net</h3>
+        <p>One glowing button: I'm Stranded. A ride home, no questions asked. Wellness essentials always available. Safety for every member, every night — without judgement.</p>
+      </div>
+      <div class="pillar fu">
+        <div class="pillar-dot-wrap"><div class="p-dot"></div></div>
+        <h3>Wellness and connection</h3>
+        <p>Electrolytes, sunblock, phone charging, a retro telephone wellness check-in, and circular seating designed so strangers become a little less strange to each other.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="alt">
+  <div class="container">
+    <div class="s-head fu">
+      <div class="eyebrow">Every detail considered</div>
+      <h2>Built for the real conditions of Cape Town life.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feat fu">
+        <h3>Solar powered</h3>
+        <p>High-efficiency monocrystalline solar with lithium-iron-phosphate battery backup. Runs through Cape Town winters, load shedding, and everything in between.</p>
+      </div>
+      <div class="feat fu">
+        <h3>Wellness vending</h3>
+        <p>No glass. Nothing that can become a weapon. Electrolytes, water, healthy snacks, sunblock and seasonal essentials — only what your body actually needs at 2am.</p>
+      </div>
+      <div class="feat fu">
+        <h3>AI smart screen</h3>
+        <p>Maps, local recommendations, ride ordering and a wellness check-in — all available even when your phone is dead. The city in your hands, always.</p>
+      </div>
+      <div class="feat fu">
+        <h3>Eco-hatch</h3>
+        <p>Drop any plastic bottle and receive instant R2 SnapScan credit. The more Cape Town parties, the more the ocean gets cleaned.</p>
+      </div>
+      <div class="feat fu">
+        <h3>Circular seating</h3>
+        <p>Designed using prospect and refuge theory, the golden ratio, and Third Place principles — a space that feels safe without you consciously knowing why.</p>
+      </div>
+      <div class="feat fu">
+        <h3>Security integration</h3>
+        <p>A panic button connects to trained, visible, non-police security partners. Prevention infrastructure — designed to hold space before anything happens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section>
+  <div class="container">
+    <div class="s-head fu">
+      <div class="eyebrow">Membership</div>
+      <h2>Inclusivity from day one.</h2>
+      <p>Emergency charging, the seating booth, and essential wellness items remain 100% free forever — for everyone, always, no membership required.</p>
+    </div>
+    <div class="tiers-grid">
+      <div class="tier fu">
+        <div class="tier-label">Pay as you go</div>
+        <div class="tier-price">Free</div>
+        <div class="tier-per">to join</div>
+        <ul class="tier-perks">
+          <li>Locker from R30/use</li>
+          <li>Emergency charging always free</li>
+          <li>Seating booth always free</li>
+          <li>Wellness items always free</li>
+        </ul>
+      </div>
+      <div class="tier fu">
+        <div class="tier-label">Student</div>
+        <div class="tier-price">R39</div>
+        <div class="tier-per">per month</div>
+        <ul class="tier-perks">
+          <li>First 3 months free</li>
+          <li>1 free ride home/month</li>
+          <li>1 free vending item/month</li>
+          <li>Unlimited emergency access</li>
+        </ul>
+      </div>
+      <div class="tier fu">
+        <div class="tier-label">Lite</div>
+        <div class="tier-price">R49</div>
+        <div class="tier-per">per month</div>
+        <ul class="tier-perks">
+          <li>1 free ride home</li>
+          <li>2 free vending items</li>
+          <li>Locker booking 1hr ahead</li>
+        </ul>
+      </div>
+      <div class="tier pop fu">
+        <div class="pop-badge">Most popular</div>
+        <div class="tier-label">Vibe</div>
+        <div class="tier-price">R99</div>
+        <div class="tier-per">per month</div>
+        <ul class="tier-perks">
+          <li>Unlimited locker use</li>
+          <li>2 free rides home</li>
+          <li>3 free vending items</li>
+          <li>10% off everything</li>
+        </ul>
+      </div>
+      <div class="tier fu">
+        <div class="tier-label">Premium</div>
+        <div class="tier-price">R299</div>
+        <div class="tier-per">per month</div>
+        <ul class="tier-perks">
+          <li>Priority locker access</li>
+          <li>5 free rides home</li>
+          <li>5 free vending items</li>
+          <li>20% off everything</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="alt" id="founder">
+  <div class="container">
+    <div class="eyebrow fu" style="text-align:center;margin-bottom:40px">The founder</div>
+    <div class="founder-card fu">
+      <blockquote>
+        "This is the answer to every night I walked home alone at 3am across 
+        desolate Cape Town neighbourhoods with a dead phone and R37 to my name. 
+        VibeVault is the guardian I wish had existed every single time."
+      </blockquote>
+      <div class="f-meta">
+        <div class="f-avatar">D</div>
+        <div>
+          <div class="f-name">Dasha Mohlala</div>
+          <div class="f-role">Founder · VIBEVAULT AFRICA (PTY) LTD · Cape Town, South Africa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="c-left fu">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Ready to save the night?</h2>
+        <p>Partnerships, investment, press, grant enquiries, or just to say hello. We are building something Cape Town needs — and we want to build it with the right people.</p>
+        <div class="c-details">
+          <div class="c-detail">
+            <div class="c-detail-dot"></div>
+            <!-- REPLACE if hello@ is not yet confirmed working — use dasha@ instead -->
+            <a href="mailto:dasha@vibevaultafrica.co.za">dasha@vibevaultafrica.co.za</a>
+          </div>
+          <div class="c-detail">
+            <div class="c-detail-dot"></div>
+            <a href="tel:+27730129314">+27 73 012 9314</a>
+          </div>
+          <div class="c-detail">
+            <div class="c-detail-dot"></div>
+            <span>Claremont, Cape Town, South Africa</span>
+          </div>
+          <div class="c-detail">
+            <div class="c-detail-dot"></div>
+            <span>VIBEVAULT AFRICA (PTY) LTD · 2025/958585/07</span>
+          </div>
+        </div>
+      </div>
+      <div class="fu">
+        <form action="https://formspree.io/f/mzdkjvzv" method="POST" class="cform">
+          <div class="fg">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="First and last name" required />
+          </div>
+          <div class="fg">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="fg">
+            <label for="reason">I am reaching out about</label>
+            <select id="reason" name="reason">
+              <option value="">Select a reason</option>
+              <option value="investment">Investment or funding</option>
+              <option value="partnership">Partnership or collaboration</option>
+              <option value="press">Press or media</option>
+              <option value="location">Location or site enquiry</option>
+              <option value="grant">Grant application support</option>
+              <option value="general">General enquiry</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="message">Your message</label>
+            <textarea id="message" name="message" placeholder="Tell us what you have in mind..." required></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New VibeVault enquiry" />
+          <input type="text" name="_gotcha" style="display:none" />
+          <button type="submit" class="cform-btn">Send message</button>
+          <p class="cform-note">We respond within 48 hours.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-inner">
+      <div class="foot-left">
+        © 2026 VIBEVAULT AFRICA (PTY) LTD · Enterprise No. 2025/958585/07<br>
+        B-BBEE Level 1 · 100% Black Woman Owned · Cape Town, South Africa
+      </div>
+      <div class="foot-right">vibevaultafrica.co.za</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
