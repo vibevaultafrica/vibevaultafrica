@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VibeVault Africa — The Inevitable. A city where safety never becomes a thought. Cape Town's invisible care infrastructure." />
+  <meta name="theme-color" content="#080E18" />
+  <meta property="og:title" content="VibeVault Africa — The Inevitable" />
+  <meta property="og:description" content="A city where safety never becomes a thought. Not because you're careless. Because the city has already taken care of it." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vibevaultafrica.co.za/v2.html" />
+  <meta property="og:image" content="https://vibevaultafrica.co.za/images/hero-promenade.jpg" />
+  <title>VibeVault Africa — The Inevitable</title>
+  <script src="translations.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:    #40E0D0;
+      --teal2:   #00CED1;
+      --ink:     #080E18;
+      --navy:    #0D1B2A;
+      --surface: #0D1824;
+      --card:    #111F30;
+      --text:    rgba(255,255,255,0.90);
+      --muted:   rgba(255,255,255,0.60);
+      --ff:      -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: var(--ff);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SCROLL REVEAL ─────────────────────────── */
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .rv.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+
+    /* ── NAV ───────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      background: rgba(8,14,24,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(64,224,208,0.10);
+    }
+
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-logo .vibe  { color: #fff; }
+    .nav-logo .vault { color: #40E0D0; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: #40E0D0; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.22);
+      color: rgba(255,255,255,0.72);
+      font-family: var(--ff);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { border-color: #40E0D0; color: #40E0D0; }
+
+    .nav-cta {
+      background: #40E0D0;
+      color: #080E18;
+      font-family: var(--ff);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.42rem 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* Hamburger */
+    .nav-ham {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-ham span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.80);
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .nav-ham:hover span { background: #40E0D0; }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(8,14,24,0.97);
+      border-bottom: 1px solid rgba(64,224,208,0.12);
+      padding: 1rem 1.5rem 1.5rem;
+      z-index: 99;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      color: rgba(255,255,255,0.80);
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:last-of-type { border-bottom: none; }
+    .nav-mobile a:hover { color: #40E0D0; }
+    .nav-mobile a.active { color: #40E0D0; }
+
+    @media (max-width: 800px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-ham { display: flex; }
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background: var(--ink) url('images/hero-promenade.jpg') center center / cover no-repeat;
+      z-index: 0;
+    }
+
+    /* subtle vignette + gradient */
+    .hero-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(8,14,24,0.30) 0%,
+          rgba(8,14,24,0.18) 35%,
+          rgba(8,14,24,0.55) 68%,
+          rgba(8,14,24,0.92) 100%
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 5rem 5vw 5rem;
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: #40E0D0;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      white-space: pre-line;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.22rem);
+      color: rgba(255,255,255,0.78);
+      line-height: 1.6;
+      max-width: 540px;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: #40E0D0;
+      color: #080E18;
+      font-family: var(--ff);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.78rem 1.6rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      font-family: var(--ff);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.78rem 1.6rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.28);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: #40E0D0; color: #40E0D0; transform: translateY(-1px); }
+
+    /* ── SECTIONS ──────────────────────────────── */
+    section {
+      padding: 6rem 5vw;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      color: #40E0D0;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      line-height: 1.18;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      white-space: pre-line;
+    }
+
+    .section-p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.72;
+      max-width: 660px;
+    }
+
+    /* ── PROBLEM ───────────────────────────────── */
+    .problem-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .problem-visual {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--surface) url('images/hero-solar.jpg') center / cover no-repeat;
+    }
+
+    .problem-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(64,224,208,0.08), rgba(8,14,24,0.40));
+    }
+
+    @media (max-width: 860px) {
+      .problem-wrap { grid-template-columns: 1fr; }
+      .problem-visual { order: -1; }
+    }
+
+    /* ── PILLARS ───────────────────────────────── */
+    .pillars-section { background: var(--navy); }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .pillar-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 2.2rem;
+      border: 1px solid rgba(64,224,208,0.10);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .pillar-card:hover {
+      border-color: rgba(64,224,208,0.32);
+      transform: translateY(-4px);
+    }
+
+    /* V2-specific pillar accent: gentle teal glow on icon circle */
+    .pillar-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(64,224,208,0.08);
+      border: 1px solid rgba(64,224,208,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.35rem;
+      color: #40E0D0;
+    }
+
+    .pillar-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.01em;
+    }
+
+    .pillar-card p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.68;
+    }
+
+    @media (max-width: 720px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── HOW IT WORKS ──────────────────────────── */
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .how-step {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(64,224,208,0.10);
+      border: 1px solid rgba(64,224,208,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #40E0D0;
+      flex-shrink: 0;
+    }
+
+    .how-step h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .how-step p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.60);
+      line-height: 1.65;
+    }
+
+    /* ── STATS ─────────────────────────────────── */
+    .stats-section { background: var(--surface); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 2.25rem 2rem;
+      border: 1px solid rgba(64,224,208,0.08);
+    }
+
+    .stat-label {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: #40E0D0;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .stat-value {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      margin-bottom: 0.9rem;
+    }
+
+    .stat-source {
+      font-size: 0.74rem;
+      color: rgba(255,255,255,0.36);
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+    @media (max-width: 780px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FOUNDER QUOTE ─────────────────────────── */
+    .founder-section {
+      background: linear-gradient(160deg, #0D1B2A 0%, #080E18 100%);
+    }
+
+    .founder-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .quote-mark {
+      font-size: 4rem;
+      line-height: 0.5;
+      color: rgba(64,224,208,0.25);
+      font-family: Georgia, serif;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    blockquote {
+      font-size: clamp(1.1rem, 2.2vw, 1.38rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.84);
+      line-height: 1.70;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+    }
+
+    .founder-attribution {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .founder-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #40E0D0;
+      letter-spacing: 0.03em;
+    }
+
+    .founder-title {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── PRICING ───────────────────────────────── */
+    .pricing-section {}
+
+    .pricing-note {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: #40E0D0;
+      font-weight: 600;
+    }
+
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .tier-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.75rem 1.25rem;
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .tier-card:hover {
+      border-color: rgba(64,224,208,0.28);
+      transform: translateY(-3px);
+    }
+    .tier-card.featured {
+      border-color: rgba(64,224,208,0.38);
+      background: linear-gradient(160deg, rgba(64,224,208,0.07), var(--card));
+    }
+
+    .tier-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .tier-price {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #40E0D0;
+      letter-spacing: -0.02em;
+      margin-top: 0.25rem;
+    }
+
+    .tier-perks {
+      list-style: none;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .tier-perks li {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.45;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .tier-perks li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: #40E0D0;
+      font-weight: 700;
+    }
+
+    @media (max-width: 960px) {
+      .tiers-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 420px) {
+      .tiers-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CONTACT ───────────────────────────────── */
+    .contact-section { background: var(--navy); }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-top: 0.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .contact-detail-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.38);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .contact-detail a,
+    .contact-detail span {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-detail a:hover { color: #40E0D0; }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      color: #fff;
+      font-family: var(--ff);
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(255,255,255,0.32);
+    }
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: rgba(64,224,208,0.45);
+    }
+
+    .form-textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      background: #40E0D0;
+      color: #080E18;
+      font-family: var(--ff);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      transition: opacity 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    @media (max-width: 760px) {
+      .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* ── FOOTER ────────────────────────────────── */
+    footer {
+      background: #060B12;
+      border-top: 1px solid rgba(64,224,208,0.08);
+      padding: 2.5rem 5vw;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .footer-logo .vibe  { color: #fff; }
+    .footer-logo .vault { color: #40E0D0; }
+
+    .footer-legal {
+      font-size: 0.74rem;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.6;
+      text-align: center;
+      flex: 1;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+    }
+    .footer-nav a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: #40E0D0; }
+
+    @media (max-width: 640px) {
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-nav { flex-wrap: wrap; justify-content: center; }
+    }
+
+    /* ── LANG MODAL ────────────────────────────── */
+    .lang-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .lang-overlay.open { display: flex; }
+
+    .lang-modal {
+      background: #0D1B2A;
+      border: 1px solid rgba(64,224,208,0.18);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 560px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .lang-modal-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .lang-pill {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.80);
+      font-family: var(--ff);
+      font-size: 0.82rem;
+      cursor: pointer;
+      background: transparent;
+      text-align: center;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .lang-pill:hover {
+      border-color: #40E0D0;
+      color: #40E0D0;
+      background: rgba(64,224,208,0.05);
+    }
+    .lang-pill.selected {
+      border-color: #40E0D0;
+      color: #40E0D0;
+      background: rgba(64,224,208,0.09);
+    }
+
+    .lang-modal-close {
+      display: block;
+      margin: 1.25rem auto 0;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.20);
+      color: rgba(255,255,255,0.55);
+      font-family: var(--ff);
+      font-size: 0.82rem;
+      padding: 0.45rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-modal-close:hover { border-color: #40E0D0; color: #40E0D0; }
+
+    /* ── MISC ──────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: rgba(64,224,208,0.07);
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    /* V2 hero: very subtle teal shimmer on image */
+    .hero-shimmer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(ellipse at 60% 40%, rgba(64,224,208,0.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* "Designed to disappear" section — pull-quote treatment */
+    .disappear-quote {
+      font-size: clamp(1.2rem, 2.8vw, 1.75rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      max-width: 700px;
+      margin-top: 2.5rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid rgba(64,224,208,0.30);
+    }
+    .disappear-quote em { color: rgba(255,255,255,0.88); font-style: normal; }
+
+    /* back to game link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.40);
+      text-decoration: none;
+      transition: color 0.2s;
+      margin-top: 0.5rem;
+    }
+    .back-link:hover { color: #40E0D0; }
+  </style>
+</head>
+<body>
+
+  <!-- ── LANGUAGE MODAL ──────────────────────── -->
+  <div class="lang-overlay" id="langOverlay" role="dialog" aria-modal="true" aria-label="Select language">
+    <div class="lang-modal">
+      <p class="lang-modal-title">Select your language</p>
+      <div class="lang-grid" id="langGrid"></div>
+      <button class="lang-modal-close" id="langClose">Close</button>
+    </div>
+  </div>
+
+  <!-- ── NAV ──────────────────────────────────── -->
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="VibeVault home">
+      <span class="vibe">Vibe</span><span class="vault">Vault</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="v1.html" data-i18n="nav_v1">Your Vault</a></li>
+      <li><a href="v2.html" class="active" data-i18n="nav_v2">The Inevitable</a></li>
+      <li><a href="v3.html" data-i18n="nav_v3">The Explorer</a></li>
+      <li><a href="v4.html" data-i18n="nav_v4">Infrastructure Case</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="lang-btn" id="langToggle" aria-label="Change language">EN</button>
+      <a href="#contact" class="nav-cta" data-i18n="hero_cta2">Experience it</a>
+    </div>
+
+    <button class="nav-ham" id="hamBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav-mobile" id="navMobile" role="navigation" aria-label="Mobile navigation">
+    <a href="v1.html" data-i18n="nav_v1">Your Vault</a>
+    <a href="v2.html" class="active" data-i18n="nav_v2">The Inevitable</a>
+    <a href="v3.html" data-i18n="nav_v3">The Explorer</a>
+    <a href="v4.html" data-i18n="nav_v4">Infrastructure Case</a>
+  </div>
+
+  <!-- ── HERO ─────────────────────────────────── -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <div class="hero-img" role="img" aria-label="Cape Town promenade at dusk with a VibeVault pod glowing teal"></div>
+    <div class="hero-shimmer"></div>
+    <div class="hero-content">
+      <span class="eyebrow rv" data-i18n="hero_eyebrow">The Inevitable</span>
+      <h1 class="rv d1" id="hero-h1" data-i18n="hero_h1">A city where safety never becomes a thought.</h1>
+      <p class="hero-sub rv d2" data-i18n="hero_sub">Not because you're careless. Because the city has already taken care of it.</p>
+      <div class="hero-ctas rv d3">
+        <a href="#how" class="btn-primary" data-i18n="hero_cta1">See how</a>
+        <a href="#contact" class="btn-ghost" data-i18n="hero_cta2">Experience it</a>
+      </div>
+      <a href="index.html" class="back-link rv d4">← Find your VibeVault</a>
+    </div>
+  </section>
+
+  <!-- ── PROBLEM ───────────────────────────────── -->
+  <section aria-labelledby="problem-h2" style="padding-top: 7rem;">
+    <div class="problem-wrap">
+      <div class="problem-text">
+        <span class="section-eyebrow rv" data-i18n="section_problem_ey">The tension</span>
+        <h2 class="section-h2 rv d1" id="problem-h2" data-i18n="section_problem_h2">The best cities don't remind you they're safe.</h2>
+        <p class="section-p rv d2" data-i18n="section_problem_p">The most beautiful moments happen when safety is invisible — when the city itself holds you, and you never notice.</p>
+      </div>
+      <div class="problem-visual rv d3" role="img" aria-label="Solar-powered VibeVault pod overlooking the sea at sunrise"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── PILLARS ───────────────────────────────── -->
+  <section class="pillars-section" aria-labelledby="pillars-heading" style="padding-top: 6rem; padding-bottom: 6rem; background: var(--navy); margin: 0; max-width: 100%; padding-left: 5vw; padding-right: 5vw;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <span class="section-eyebrow rv">VibeVault</span>
+      <h2 class="section-h2 rv d1" id="pillars-heading">Three pillars. One city.</h2>
+      <div class="pillars-grid">
+        <div class="pillar-card rv d1">
+          <div class="pillar-icon" aria-hidden="true">◈</div>
+          <h3 data-i18n="pillar1_h3">Present</h3>
+          <p data-i18n="pillar1_p">VibeVault pods sit where the city breathes — promenades, waterfronts, nightlife corridors. Always there.</p>
+        </div>
+        <div class="pillar-card rv d2">
+          <div class="pillar-icon" aria-hidden="true">⊙</div>
+          <h3 data-i18n="pillar2_h3">Always on</h3>
+          <p data-i18n="pillar2_p">Solar-powered, 24/7. No downtime, no closures. The city never sleeps, and neither does its care.</p>
+        </div>
+        <div class="pillar-card rv d3">
+          <div class="pillar-icon" aria-hidden="true">∅</div>
+          <h3 data-i18n="pillar3_h3">Invisible</h3>
+          <p data-i18n="pillar3_p">You won't think about VibeVault until you need it. And when you do, it's already there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ──────────────────────────── -->
+  <section id="how" aria-labelledby="how-h2">
+    <span class="section-eyebrow rv" data-i18n="section_how_ey">The experience</span>
+    <h2 class="section-h2 rv d1" id="how-h2" data-i18n="section_how_h2">Designed to disappear.</h2>
+
+    <p class="disappear-quote rv d2">
+      You arrive. You put your things down.
+      <em>You forget about them completely.</em>
+      The city carries the rest — bag stored, phone charged, ride home sorted —
+      and you're simply free.
+    </p>
+
+    <div class="how-steps">
+      <div class="how-step rv d1">
+        <div class="step-num" aria-hidden="true">01</div>
+        <h3>Arrive at a pod</h3>
+        <p>VibeVault pods are positioned at promenades, waterfronts, and nightlife corridors. Tap to open.</p>
+      </div>
+      <div class="how-step rv d2">
+        <div class="step-num" aria-hidden="true">02</div>
+        <h3>Store. Charge. Forget.</h3>
+        <p>Secure your bag, plug in your phone. The pod does the rest. You won't need to think about it again.</p>
+      </div>
+      <div class="how-step rv d3">
+        <div class="step-num" aria-hidden="true">03</div>
+        <h3>Return when ready</h3>
+        <p>Your things are exactly as you left them. Pick up, tap for your ride home, and leave with the night intact.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── STATS ─────────────────────────────────── -->
+  <section class="stats-section" aria-labelledby="stats-h2" style="max-width: 100%; padding-left: 5vw; padding-right: 5vw;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <span class="section-eyebrow rv" data-i18n="section_stats_ey">The context</span>
+      <h2 class="section-h2 rv d1" id="stats-h2" data-i18n="section_stats_h2">A city already in motion.</h2>
+      <div class="stats-grid">
+        <div class="stat-card rv d1">
+          <div class="stat-label" data-i18n="stat1_label">43%</div>
+          <p class="stat-value" data-i18n="stat1_value">of all stranded assistance cases in Cape Town involve a flat phone battery</p>
+          <span class="stat-source" data-i18n="stat1_source">Cape Town CCID · 2023</span>
+        </div>
+        <div class="stat-card rv d2">
+          <div class="stat-label" data-i18n="stat2_label">24 million</div>
+          <p class="stat-value" data-i18n="stat2_value">annual visits to the V&amp;A Waterfront — more than the Colosseum, Sagrada Família and Louvre individually</p>
+          <span class="stat-source" data-i18n="stat2_source">V&amp;A Waterfront Official · 2024</span>
+        </div>
+        <div class="stat-card rv d3">
+          <div class="stat-label" data-i18n="stat3_label">R24.5 billion</div>
+          <p class="stat-value" data-i18n="stat3_value">generated by Cape Town's tourism economy in 2024</p>
+          <span class="stat-source" data-i18n="stat3_source">Wesgro · 2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOUNDER QUOTE ─────────────────────────── -->
+  <section class="founder-section" aria-label="Founder quote" style="max-width: 100%; padding-left: 5vw; padding-right: 5vw;">
+    <div class="founder-inner">
+      <span class="quote-mark rv" aria-hidden="true">&ldquo;</span>
+      <blockquote class="rv d1" data-i18n="founder_quote">
+        The best infrastructure is invisible — you don't notice roads when they work, only when they don't. I've always been more interested in what cities could be than what they are. VibeVault is my answer to that: care so well-designed into Cape Town's streets that you simply feel it as ease.
+      </blockquote>
+      <div class="founder-attribution rv d2">
+        <span class="founder-name" data-i18n="founder_name">Dasha Mohlala</span>
+        <span class="founder-title" data-i18n="founder_title">Founder, VIBEVAULT AFRICA (PTY) LTD</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── PRICING ───────────────────────────────── -->
+  <section id="pricing" aria-labelledby="pricing-h2">
+    <span class="section-eyebrow rv" data-i18n="section_pricing_ey">Access</span>
+    <h2 class="section-h2 rv d1" id="pricing-h2" data-i18n="section_pricing_h2">No barriers. Just levels.</h2>
+    <p class="pricing-note rv d2" data-i18n="free_note">Storage is always free. Always.</p>
+
+    <div class="tiers-grid">
+      <!-- Pay as you go -->
+      <div class="tier-card rv d1">
+        <div class="tier-name" data-i18n="tier_payg">Pay as you go</div>
+        <div class="tier-price" data-i18n="tier_payg_price">R0</div>
+        <ul class="tier-perks">
+          <li>Secure storage, per use</li>
+          <li>USB charging</li>
+          <li>Pod-screen ride hail</li>
+        </ul>
+      </div>
+      <!-- Student -->
+      <div class="tier-card rv d2">
+        <div class="tier-name" data-i18n="tier_student">Student</div>
+        <div class="tier-price" data-i18n="tier_student_price">R49/mo</div>
+        <ul class="tier-perks">
+          <li>Unlimited storage</li>
+          <li>Priority charging</li>
+          <li>Ride hail</li>
+          <li>Student verified</li>
+        </ul>
+      </div>
+      <!-- Lite -->
+      <div class="tier-card rv d3">
+        <div class="tier-name" data-i18n="tier_lite">Lite</div>
+        <div class="tier-price" data-i18n="tier_lite_price">R99/mo</div>
+        <ul class="tier-perks">
+          <li>Unlimited storage</li>
+          <li>Fast charging</li>
+          <li>Ride hail</li>
+          <li>City alerts</li>
+        </ul>
+      </div>
+      <!-- Vibe -->
+      <div class="tier-card featured rv d4">
+        <div class="tier-name" data-i18n="tier_vibe">Vibe</div>
+        <div class="tier-price" data-i18n="tier_vibe_price">R199/mo</div>
+        <ul class="tier-perks">
+          <li>Everything in Lite</li>
+          <li>Express locker access</li>
+          <li>Safety check-in</li>
+          <li>Partner discounts</li>
+        </ul>
+      </div>
+      <!-- Premium -->
+      <div class="tier-card rv d5">
+        <div class="tier-name" data-i18n="tier_premium">Premium</div>
+        <div class="tier-price" data-i18n="tier_premium_price">R299/mo</div>
+        <ul class="tier-perks">
+          <li>Everything in Vibe</li>
+          <li>Concierge ride</li>
+          <li>Dedicated locker</li>
+          <li>Guest passes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── CONTACT ───────────────────────────────── -->
+  <section id="contact" class="contact-section" aria-labelledby="contact-h2" style="max-width: 100%; padding-left: 5vw; padding-right: 5vw;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <span class="section-eyebrow rv" data-i18n="section_contact_ey">Connect</span>
+      <h2 class="section-h2 rv d1" id="contact-h2" data-i18n="section_contact_h2">We're listening.</h2>
+
+      <div class="contact-wrap" style="margin-top: 3rem;">
+        <div class="contact-info rv d1">
+          <div class="contact-detail">
+            <span class="contact-detail-label">Email</span>
+            <a href="mailto:dasha@vibevaultafrica.co.za">dasha@vibevaultafrica.co.za</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Phone</span>
+            <a href="tel:+27730129314">+27 73 012 9314</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Location</span>
+            <span>Cape Town, South Africa</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Website</span>
+            <span>vibevaultafrica.co.za</span>
+          </div>
+        </div>
+
+        <!-- REPLACE YOUR_FORM_ID below with your Formspree form ID -->
+        <form
+          class="contact-form rv d2"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          novalidate
+        >
+          <!-- Anti-spam honeypot field -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <!-- Hidden subject -->
+          <input type="hidden" name="_subject" value="New VibeVault enquiry — The Inevitable" />
+
+          <input
+            type="text"
+            name="name"
+            class="form-input"
+            data-i18n-placeholder="contact_name"
+            placeholder="Your name"
+            required
+            autocomplete="name"
+          />
+          <input
+            type="email"
+            name="email"
+            class="form-input"
+            data-i18n-placeholder="contact_email"
+            placeholder="Your email"
+            required
+            autocomplete="email"
+          />
+          <textarea
+            name="message"
+            class="form-textarea"
+            data-i18n-placeholder="contact_message"
+            placeholder="Your message"
+            required
+          ></textarea>
+
+          <button type="submit" class="form-submit" data-i18n="contact_send">Send</button>
+          <p class="form-note" data-i18n="contact_note">We read every message.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────── -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo" aria-label="VibeVault home">
+        <span class="vibe">Vibe</span><span class="vault">Vault</span>
+      </a>
+      <p class="footer-legal" data-i18n="footer_legal">
+        VIBEVAULT AFRICA (PTY) LTD · Enterprise No. 2025/958585/07 · Level 1 B-BBEE · 100% Black Woman Owned
+      </p>
+      <nav aria-label="Footer links">
+        <ul class="footer-nav">
+          <li><a href="v1.html" data-i18n="nav_v1">Your Vault</a></li>
+          <li><a href="v3.html" data-i18n="nav_v3">The Explorer</a></li>
+          <li><a href="v4.html" data-i18n="nav_v4">Infrastructure Case</a></li>
+          <li><a href="brief.html">Brief</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ───────────────────────────────── -->
+  <script>
+  (function () {
+    'use strict';
+
+    // ── LANGUAGE SETUP ──────────────────────────
+    var LANGS = [
+      { code: 'en',    label: 'English' },
+      { code: 'af',    label: 'Afrikaans' },
+      { code: 'zu',    label: 'isiZulu' },
+      { code: 'xh',    label: 'isiXhosa' },
+      { code: 'st',    label: 'SeSotho' },
+      { code: 'tn',    label: 'SeTswana' },
+      { code: 've',    label: 'TshiVenda' },
+      { code: 'de',    label: 'Deutsch' },
+      { code: 'de-CH', label: 'Schweizerdeutsch' },
+      { code: 'fr',    label: 'Français' },
+      { code: 'es',    label: 'Español' },
+      { code: 'pt',    label: 'Português' },
+      { code: 'it',    label: 'Italiano' },
+      { code: 'nl',    label: 'Nederlands' },
+      { code: 'sv',    label: 'Svenska' },
+      { code: 'el',    label: 'Ελληνικά' },
+      { code: 'ru',    label: 'Русский' },
+      { code: 'ar',    label: 'العربية' },
+      { code: 'ur',    label: 'اردو' },
+      { code: 'zh',    label: '中文' },
+      { code: 'zh-TW', label: '繁體中文' },
+      { code: 'yue',   label: '廣東話' },
+      { code: 'ja',    label: '日本語' },
+      { code: 'ko',    label: '한국어' },
+      { code: 'sw',    label: 'Kiswahili' },
+      { code: 'yo',    label: 'Yorùbá' }
+    ];
+
+    // Detect language: URL param → localStorage → browser → 'en'
+    var params = new URLSearchParams(window.location.search);
+    var lang = params.get('lang')
+            || localStorage.getItem('vv-lang')
+            || (navigator.language || 'en').split('-')[0];
+
+    // Normalise zh-TW / yue which may arrive from navigator.language
+    if (!VV_WEB[lang]) lang = 'en';
+    localStorage.setItem('vv-lang', lang);
+
+    // ── RTL ─────────────────────────────────────
+    var RTL = ['ar', 'ur'];
+    document.documentElement.setAttribute('dir', RTL.indexOf(lang) !== -1 ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', lang);
+
+    // ── TRANSLATION HELPER ───────────────────────
+    function g(key) {
+      return VV_WEB.get(lang, 'v2', key);
+    }
+
+    // ── APPLY TRANSLATIONS ───────────────────────
+    function applyTranslations() {
+      // data-i18n: set textContent
+      var els = document.querySelectorAll('[data-i18n]');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        var key = el.getAttribute('data-i18n');
+        var val = g(key);
+        if (val) {
+          el.innerHTML = val.replace(/\n/g, '<br>');
+        }
+      }
+      // data-i18n-placeholder: set placeholder attribute
+      var pEls = document.querySelectorAll('[data-i18n-placeholder]');
+      for (var j = 0; j < pEls.length; j++) {
+        var pEl = pEls[j];
+        var pKey = pEl.getAttribute('data-i18n-placeholder');
+        var pVal = g(pKey);
+        if (pVal) pEl.setAttribute('placeholder', pVal);
+      }
+      // Update lang button label
+      var btn = document.getElementById('langToggle');
+      if (btn) btn.textContent = lang.toUpperCase().replace('-', '·');
+    }
+
+    applyTranslations();
+
+    // ── SCROLL REVEAL ────────────────────────────
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('in');
+          io.unobserve(entries[i].target);
+        }
+      }
+    }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+
+    var rvEls = document.querySelectorAll('.rv');
+    for (var k = 0; k < rvEls.length; k++) {
+      io.observe(rvEls[k]);
+    }
+
+    // Hero elements animate immediately on load
+    window.addEventListener('DOMContentLoaded', function () {
+      var heroRv = document.querySelectorAll('.hero .rv');
+      for (var m = 0; m < heroRv.length; m++) {
+        (function (el, idx) {
+          setTimeout(function () { el.classList.add('in'); }, 80 + idx * 120);
+        })(heroRv[m], m);
+      }
+    });
+
+    // ── NAV: hamburger ───────────────────────────
+    var hamBtn    = document.getElementById('hamBtn');
+    var navMobile = document.getElementById('navMobile');
+    if (hamBtn && navMobile) {
+      hamBtn.addEventListener('click', function () {
+        var isOpen = navMobile.classList.toggle('open');
+        hamBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+    // ── LANG MODAL ───────────────────────────────
+    var langOverlay = document.getElementById('langOverlay');
+    var langToggle  = document.getElementById('langToggle');
+    var langClose   = document.getElementById('langClose');
+    var langGrid    = document.getElementById('langGrid');
+
+    // Build lang pills
+    if (langGrid) {
+      LANGS.forEach(function (l) {
+        var btn = document.createElement('button');
+        btn.className = 'lang-pill' + (l.code === lang ? ' selected' : '');
+        btn.textContent = l.label;
+        btn.setAttribute('aria-label', 'Switch to ' + l.label);
+        btn.addEventListener('click', function () {
+          lang = l.code;
+          localStorage.setItem('vv-lang', lang);
+          // Update RTL
+          document.documentElement.setAttribute('dir', RTL.indexOf(lang) !== -1 ? 'rtl' : 'ltr');
+          document.documentElement.setAttribute('lang', lang);
+          // Remove selected from all, add to this
+          var pills = langGrid.querySelectorAll('.lang-pill');
+          for (var i = 0; i < pills.length; i++) pills[i].classList.remove('selected');
+          btn.classList.add('selected');
+          applyTranslations();
+          closeLangModal();
+        });
+        langGrid.appendChild(btn);
+      });
+    }
+
+    function openLangModal() {
+      if (langOverlay) langOverlay.classList.add('open');
+    }
+    function closeLangModal() {
+      if (langOverlay) langOverlay.classList.remove('open');
+    }
+
+    if (langToggle) langToggle.addEventListener('click', openLangModal);
+    if (langClose)  langClose.addEventListener('click', closeLangModal);
+    if (langOverlay) {
+      langOverlay.addEventListener('click', function (e) {
+        if (e.target === langOverlay) closeLangModal();
+      });
+    }
+
+    // Close modal on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLangModal();
+    });
+
+    // ── NAV: scroll active highlight ─────────────
+    // Already hard-coded .active on v2 link; no JS needed.
+
+  })();
+  </script>
+
+</body>
+</html>

@@ -1,547 +1,234 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VibeVault Africa — solar-powered smart locker pods for nightlife and beach safety in Cape Town." />
-  <meta name="theme-color" content="#060B12" />
-  <meta property="og:title" content="VibeVault Africa" />
-  <meta property="og:description" content="Find your VibeVault. Three questions. Your answer." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://vibevaultafrica.co.za" />
-  <meta property="og:image" content="https://vibevaultafrica.co.za/images/hero-pod.jpg" />
-  <title>VibeVault Africa</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+# CLAUDE.md — VibeVault Africa Complete Build Spec
+# Claude Code reads this file first before touching anything.
 
-    :root {
-      --teal: #40E0D0;
-      --ink: #060B12;
-      --card: #0C1A28;
-      --text: rgba(255,255,255,0.90);
-      --muted: rgba(255,255,255,0.62);
-      --ff: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
-    }
+---
 
-    html, body {
-      background: var(--ink);
-      color: var(--text);
-      font-family: var(--ff);
-      min-height: 100%;
-      overflow-x: hidden;
-    }
+## WHO THIS IS FOR
+Dasha Mohlala, founder of VIBEVAULT AFRICA (PTY) LTD.
+You are building her live website at vibevaultafrica.co.za, hosted on GitHub Pages.
+The repository is at github.com/vibevaultafrica/vibevaultafrica.
 
-    /* ── SCREENS ─────────────────────────────── */
-    .screen {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem 1.25rem 3rem;
-      position: relative;
-    }
-    .screen.active { display: flex; }
+---
 
-    /* ── TOPO OVERLAY ────────────────────────── */
-    .topo {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 1;
-    }
+## WHAT IS LIVE NOW (the old site — replace everything)
+The current index.html is titled "Safe by Design" with teal branding, one page,
+old copy, and zero multilingual support. Replace it completely.
 
-    /* ── LOGO ────────────────────────────────── */
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 1;
-    }
+---
 
-    /* ── WELCOME WORD ────────────────────────── */
-    .ww-wrap {
-      text-align: center;
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 1;
-      min-height: 4.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #ww {
-      color: var(--teal);
-      font-size: clamp(2.2rem, 6.5vw, 3.6rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      transition: opacity 0.72s ease;
-    }
+## WHAT TO BUILD — COMPLETE FILE LIST
 
-    /* ── LANG GRID ───────────────────────────── */
-    .lang-prompt {
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-    .lang-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      max-width: 700px;
-      width: 100%;
-      margin-bottom: 1.75rem;
-      position: relative;
-      z-index: 1;
-    }
-    .lp {
-      padding: 0.45rem 0.85rem;
-      border-radius: 2rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.30);
-      color: rgba(255,255,255,0.88);
-      background: transparent;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .lp:hover {
-      border-color: rgba(64,224,208,0.55);
-      color: var(--teal);
-    }
-    .lp.sel {
-      border-color: var(--teal);
-      color: var(--teal);
-      background: rgba(64,224,208,0.09);
-    }
+Build EVERY file below. Do not skip any. Do not stop until all exist and are complete.
 
-    /* ── CONTINUE BTN ────────────────────────── */
-    .btn-primary {
-      background: var(--teal);
-      color: #060B12;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.85rem 2.5rem;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-select: none;
-      border: none;
-      transition: opacity 0.18s;
-      position: relative;
-      z-index: 1;
-      font-family: var(--ff);
-    }
-    .btn-primary:hover { opacity: 0.88; }
+```
+/
+├── index.html          ← game entry experience (the first thing users see)
+├── v1.html             ← Your Vault (warm, human, friend)
+├── v2.html             ← The Inevitable (elegant, poetic, invisible)
+├── v3.html             ← The Explorer (open, free, for everyone)
+├── v4.html             ← Infrastructure Case (investor/institutional)
+├── brief.html          ← downloadable investor brief (V4 CTA downloads this)
+├── translations.js     ← ALL 26 language translations for websites
+├── images/
+│   ├── hero-pod.jpg       ← (slot: rename IMG_5175.jpeg when user uploads)
+│   ├── hero-promenade.jpg ← (slot: rename IMG_5160.jpeg)
+│   ├── hero-solar.jpg     ← (slot: rename IMG_5179.jpeg)
+│   ├── hero-row.jpg       ← (slot: rename IMG_5176.jpeg)
+│   ├── seating.jpg        ← (slot: rename IMG_5162.jpeg)
+│   └── stranded-screen.jpg← (slot: rename IMG_5163.jpeg)
+└── CLAUDE.md           ← this file (do not delete)
+```
 
-    .note {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 0.75rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
+---
 
-    /* ── INTRO SCREEN ────────────────────────── */
-    #s2 { justify-content: center; text-align: center; gap: 0; }
-    .eyebrow {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--teal);
-      margin-bottom: 1.25rem;
-    }
-    .intro-h1 {
-      font-size: clamp(2rem, 5.5vw, 3.2rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      margin-bottom: 1rem;
-      white-space: pre-line;
-    }
-    .intro-sub {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.6;
-    }
-    .skip-link {
-      color: rgba(255,255,255,0.62);
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 0.88rem;
-      margin-top: 1.25rem;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .skip-link:hover { color: rgba(255,255,255,0.90); }
+## BRAND RULES — NEVER BREAK THESE
 
-    /* ── BROWSE SCREEN ───────────────────────── */
-    #s3 { max-width: 880px; margin: 0 auto; width: 100%; }
-    .browse-h1 {
-      font-size: clamp(1.9rem, 5vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-    .browse-sub {
-      color: var(--muted);
-      font-size: 1rem;
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .ver-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
-      width: 100%;
-      margin-bottom: 2rem;
-    }
-    .ver-card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      cursor: pointer;
-      transition: border-color 0.2s, transform 0.18s;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .ver-card:hover {
-      border-color: var(--teal);
-      transform: translateY(-2px);
-    }
-    .ver-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.3rem;
-    }
-    .ver-tag {
-      font-size: 0.78rem;
-      color: var(--teal);
-      margin-bottom: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .ver-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-    .back-link {
-      color: rgba(255,255,255,0.62);
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 0.88rem;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .back-link:hover { color: rgba(255,255,255,0.90); }
+**Logo**: "Vibe" = white (#FFFFFF), "Vault" = teal (#40E0D0). Never invert. Never gold. Never both white.
+**Font**: ONLY `-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif`
+  — No Google Fonts. No Cormorant Garamond. No serif. No exceptions.
+**Colors**:
+  - Primary teal: #40E0D0
+  - Deep teal: #00CED1
+  - Midnight navy: #0D1B2A
+  - Near-black: #080E18
+  - Surface: #0D1824
+  - Card: #111F30
+  - Warm amber: #C9A84C (V4 / investor accents only)
+  - Light grey: #E5E5E5
+**Contact number**: +27730129314 — display as +27 73 012 9314
+**Email**: dasha@vibevaultafrica.co.za
+**Company**: VIBEVAULT AFRICA (PTY) LTD
+**Enterprise No.**: 2025/958585/07
+**B-BBEE**: Level 1, 100% Black Woman Owned
+**SARS Tax Ref**: 9332914259
 
-    /* ── GAME SCREEN ─────────────────────────── */
-    #s4 {
-      justify-content: center;
-      max-width: 620px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .prog-dots {
-      display: flex;
-      gap: 0.6rem;
-      justify-content: center;
-      margin-bottom: 2.5rem;
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.25);
-      transition: all 0.3s;
-    }
-    .dot.active {
-      width: 12px;
-      height: 12px;
-      background: #fff;
-    }
-    .qnum {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    .q-text {
-      font-size: clamp(1.3rem, 3.5vw, 1.75rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    .choices {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      width: 100%;
-    }
-    .choice {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.24);
-      color: rgba(255,255,255,0.90);
-      border-radius: 0.65rem;
-      padding: 1rem 1.25rem;
-      cursor: pointer;
-      font-size: 0.98rem;
-      line-height: 1.4;
-      transition: border-color 0.18s, background 0.18s, transform 0.15s;
-      user-select: none;
-      -webkit-user-select: none;
-      font-family: var(--ff);
-    }
-    .choice:hover {
-      border-color: var(--teal);
-      background: rgba(64,224,208,0.07);
-      transform: translateX(4px);
-    }
+---
 
-    /* ── REVEAL SCREEN ───────────────────────── */
-    #s5 {
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      max-width: 620px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    #spiral-canvas {
-      width: min(260px, 70vw);
-      height: min(260px, 70vw);
-      margin-bottom: 1.75rem;
-      opacity: 0.88;
-    }
-    .reveal-name {
-      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #fff;
-      margin-bottom: 0.35rem;
-    }
-    .reveal-tag {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      color: var(--teal);
-      margin-bottom: 1rem;
-    }
-    .reveal-desc {
-      font-size: 0.98rem;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 480px;
-      margin: 0 auto 2.25rem;
-    }
-    .reveal-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-    }
-    .btn-ghost {
-      color: rgba(255,255,255,0.62);
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 0.92rem;
-      user-select: none;
-      -webkit-user-select: none;
-      font-family: var(--ff);
-      background: none;
-      border: none;
-    }
-    .btn-ghost:hover { color: rgba(255,255,255,0.90); }
-    .yv-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
+## LANGUAGE SYSTEM — HOW IT WORKS
 
-    /* ── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 480px) {
-      .ver-grid { grid-template-columns: 1fr; }
-      .screen { padding: 1.5rem 1rem 2.5rem; }
-    }
-  </style>
-</head>
-<body>
+### 26 Languages
+| Code    | Name                   | RTL | Welcome word           | Notes                                   |
+|---------|------------------------|-----|------------------------|-----------------------------------------|
+| en      | English                | no  | Welcome                |                                         |
+| af      | Afrikaans              | no  | Welkom                 |                                         |
+| zu      | isiZulu                | no  | Sawubona               |                                         |
+| xh      | isiXhosa               | no  | Wamkelekile            |                                         |
+| st      | SeSotho                | no  | Amoheloa               |                                         |
+| tn      | SeTswana               | no  | Amogetsegile           |                                         |
+| ve      | TshiVenda              | no  | Ndi maswali            | ⚠️ Flag in code: needs native review    |
+| de      | Deutsch                | no  | Willkommen             |                                         |
+| de-CH   | Schweizerdeutsch       | no  | Willkommen             | Uses Standard Hochdeutsch formally      |
+| fr      | Français               | no  | Bienvenue              |                                         |
+| es      | Español                | no  | Bienvenido             |                                         |
+| pt      | Português              | no  | Bem-vindo              |                                         |
+| it      | Italiano               | no  | Benvenuto              |                                         |
+| nl      | Nederlands             | no  | Welkom                 |                                         |
+| sv      | Svenska                | no  | Välkommen              |                                         |
+| el      | Ελληνικά               | no  | Καλώς ήλθατε           |                                         |
+| ru      | Русский                | no  | Добро пожаловать       |                                         |
+| ar      | العربية                | YES | أهلاً وسهلاً           | Apply dir="rtl" to container            |
+| ur      | اردو                   | YES | خوش آمدید              | Apply dir="rtl" to container            |
+| zh      | 中文 (Mandarin)        | no  | 欢迎                   | Simplified characters                   |
+| zh-TW   | 繁體中文 (Taiwanese)   | no  | 歡迎                   | Traditional characters, Taiwan usage    |
+| yue     | 廣東話 (Cantonese)     | no  | 歡迎                   | Traditional chars, Cantonese vocabulary |
+| ja      | 日本語                 | no  | ようこそ               |                                         |
+| ko      | 한국어                 | no  | 어서 오세요            |                                         |
+| sw      | Kiswahili              | no  | Karibu                 |                                         |
+| yo      | Yorùbá                 | no  | Ẹ káàbọ̀              |                                         |
 
-<!-- Topographic SVG overlay (screens 1 & 2 only — toggled via JS) -->
-<svg class="topo" id="topo-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M600,400 C700,320 820,330 860,400 C900,470 870,560 780,590 C690,620 590,600 520,550 C450,500 430,420 480,370 C510,345 560,335 600,400Z" fill="none" stroke="rgba(64,224,208,0.03)" stroke-width="1.5"/>
-  <path d="M600,400 C720,300 870,310 920,400 C970,490 930,600 820,640 C710,680 580,655 490,590 C400,525 375,415 440,350 C480,310 550,295 600,400Z" fill="none" stroke="rgba(64,224,208,0.04)" stroke-width="1.5"/>
-  <path d="M600,400 C740,280 920,290 980,400 C1040,510 990,640 860,690 C730,740 570,710 460,630 C350,550 320,410 400,330 C450,275 540,255 600,400Z" fill="none" stroke="rgba(64,224,208,0.055)" stroke-width="1.5"/>
-  <path d="M600,400 C760,260 970,270 1040,400 C1110,530 1050,680 900,740 C750,800 560,765 430,670 C300,575 265,405 360,310 C420,240 530,215 600,400Z" fill="none" stroke="rgba(64,224,208,0.07)" stroke-width="1.5"/>
-  <path d="M600,400 C780,240 1020,250 1100,400 C1180,550 1110,720 940,790 C770,860 550,820 400,710 C250,600 210,400 320,290 C390,205 520,175 600,400Z" fill="none" stroke="rgba(64,224,208,0.085)" stroke-width="1.5"/>
-  <path d="M600,400 C800,220 1070,230 1160,400 C1250,570 1170,760 980,840 C790,920 540,875 370,750 C200,625 155,395 280,270 C360,170 510,135 600,400Z" fill="none" stroke="rgba(64,224,208,0.10)" stroke-width="1.5"/>
-  <path d="M600,400 C820,200 1120,210 1220,400 C1320,590 1230,800 1020,890 C810,980 530,930 340,790 C150,650 100,390 240,250 C330,135 500,95 600,400Z" fill="none" stroke="rgba(64,224,208,0.115)" stroke-width="1.5"/>
-  <path d="M600,400 C840,180 1170,190 1280,400 C1390,610 1290,840 1060,940 C830,1040 520,985 310,830 C100,675 45,385 200,230 C300,100 490,55 600,400Z" fill="none" stroke="rgba(64,224,208,0.13)" stroke-width="1.5"/>
-</svg>
+### Language Flow
+1. User lands on index.html (the game)
+2. Selects language — ALL game text updates immediately to that language
+3. Clicks "Enter this version" — site stores lang in localStorage key `vv-lang`
+4. Each website version (v1.html etc.) reads localStorage on load and applies translations
+5. Also reads `?lang=` URL parameter as override (e.g. vibevaultafrica.co.za/v1.html?lang=fr)
+6. Falls back to browser language, then English
 
-<!-- ══════════════════════════════════════════ -->
-<!-- SCREEN 1 — LANGUAGE SELECTION             -->
-<!-- ══════════════════════════════════════════ -->
-<div id="s1" class="screen active">
-  <div class="logo" style="margin-top:1.5rem;">
-    <span style="color:#ffffff">Vibe</span><span style="color:#40E0D0">Vault</span>
-  </div>
+### RTL Handling
+For `ar` and `ur`: apply `dir="rtl"` to the `<html>` tag and `text-align: right` where needed.
 
-  <div class="ww-wrap">
-    <div id="ww">Welcome</div>
-  </div>
+### What stays in English regardless of language
+- "VibeVault" (always, in every language)
+- All legal text (company registration, B-BBEE, enterprise number, SARS ref)
+- Dasha Mohlala (her name)
+- dasha@vibevaultafrica.co.za
+- +27 73 012 9314
+- vibevaultafrica.co.za
+- R24.5 billion / R24.5 bn / R99 / R299 etc. (currency amounts stay as Rand)
+- Cape Town (proper noun, stays as is)
 
-  <div class="lang-prompt" id="lp-text">Select your language</div>
+---
 
-  <div class="lang-grid" id="lang-grid"></div>
+## FILE 1: index.html — THE GAME (ENTRY EXPERIENCE)
 
-  <div id="s1-continue" class="btn-primary" onclick="goIntro()" style="min-width:180px; text-align:center;">
-    Continue →
-  </div>
-  <div class="note" id="ln-text">Your full experience continues in your chosen language</div>
-</div>
+### Purpose
+This is the first page users see at vibevaultafrica.co.za. It IS the entry experience.
+After the game, users are routed to v1.html, v2.html, v3.html, or v4.html.
 
+### Structure: 5 screens (CSS display:none / display:flex toggling)
 
-<!-- ══════════════════════════════════════════ -->
-<!-- SCREEN 2 — INTRO                          -->
-<!-- ══════════════════════════════════════════ -->
-<div id="s2" class="screen">
-  <div class="logo" style="margin-top:1.5rem; margin-bottom:auto;">
-    <span style="color:#ffffff">Vibe</span><span style="color:#40E0D0">Vault</span>
-  </div>
+**Screen 1 — Language Selection**
+- Logo: <span style="color:#fff">Vibe</span><span style="color:#40E0D0">Vault</span>
+- "Welcome" word cycles through all 26 languages — Apple-style pace: visible 3.4 seconds, fade out over 720ms, fade in new language
+- When user selects a language, word stops on that language's welcome
+- Grid of 26 language buttons (all text must be visible: white or teal on dark background)
+- "Continue →" button (teal background, dark text — ALWAYS VISIBLE)
+- Small note: "Your full experience continues in your chosen language"
+- ALL elements use <div> not <button> to prevent host CSS override
 
-  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 2rem 0;">
-    <div class="eyebrow" id="eb-text">Before you enter</div>
-    <h1 class="intro-h1" id="tg-text">Three questions.<br>Your VibeVault.</h1>
-    <p class="intro-sub" id="sg-text">Answer instinctively — thinking gets in the way.</p>
-    <div class="btn-primary" onclick="startGame()" id="bg-btn">Begin →</div>
-    <div class="skip-link" onclick="showBrowse()" id="sk-text" style="margin-top:1.25rem;">skip the quiz — see all versions</div>
-    <div class="note" id="sn-text" style="margin-top:0.5rem;">we respect your autonomy around here</div>
-  </div>
+**Screen 2 — Intro**
+- "Before you enter" eyebrow
+- Headline: "Three questions. Your VibeVault."
+- Sub: "Answer instinctively — thinking gets in the way."
+- "Begin →" div button (teal, dark text, always visible)
+- Skip option: "skip the quiz — see all versions" (visible, white underlined text)
+- Note: "we respect your autonomy around here"
 
-  <div></div>
-</div>
+**Screen 3 — Browse All (opt-out)**
+- "All roads lead here."
+- Grid of 4 version cards (each clickable, teal border on hover)
+- Back to game link
 
+**Screen 4 — Game (3 questions)**
+- Progress dots (3 dots, current is white/enlarged)
+- Question text
+- 4 answer divs (dark card background, white text, teal border on hover)
+- NEVER use <button> tags for answers
 
-<!-- ══════════════════════════════════════════ -->
-<!-- SCREEN 3 — BROWSE ALL                     -->
-<!-- ══════════════════════════════════════════ -->
-<div id="s3" class="screen">
-  <div class="logo" style="margin-bottom:1.5rem; margin-top:1rem; align-self:flex-start;">
-    <span style="color:#ffffff">Vibe</span><span style="color:#40E0D0">Vault</span>
-  </div>
+**Screen 5 — Reveal**
+- Golden ratio spiral (φ = 1.618) drawn on canvas
+- Version name, tag, description
+- "← Try again" and "Enter this version ↗" divs
 
-  <div class="eyebrow" id="ec-text" style="margin-bottom:0.75rem;">Your call, entirely</div>
-  <h2 class="browse-h1" id="ar2-text">All roads lead here.</h2>
-  <p class="browse-sub" id="bs-text">Four versions of VibeVault. One of them is unmistakably you.</p>
+### Game Logic (Golden Ratio Routing)
+Each answer carries weights for v1/v2/v3/v4. Sum across 3 questions, highest wins.
 
-  <div class="ver-grid" id="ver-grid"></div>
+Questions and weights:
+```
+Q1: "Cape Town, midnight. What matters most right now?"
+  A: "Who I'm with"              → {v1:2, v2:0, v3:0, v4:0}
+  B: "That nothing can interrupt this" → {v1:0, v2:2, v3:0, v4:0}
+  C: "Where I haven't explored yet"   → {v1:0, v2:0, v3:2, v4:0}
+  D: "What this city could become"    → {v1:0, v2:0, v3:0, v4:2}
 
-  <div class="back-link" onclick="showIntro()" id="bk-text">← actually, I'm curious about the game</div>
-</div>
+Q2: "At its best, safety should feel like..."
+  A: "Someone who genuinely has you"  → {v1:2, v2:1, v3:0, v4:0}
+  B: "Something you never think about"→ {v1:0, v2:2, v3:1, v4:0}
+  C: "Something that never slows us down" → {v1:0, v2:1, v3:2, v4:0}
+  D: "Infrastructure that simply works"  → {v1:0, v2:0, v3:0, v4:2}
 
+Q3: "A city that truly cares gives us..."
+  A: "Somewhere we belong"          → {v1:2, v2:0, v3:0, v4:1}
+  B: "A night without a single worry"→ {v1:0, v2:2, v3:1, v4:0}
+  C: "Every reason to keep exploring"→ {v1:0, v2:0, v3:2, v4:1}
+  D: "Infrastructure that outlasts its founders" → {v1:0, v2:1, v3:0, v4:2}
+```
 
-<!-- ══════════════════════════════════════════ -->
-<!-- SCREEN 4 — GAME                           -->
-<!-- ══════════════════════════════════════════ -->
-<div id="s4" class="screen">
-  <div style="width:100%; max-width:560px; margin:0 auto; padding-top:2rem;">
-    <div class="prog-dots" id="prog-dots">
-      <div class="dot active" id="d0"></div>
-      <div class="dot" id="d1"></div>
-      <div class="dot" id="d2"></div>
-    </div>
-    <div class="qnum" id="qnum-text">Question 1 of 3</div>
-    <div class="q-text" id="q-text"></div>
-    <div class="choices" id="choices"></div>
-  </div>
-</div>
+### Game Translations
+The COMPLETE translations object must be embedded in index.html (cannot use external file because the game runs first).
 
+For each language, translate these keys:
+```
+lp   = langPrompt         "Select your language"
+ct   = continue           "Continue →"
+ln   = lnote              "Your full experience continues in your chosen language"
+eb   = eyBefore           "Before you enter"
+tg   = titleGame          "Three questions. Your VibeVault."  (use \n for line break)
+sg   = subGame            "Answer instinctively — thinking gets in the way."
+bg   = begin              "Begin →"
+sk   = skip               "skip the quiz — see all versions"
+sn   = skipNote           "we respect your autonomy around here"
+ec   = eyCall             "Your call, entirely"
+ar2  = allRoads           "All roads lead here."
+bs   = browseSub          "Four versions of VibeVault. One of them is unmistakably you."
+ev   = enterVer           "Enter this version →"
+bk   = backGame           "← actually, I'm curious about the game"
+qo   = qOf                "Question {n} of 3"   ← replace {n} with number in JS
+yv   = yourVault          "Your VibeVault"
+ta   = tryAgain           "← Try again"
+et   = enterThis          "Enter this version ↗"
+q1   = question 1 text
+q1a-q1d = 4 answers
+q2   = question 2 text
+q2a-q2d = 4 answers
+q3   = question 3 text
+q3a-q3d = 4 answers
+v1n, v1t, v1d = V1 name/tag/desc (browse screen)
+v2n, v2t, v2d = V2 name/tag/desc
+v3n, v3t, v3d = V3 name/tag/desc
+v4n, v4t, v4d = V4 name/tag/desc
+r1n, r1t, r1d = V1 result name/tag/desc (reveal screen)
+r2n, r2t, r2d = V2 result
+r3n, r3t, r3d = V3 result
+r4n, r4t, r4d = V4 result
+```
 
-<!-- ══════════════════════════════════════════ -->
-<!-- SCREEN 5 — REVEAL                         -->
-<!-- ══════════════════════════════════════════ -->
-<div id="s5" class="screen">
-  <div class="logo" style="margin-bottom:1rem; margin-top:1rem;">
-    <span style="color:#ffffff">Vibe</span><span style="color:#40E0D0">Vault</span>
-  </div>
+### COMPLETE GAME TRANSLATIONS — All 26 Languages
+Implement ALL of these accurately. Claude Code: use your training knowledge for accuracy.
+For languages where you have lower confidence, add a comment `// ⚠️ Verify with native speaker`.
 
-  <canvas id="spiral-canvas" width="260" height="260"></canvas>
-
-  <div class="yv-label" id="yv-text">Your VibeVault</div>
-  <div class="reveal-name" id="r-name"></div>
-  <div class="reveal-tag" id="r-tag"></div>
-  <p class="reveal-desc" id="r-desc"></p>
-
-  <div class="reveal-actions">
-    <div class="btn-ghost" onclick="resetGame()" id="ta-text" style="color:rgba(255,255,255,0.62); text-decoration:underline; cursor:pointer;">← Try again</div>
-    <div class="btn-primary" id="enter-btn" onclick="enterVersion()" style="display:inline-block;">Enter this version ↗</div>
-  </div>
-</div>
-
-
-<script>
-// ═══════════════════════════════════════════════════════════
-// LANGUAGES ARRAY
-// ═══════════════════════════════════════════════════════════
-var LANGS = [
-  {code:'en',   name:'English',        w:'Welcome'},
-  {code:'af',   name:'Afrikaans',      w:'Welkom'},
-  {code:'zu',   name:'isiZulu',        w:'Sawubona'},
-  {code:'xh',   name:'isiXhosa',       w:'Wamkelekile'},
-  {code:'st',   name:'SeSotho',        w:'Amoheloa'},
-  {code:'tn',   name:'SeTswana',       w:'Amogetsegile'},
-  {code:'ve',   name:'TshiVenda',      w:'Ndi maswali'},
-  {code:'de',   name:'Deutsch',        w:'Willkommen'},
-  {code:'de-CH',name:'Schweizerdeutsch',w:'Willkommen'},
-  {code:'fr',   name:'Français',       w:'Bienvenue'},
-  {code:'es',   name:'Español',        w:'Bienvenido'},
-  {code:'pt',   name:'Português',      w:'Bem-vindo'},
-  {code:'it',   name:'Italiano',       w:'Benvenuto'},
-  {code:'nl',   name:'Nederlands',     w:'Welkom'},
-  {code:'sv',   name:'Svenska',        w:'Välkommen'},
-  {code:'el',   name:'Ελληνικά',       w:'Καλώς ήλθατε'},
-  {code:'ru',   name:'Русский',        w:'Добро пожаловать'},
-  {code:'ar',   name:'العربية',        w:'أهلاً وسهلاً'},
-  {code:'ur',   name:'اردو',           w:'خوش آمدید'},
-  {code:'zh',   name:'中文',           w:'欢迎'},
-  {code:'zh-TW',name:'繁體中文',       w:'歡迎'},
-  {code:'yue',  name:'廣東話',         w:'歡迎'},
-  {code:'ja',   name:'日本語',         w:'ようこそ'},
-  {code:'ko',   name:'한국어',         w:'어서 오세요'},
-  {code:'sw',   name:'Kiswahili',      w:'Karibu'},
-  {code:'yo',   name:'Yorùbá',         w:'Ẹ káàbọ̀'}
-];
-
-// ═══════════════════════════════════════════════════════════
-// TRANSLATIONS
-// ═══════════════════════════════════════════════════════════
-var T = {
-
-// ── ENGLISH ─────────────────────────────────────────────
+```javascript
+// ENGLISH
 en: {
   lp:'Select your language', ct:'Continue →', ln:'Your full experience continues in your chosen language',
   eb:'Before you enter', tg:'Three questions.\nYour VibeVault.', sg:'Answer instinctively — thinking gets in the way.',
@@ -577,7 +264,7 @@ en: {
   r4d:'VibeVault for you is the investment thesis a R24.5 billion economy has been building toward.'
 },
 
-// ── AFRIKAANS ────────────────────────────────────────────
+// AFRIKAANS
 af: {
   lp:'Kies jou taal', ct:'Aanhou →', ln:'Jou volledige ervaring gaan voort in jou gekose taal',
   eb:'Voordat jy ingaan', tg:'Drie vrae.\nJou VibeVault.', sg:'Antwoord instinktief — om te dink staan in die pad.',
@@ -596,7 +283,7 @@ af: {
   q3a:'\'n Plek waar ons hoort', q3b:'\'n Nag sonder enige bekommernis',
   q3c:'Elke rede om aan te hou verken', q3d:'Infrastruktuur wat sy stigters oorleef',
   v1n:'Jou Vault', v1t:'Die Vriend. Warm, menslik, teenwoordig.',
-  v1d:'VibeVault is daar voordat jy om te vra — tas gehou, foon opgeladen, ritjie huis toe gesorteer. Vir almal wat \'n aand wil hê met niks in die pad.',
+  v1d:'VibeVault is daar voordat jy om te vra — tas gehou, foon opgeladen, ritje huis toe gesorteer. Vir almal wat \'n aand wil hê met niks in die pad.',
   v2n:'Die Onvermydelike', v2t:'Elegant, naatloos, onsigbaar.',
   v2d:'Veiligheid as iets waaraan jy nooit weer dink nie. \'n Stad wat al klaar daarvoor gesorg het.',
   v3n:'Die Ontdekker', v3t:'Oop, vry, vir almal.',
@@ -604,16 +291,16 @@ af: {
   v4n:'Infrastruktuurssaak', v4t:'Institusioneel, beleggingsgraad.',
   v4d:'Die burgerlike saak vir Kaapstad se R24.5bn ekonomie. Vir beleggers en stadsvennote.',
   r1n:'Jou Vault', r1t:'Die stad se gereedste vriend.',
-  r1d:'VibeVault vir jou is die vriend wat van alles gedink het voordat jy om te vra — tas gehou, foon opgeladen, ritjie huis toe gesorteer. Die een wat jou nooit laat voel jy moes beter beplan het nie. Jy kry net om teenwoordig te wees.',
+  r1d:'VibeVault vir jou is die vriend wat van alles gedink het voordat jy om te vra — tas gehou, foon opgeladen, ritje huis toe gesorteer. Die een wat jou nooit voel soos jy beter moes beplan het nie. Jy kry net om teenwoordig te wees.',
   r2n:'Die Onvermydelike', r2t:'Veiligheid, sonder die woord.',
-  r2d:'VibeVault vir jou is wat Kaapstad voel wanneer dit presies werk — veiligheid nie as iets wat jy vashou nie, maar as die lug. Al daar.',
+  r2d:'VibeVault vir jou is wat Kaapstad voel soos wanneer dit presies werk — veiligheid nie as iets wat jy vashou nie, maar as die lug. Al daar.',
   r3n:'Die Ontdekker Uitgawe', r3t:'Die stad, heeltemal joune.',
   r3d:'VibeVault vir jou beweeg wanneer jy beweeg — bergplek, ritte, veiligheid en sorg geweef in elke hoek.',
   r4n:'Die Infrastruktuurssaak', r4t:'Kaapstad se bepalende burgerlike oomblik.',
   r4d:'VibeVault vir jou is die beleggingstese wat \'n R24.5 miljard ekonomie na gebou het.'
 },
 
-// ── ISIZULU ──────────────────────────────────────────────
+// ISIZULU
 zu: {
   lp:'Khetha ulimi lwakho', ct:'Qhubeka →', ln:'Ulwazi lwakho oluphelele luqhubeka ngolimi lwakho olukhethiwe',
   eb:'Ngaphambi kokungena', tg:'Imibuzo emithathu.\nI-VibeVault yakho.', sg:'Phendula ngokwemvelo — ukucabanga kuphazamisa.',
@@ -642,14 +329,14 @@ zu: {
   r1n:'I-Vault yakho', r1t:'Umngane okulungiselele kakhulu wendolobha.',
   r1d:'I-VibeVault yakho yumngane owacabanga ngakho konke ngaphambi kokuba ucele — ibhegi ilibanjwe, ifoni ilichajwe, uhambo olwandle lwalulandelwa. Yile eyokukhala ukuthi akudingeki ukubephethe kuhle. Nje nje ukhona.',
   r2n:'Okungagwenywa', r2t:'Ukuphepha, ngaphandle kwegama.',
-  r2d:'I-VibeVault yakho yingkutshane ye-Cape Town iyuma ngokunembile — ukuphepha hhayi njengelinto oyibambayo, kodwa njengokhoya. Ivele.',
+  r2d:'I-VibeVault yakho yingkutshane ye-Cape Town iyuma ngokunembile — ukuphepha hhayi njengelinto oyibambayo, kodwa njengokhoya. Ivele',
   r3n:'Inguqulo Yomhloli', r3t:'Idolobha, eyakho ngokuphelele.',
   r3d:'I-VibeVault yakho ihamba lapho uhamba — ukugcina, ukugibela, ukuphepha nokukhathala kuguqulelwa emkhoneni ngomkhono.',
   r4n:'Icala Lengqalasizinda', r4t:'Umzuzu omqoka wobumphakathi baseKapa.',
   r4d:'I-VibeVault yakho icala lokutshala imali i-economy ye-R24.5 billion eyakhele kulo.'
 },
 
-// ── ISIXHOSA ─────────────────────────────────────────────
+// ISIXHOSA
 xh: {
   lp:'Khetha ulwimi lwakho', ct:'Qhubeka →', ln:'Ulwazi lwakho olupheleleyo luqhubeka ngolwimi lwakho olukhethileyo',
   eb:'Ngaphambi kokungena', tg:'Imibuzo emithathu.\nI-VibeVault yakho.', sg:'Phendula ngokwemvelo — ukucinga kuyaphazamisa.',
@@ -685,7 +372,7 @@ xh: {
   r4d:'I-VibeVault yakho ityala lokutshala imali i-economy ye-R24.5 billion eyakhele kulo.'
 },
 
-// ── SESOTHO ──────────────────────────────────────────────
+// SESOTHO
 st: {
   lp:'Khetha puo ya hao', ct:'Tswela pele →', ln:'Boiphihlelo ba hao botlalo bo tswela pele ka puo eo o e khethileng',
   eb:'Pele o kenella', tg:'Dipotso tse tharo.\nI-VibeVault ya hao.', sg:'Araba ka tlhaho — ho nahana ho a sitisa.',
@@ -721,7 +408,7 @@ st: {
   r4d:'I-VibeVault ya hao ke morero wa pelaelo eo moruo wa R24.5 billion o keng o haha.'
 },
 
-// ── SETSWANA ─────────────────────────────────────────────
+// SETSWANA
 tn: {
   lp:'Tlhopha puo ya gago', ct:'Tswelela →', ln:'Boitekanelo jwa gago jotlhe bo tswelela mo puong eo o e tlhophileng',
   eb:'Pele ga go tsena', tg:'Dipotso tse tharo.\nVibeVault ya gago.', sg:'Araba ka tlholego — go nagana go a thibela.',
@@ -757,12 +444,11 @@ tn: {
   r4d:'VibeVault ya gago ke khanoformo ya peeletso moruo wa R24.5 billion o neng o haha.'
 },
 
-// ── TSHIVENDA ────────────────────────────────────────────
-// ⚠️ Verify with native speaker
+// TSHIVENDA — ⚠️ Verify with native speaker
 ve: {
   lp:'Nwalela luambo lwau', ct:'Bvela phanda →', ln:'Tshenetsho yaṋu yoṱhe i bvela phanda nga luambo lwo nwalaho',
   eb:'Hu si na u dzhena', tg:'Mbudziso ṱharu.\nVibeVault yaṋu.', sg:'Fhindula nga nḓila ya mbilu — u humbula zwi a fhindula.',
-  bg:'Thoma →', sk:'shuma ikhwishiri — nthoniseni zwiravho zwoṱhe', sn:'ri do lushea kuitele kha muno',
+  bg:'Thoma →', sk:'shuma ikhwishiri — nthoniseni zwiravho zwoṱhe', sn:'ri do lushea kuitele kha muno', // ⚠️ Verify with native speaker
   ec:'Zwine na zwi nanga, nga ṱhoḓo', ar2:'Nḓila dzoṱhe dzi ya afho.',
   bs:'Mihumbulo ina ya VibeVault. Iyo ṋwe yayo ndi naṋu.',
   ev:'Dzhena kha iyi mihumbulo →', bk:'← hone, ndi a takalela muvhigo',
@@ -794,7 +480,7 @@ ve: {
   r4d:'VibeVault yaṋu ndi ṱhoho ya u vhea tshelede iyo moralo wa R24.5 bilioni wo akhaho.'
 },
 
-// ── DEUTSCH ──────────────────────────────────────────────
+// DEUTSCH
 de: {
   lp:'Wählen Sie Ihre Sprache', ct:'Weiter →', ln:'Ihre vollständige Erfahrung wird in Ihrer gewählten Sprache fortgesetzt',
   eb:'Bevor Sie eintreten', tg:'Drei Fragen.\nIhr VibeVault.', sg:'Antworten Sie instinktiv — Nachdenken bremst.',
@@ -830,10 +516,10 @@ de: {
   r4d:'VibeVault ist die Investitionsthese, auf die eine R24,5-Milliarden-Wirtschaft hingearbeitet hat.'
 },
 
-// ── SCHWEIZERDEUTSCH — falls back to de ─────────────────
-'de-CH': null,
+// SCHWEIZERDEUTSCH (de-CH) — same content as de; formal Swiss German = Hochdeutsch
+'de-CH': null,  // JS: if lang === 'de-CH', use T['de']
 
-// ── FRANÇAIS ─────────────────────────────────────────────
+// FRANÇAIS
 fr: {
   lp:'Choisissez votre langue', ct:'Continuer →', ln:'Votre expérience complète continue dans la langue choisie',
   eb:'Avant d\'entrer', tg:'Trois questions.\nVotre VibeVault.', sg:'Répondez instinctivement — la réflexion fait obstacle.',
@@ -869,7 +555,7 @@ fr: {
   r4d:'VibeVault pour vous est la thèse d\'investissement vers laquelle une économie de R24,5 milliards a travaillé.'
 },
 
-// ── ESPAÑOL ──────────────────────────────────────────────
+// ESPAÑOL
 es: {
   lp:'Selecciona tu idioma', ct:'Continuar →', ln:'Tu experiencia completa continúa en el idioma seleccionado',
   eb:'Antes de entrar', tg:'Tres preguntas.\nTu VibeVault.', sg:'Responde instintivamente — pensar lo complica.',
@@ -905,7 +591,7 @@ es: {
   r4d:'VibeVault para ti es la tesis de inversión hacia la que ha trabajado una economía de R24,5 mil millones.'
 },
 
-// ── PORTUGUÊS ────────────────────────────────────────────
+// PORTUGUÊS
 pt: {
   lp:'Selecione seu idioma', ct:'Continuar →', ln:'Sua experiência completa continua no idioma selecionado',
   eb:'Antes de entrar', tg:'Três perguntas.\nO seu VibeVault.', sg:'Responda instintivamente — pensar atrapalha.',
@@ -941,7 +627,7 @@ pt: {
   r4d:'O VibeVault para você é a tese de investimento para a qual uma economia de R24,5 bilhões trabalhou.'
 },
 
-// ── ITALIANO ─────────────────────────────────────────────
+// ITALIANO
 it: {
   lp:'Seleziona la tua lingua', ct:'Continua →', ln:'La tua esperienza completa continua nella lingua selezionata',
   eb:'Prima di entrare', tg:'Tre domande.\nIl tuo VibeVault.', sg:'Rispondi istintivamente — pensare è d\'ostacolo.',
@@ -977,7 +663,7 @@ it: {
   r4d:'VibeVault per te è la tesi di investimento verso cui ha lavorato un\'economia da R24,5 miliardi.'
 },
 
-// ── NEDERLANDS ───────────────────────────────────────────
+// NEDERLANDS
 nl: {
   lp:'Selecteer uw taal', ct:'Doorgaan →', ln:'Uw volledige ervaring gaat verder in de gekozen taal',
   eb:'Voordat u binnengaat', tg:'Drie vragen.\nUw VibeVault.', sg:'Antwoord instinctief — nadenken staat in de weg.',
@@ -1013,7 +699,7 @@ nl: {
   r4d:'VibeVault voor u is de investeringsthese waar een economie van R24,5 miljard naar heeft gebouwd.'
 },
 
-// ── SVENSKA ──────────────────────────────────────────────
+// SVENSKA
 sv: {
   lp:'Välj ditt språk', ct:'Fortsätt →', ln:'Din fullständiga upplevelse fortsätter på det valda språket',
   eb:'Innan du går in', tg:'Tre frågor.\nDin VibeVault.', sg:'Svara instinktivt — att tänka är i vägen.',
@@ -1049,7 +735,7 @@ sv: {
   r4d:'VibeVault för dig är investeringstesen som en R24,5 miljarder ekonomi arbetat mot.'
 },
 
-// ── ΕΛΛΗΝΙΚΆ ─────────────────────────────────────────────
+// ΕΛΛΗΝΙΚΆ
 el: {
   lp:'Επιλέξτε τη γλώσσα σας', ct:'Συνέχεια →', ln:'Η πλήρης εμπειρία σας συνεχίζεται στη γλώσσα που επιλέξατε',
   eb:'Πριν μπείτε', tg:'Τρεις ερωτήσεις.\nΤο VibeVault σας.', sg:'Απαντήστε ενστικτωδώς — η σκέψη εμποδίζει.',
@@ -1085,7 +771,7 @@ el: {
   r4d:'Το VibeVault για εσάς είναι η επενδυτική θέση που χτίστηκε μια οικονομία R24,5 δισ.'
 },
 
-// ── РУССКИЙ ──────────────────────────────────────────────
+// РУССКИЙ
 ru: {
   lp:'Выберите ваш язык', ct:'Продолжить →', ln:'Весь ваш опыт продолжится на выбранном языке',
   eb:'Прежде чем войти', tg:'Три вопроса.\nВаш VibeVault.', sg:'Отвечайте инстинктивно — обдумывание мешает.',
@@ -1121,7 +807,7 @@ ru: {
   r4d:'VibeVault для вас — инвестиционная теза, к которой двигалась экономика в R24,5 млрд.'
 },
 
-// ── العربية — RTL ────────────────────────────────────────
+// العربية — RTL
 ar: {
   lp:'اختر لغتك', ct:'متابعة →', ln:'تستمر تجربتك الكاملة باللغة التي اخترتها',
   eb:'قبل الدخول', tg:'ثلاثة أسئلة.\nVibeVault الخاص بك.', sg:'أجب بشكل غريزي — التفكير يعيق.',
@@ -1157,7 +843,7 @@ ar: {
   r4d:'VibeVault لك هو أطروحة الاستثمار التي بنت من أجلها اقتصاد بـ R24.5 مليار.'
 },
 
-// ── اردو — RTL ────────────────────────────────────────────
+// اردو — RTL
 ur: {
   lp:'اپنی زبان منتخب کریں', ct:'جاری رکھیں →', ln:'آپ کا مکمل تجربہ آپ کی منتخب کردہ زبان میں جاری رہے گا',
   eb:'داخل ہونے سے پہلے', tg:'تین سوال۔\nآپ کا VibeVault۔', sg:'فطری طور پر جواب دیں — سوچنا راستے میں آتا ہے۔',
@@ -1176,7 +862,7 @@ ur: {
   q3a:'ایک جگہ جہاں ہم تعلق رکھتے ہیں', q3b:'ایک رات بغیر کسی پریشانی کے',
   q3c:'تلاش جاری رکھنے کی ہر وجہ', q3d:'انفراسٹرکچر جو اس کے بانیوں سے آگے جاتا ہے',
   v1n:'آپ کا Vault', v1t:'دوست۔ گرم، انسانی، موجود۔',
-  v1d:'VibeVault آپ سے پہلے ہے — بیگ تھامے، فون چارج، گھر کی سواری طے۔ ہر اس شخص کے لیے جو رات بغیر کسی رکاوٹ کے چاہتا ہے۔',
+  v1d:'VibeVault آپ سے پہلے ہے - بیگ تھامے، فون چارج، گھر کی سواری طے۔ ہر اس شخص کے لیے جو رات بغیر کسی رکاوٹ کے چاہتا ہے۔',
   v2n:'ناگزیر', v2t:'خوبصورت، بے سلائی، غیر مرئی۔',
   v2d:'حفاظت ایک ایسی چیز کے طور پر جس کے بارے میں آپ دوبارہ کبھی نہیں سوچتے۔ وہ شہر جو پہلے ہی اس کا خیال رکھ چکا ہے۔',
   v3n:'کھوجی', v3t:'کھلا، آزاد، سب کے لیے۔',
@@ -1184,7 +870,7 @@ ur: {
   v4n:'انفراسٹرکچر کیس', v4t:'ادارہ جاتی، سرمایہ کاری کا درجہ۔',
   v4d:'کیپ ٹاؤن کی R24.5 ارب معیشت کا شہری معاملہ۔ سرمایہ کاروں اور شہری شراکت داروں کے لیے۔',
   r1n:'آپ کا Vault', r1t:'شہر کا سب سے تیار دوست۔',
-  r1d:'آپ کے لیے VibeVault وہ دوست ہے جس نے آپ سے پہلے سب کچھ سوچا — بیگ تھامے، فون چارج، گھر کی سواری طے۔ وہ جو آپ کو کبھی محسوس نہیں کرتا کہ آپ کو بہتر منصوبہ بندی کرنی چاہیے تھی۔ آپ صرف موجود ہیں۔',
+  r1d:'آپ کے لیے VibeVault وہ دوست ہے جس نے آپ سے پہلے سب کچھ سوچا - بیگ تھامے، فون چارج، گھر کی سواری طے۔ وہ جو آپ کو کبھی محسوس نہیں کرتا کہ آپ کو بہتر منصوبہ بندی کرنی چاہیے تھی۔ آپ صرف موجود ہیں۔',
   r2n:'ناگزیر', r2t:'حفاظت، لفظ کے بغیر۔',
   r2d:'آپ کے لیے VibeVault وہ ہے جو کیپ ٹاون محسوس کرتا ہے جب یہ بالکل صحیح کام کرتا ہے — حفاظت اس چیز کے طور پر نہیں جو آپ پکڑتے ہیں، بلکہ ہوا کی طرح۔ پہلے ہی موجود۔',
   r3n:'کھوجی ایڈیشن', r3t:'شہر، مکمل طور پر آپ کا۔',
@@ -1193,7 +879,7 @@ ur: {
   r4d:'آپ کے لیے VibeVault وہ سرمایہ کاری تھیسس ہے جس کی طرف R24.5 ارب کی معیشت بڑھتی رہی ہے۔'
 },
 
-// ── 中文 — Simplified Mandarin ──────────────────────────
+// 中文 — Simplified Mandarin
 zh: {
   lp:'请选择您的语言', ct:'继续 →', ln:'您的完整体验将以所选语言继续',
   eb:'进入之前', tg:'三个问题。\n您的VibeVault。', sg:'凭直觉回答 — 思考反而会碍事。',
@@ -1229,7 +915,7 @@ zh: {
   r4d:'VibeVault对您来说是R245亿经济一直在建立的投资论点。'
 },
 
-// ── 繁體中文 — Traditional Chinese (Taiwan) ─────────────
+// 繁體中文 — Traditional Chinese (Taiwan)
 'zh-TW': {
   lp:'請選擇您的語言', ct:'繼續 →', ln:'您的完整體驗將以所選語言繼續',
   eb:'進入之前', tg:'三個問題。\n您的VibeVault。', sg:'憑直覺回答 — 思考反而會礙事。',
@@ -1265,7 +951,7 @@ zh: {
   r4d:'VibeVault對您來說是R245億經濟一直在建立的投資論點。'
 },
 
-// ── 廣東話 — Cantonese ───────────────────────────────────
+// 廣東話 — Cantonese (Traditional characters, Cantonese vocabulary)
 yue: {
   lp:'揀你嘅語言', ct:'繼續 →', ln:'你嘅完整體驗將以所揀語言繼續',
   eb:'入去之前', tg:'三個問題。\n你嘅VibeVault。', sg:'憑直覺答 — 諗嘢反而礙事。',
@@ -1301,7 +987,7 @@ yue: {
   r4d:'VibeVault對你嚟講係R245億經濟一直喺建立嘅投資論點。'
 },
 
-// ── 日本語 ────────────────────────────────────────────────
+// 日本語
 ja: {
   lp:'言語を選択してください', ct:'続ける →', ln:'全体の体験は選択した言語で続きます',
   eb:'入る前に', tg:'3つの質問。\nあなたのVibeVault。', sg:'直感で答えてください — 考えると邪魔になります。',
@@ -1311,7 +997,7 @@ ja: {
   ev:'このバージョンへ →', bk:'← 実は、ゲームに興味があります',
   qo:'3問中 第{n}問', yv:'あなたのVibeVault', ta:'← もう一度', et:'このバージョンへ ↗',
   q1:'ケープタウン、真夜中。今、何が一番大切ですか？',
-  q1a:'一緒にいる人', q1b:'この瞬間が侵されない',
+  q1a:'一緒にいる人', q1b:'この瞬間が侵襲されない',
   q1c:'まだ探索していない場所', q1d:'この街が何になれるか',
   q2:'最高の状態で、安心感とはこのように感じるべきです...',
   q2a:'本当に味方でいてくれる人', q2b:'一度も考えないこと',
@@ -1337,7 +1023,7 @@ ja: {
   r4d:'VibeVaultはR245億経済が向かって来た投資論文です。'
 },
 
-// ── 한국어 ────────────────────────────────────────────────
+// 한국어
 ko: {
   lp:'언어를 선택하세요', ct:'계속하기 →', ln:'전체 경험이 선택한 언어로 계속됩니다',
   eb:'들어가기 전에', tg:'세 가지 질문。\n당신의 VibeVault。', sg:'본능적으로 답하세요 — 생각하면 방해가 됩니다.',
@@ -1373,13 +1059,13 @@ ko: {
   r4d:'VibeVault는 R245억 경제가 향해 온 투자 논문입니다.'
 },
 
-// ── Kiswahili ─────────────────────────────────────────────
+// Kiswahili
 sw: {
   lp:'Chagua lugha yako', ct:'Endelea →', ln:'Uzoefu wako wote utaendelea kwa lugha uliyochagua',
   eb:'Kabla ya kuingia', tg:'Maswali matatu.\nVibeVault yako.', sg:'Jibu kwa silika — kufikiri kunazuia.',
   bg:'Anza →', sk:'huoni hamu? nionyeshe matoleo yote', sn:'tunaheshimu uhuru wako hapa',
   ec:'Uamuzi wako, kabisa', ar2:'Njia zote zinaelekea hapa.',
-  bs:'Matoleo manne ya VibeVault. Pata ile inayofanana nawe.',
+  bs:'Matoleo manne ya VibeVault. Watu wanne tofauti. Pata ile inayofanana nawe.',
   ev:'Ingia toleo hili →', bk:'← kwa kweli, ninapendezwa na mchezo',
   qo:'Swali {n} kati ya 3', yv:'VibeVault yako', ta:'← Jaribu tena', et:'Ingia toleo hili ↗',
   q1:'Cape Town, usiku wa manane. Nini kina umuhimu zaidi sasa hivi?',
@@ -1409,13 +1095,13 @@ sw: {
   r4d:'VibeVault kwako ni nadharia ya uwekezaji ambayo uchumi wa R24.5 bilioni umekuwa ukijenga.'
 },
 
-// ── Yorùbá ────────────────────────────────────────────────
+// Yorùbá
 yo: {
   lp:'Yan ede rẹ', ct:'Tẹsiwaju →', ln:'Iriri rẹ ni kikun yoo tẹsiwaju ni ede ti o yan',
   eb:'Ṣaaju ki o to wọle', tg:'Awọn ibeere mẹta.\nVibeVault rẹ.', sg:'Dahun lainidena — ìrònú ń dènà.',
   bg:'Bẹrẹ →', sk:'ko si ifẹ? fi gbogbo ẹya hàn mi', sn:'a bọwọ fun ominira rẹ nibi',
   ec:'Yiyan rẹ, patapata', ar2:'Gbogbo ọna nyorisi ibi.',
-  bs:'Awọn ẹya mẹrin ti VibeVault. Wa eyi ti o dabi rẹ.',
+  bs:'Awọn ẹya mẹrin ti VibeVault. Eniyan mẹrin ti o yatọ. Wa eyi ti o dabi rẹ.',
   ev:'Wọle si ẹya yii →', bk:'← nitootọ, mo fẹ mọ nipa ere naa',
   qo:'Ibeere {n} ninu 3', yv:'VibeVault rẹ', ta:'← Gbiyanju lẹẹkansii', et:'Wọle si ẹya yii ↗',
   q1:'Cape Town, ọganjọ oru. Kini o ṣe pataki jùlọ nisisiyi?',
@@ -1444,376 +1130,351 @@ yo: {
   r4n:'Ọrọ Amayedarí', r4t:'Akoko ilu Cape Town ti o ṣe ipinnu.',
   r4d:'VibeVault fun ọ ni ero ìdókòwò ti ọrọ-aje R24.5 bílíọ̀nù ti n kọ́ sí.'
 }
+```
 
-}; // end T
+---
 
-// ═══════════════════════════════════════════════════════════
-// GAME QUESTIONS DATA
-// ═══════════════════════════════════════════════════════════
-var QUESTIONS = [
-  { q:'q1', a:[
-    {k:'q1a', w:{v1:2,v2:0,v3:0,v4:0}},
-    {k:'q1b', w:{v1:0,v2:2,v3:0,v4:0}},
-    {k:'q1c', w:{v1:0,v2:0,v3:2,v4:0}},
-    {k:'q1d', w:{v1:0,v2:0,v3:0,v4:2}}
-  ]},
-  { q:'q2', a:[
-    {k:'q2a', w:{v1:2,v2:1,v3:0,v4:0}},
-    {k:'q2b', w:{v1:0,v2:2,v3:1,v4:0}},
-    {k:'q2c', w:{v1:0,v2:1,v3:2,v4:0}},
-    {k:'q2d', w:{v1:0,v2:0,v3:0,v4:2}}
-  ]},
-  { q:'q3', a:[
-    {k:'q3a', w:{v1:2,v2:0,v3:0,v4:1}},
-    {k:'q3b', w:{v1:0,v2:2,v3:1,v4:0}},
-    {k:'q3c', w:{v1:0,v2:0,v3:2,v4:1}},
-    {k:'q3d', w:{v1:0,v2:1,v3:0,v4:2}}
-  ]}
-];
+## FILE 2: translations.js — WEBSITE CONTENT (All 26 languages)
 
-var VERSION_URLS = {v1:'v1.html', v2:'v2.html', v3:'v3.html', v4:'v4.html'};
+This file is loaded by v1.html, v2.html, v3.html, v4.html.
+It provides translated text for all website sections.
 
-// ═══════════════════════════════════════════════════════════
-// LANGUAGE STATE
-// ═══════════════════════════════════════════════════════════
+Structure: `VV_WEB[lang][version][key]`
+
+For each website version, translate these content blocks:
+
+**SHARED across all versions (translate once):**
+- `nav_links[version]` — 4 navigation link labels per version
+- `stats` — 3 stat cards (label, description, source note)
+- `tier_names` — 5 tier names (Pay as you go, Student, Lite, Vibe, Premium)
+- `tier_perks` — 4-5 bullet points per tier
+- `free_note` — the "always free" note
+- `contact_form` — all form field labels, placeholders, button, note
+- `footer` — footer legal text
+- `features` — 6 feature blocks (h3 + p)
+
+**PER VERSION:**
+- `hero_eyebrow`, `hero_h1`, `hero_sub`, `hero_cta1`, `hero_cta2`
+- `section_headings` — all h2/eyebrow/p for each section
+- `founder_quote` — the blockquote text
+
+**V4 SPECIFIC:**
+- credentials strip (4 labels + values)
+- investment case section
+- founder cards (3 panels)
+- brief CTA
+
+Claude Code: implement all translations accurately. Use your training knowledge.
+For the website, the most critical strings to translate precisely are:
+1. Hero headline (h1) — this is the first impression
+2. Founder quote — must preserve meaning and emotion  
+3. Section intro paragraphs — must read naturally, not literally translated
+
+---
+
+## FILE 3: index.html — IMPLEMENTATION REQUIREMENTS
+
+```javascript
+// Language detection + storage
 var lang = new URLSearchParams(window.location.search).get('lang')
-         || localStorage.getItem('vv-lang')
-         || (navigator.language || 'en').split('-')[0];
-
-// Handle compound codes like zh-TW
-if (!T[lang]) {
-  var full = (navigator.language || 'en');
-  if (T[full]) lang = full;
-  else lang = 'en';
-}
+        || localStorage.getItem('vv-lang')
+        || (navigator.language || 'en').split('-')[0];
 if (!T[lang]) lang = 'en';
 localStorage.setItem('vv-lang', lang);
 
+// t() function with Swiss German fallback
 function t(key) {
   var l = lang === 'de-CH' ? 'de' : lang;
-  var tbl = T[l] || T.en;
-  return tbl[key] !== undefined ? tbl[key] : (T.en[key] || key);
+  return (T[l] || T.en)[key] || T.en[key] || key;
 }
 
-function applyRTL() {
-  var rtl = ['ar', 'ur'];
-  document.documentElement.setAttribute('dir', rtl.indexOf(lang) !== -1 ? 'rtl' : 'ltr');
-}
-
-// ═══════════════════════════════════════════════════════════
-// WELCOME WORD CYCLING
-// ═══════════════════════════════════════════════════════════
-var CYCLE_VISIBLE = 3400;
-var CYCLE_FADE = 720;
-var cycleIdx = 0;
-var cycleTimer = null;
-var cycleActive = true;
-
-function cycleWelcome() {
-  if (!cycleActive) return;
-  var ww = document.getElementById('ww');
-  ww.style.opacity = '0';
-  setTimeout(function() {
-    if (!cycleActive) return;
-    cycleIdx = (cycleIdx + 1) % LANGS.length;
-    ww.textContent = LANGS[cycleIdx].w;
-    ww.style.opacity = '1';
-    cycleTimer = setTimeout(cycleWelcome, CYCLE_VISIBLE);
-  }, CYCLE_FADE);
-}
-
-function stopCycle() {
-  cycleActive = false;
-  if (cycleTimer) clearTimeout(cycleTimer);
-}
-
-// ═══════════════════════════════════════════════════════════
-// LANGUAGE GRID BUILD
-// ═══════════════════════════════════════════════════════════
-function buildLangGrid() {
-  var grid = document.getElementById('lang-grid');
-  grid.innerHTML = '';
-  LANGS.forEach(function(l) {
-    var d = document.createElement('div');
-    d.className = 'lp' + (l.code === lang ? ' sel' : '');
-    d.textContent = l.name;
-    d.setAttribute('data-code', l.code);
-    d.onclick = function() { selectLang(l.code); };
-    grid.appendChild(d);
+// Apply language to all data-t elements
+function applyLang() {
+  document.querySelectorAll('[data-t]').forEach(function(el) {
+    el.textContent = t(el.getAttribute('data-t'));
   });
+  // Handle RTL
+  var rtl = ['ar', 'ur'];
+  document.documentElement.setAttribute('dir', rtl.includes(lang) ? 'rtl' : 'ltr');
+  // Rebuild dynamic content
+  rebuildLangGrid();
+  rebuildVersionCards();
 }
 
+// On language select
 function selectLang(code) {
   lang = code;
   localStorage.setItem('vv-lang', code);
   stopCycle();
-  applyRTL();
-
+  // Update welcome word
   var ww = document.getElementById('ww');
   ww.style.opacity = '0';
   setTimeout(function() {
-    var entry = LANGS.find(function(l) { return l.code === code; });
-    ww.textContent = entry ? entry.w : 'Welcome';
+    ww.textContent = LANGS.find(function(l){return l.code === code;}).w;
     ww.style.opacity = '1';
-  }, CYCLE_FADE);
+  }, 700);
+  // Apply to all elements
+  applyLang();
+}
 
-  // Update selected pill
-  document.querySelectorAll('.lp').forEach(function(el) {
-    el.classList.toggle('sel', el.getAttribute('data-code') === code);
+// Welcome word cycling — Apple-style, gentle pace
+// Visible 3.4 seconds, 720ms fade
+var CYCLE_VISIBLE = 3400;
+var CYCLE_FADE = 720;
+```
+
+### index.html CSS Requirements
+- Background: #060B12 (slightly darker than ink for the entry feel)
+- Welcome word: #40E0D0, font-size clamp(2.2rem, 6.5vw, 3.6rem), font-weight 700
+- All interactive divs: explicit `color` set so host CSS cannot override
+- Language pill selected state: `border-color: #40E0D0; color: #40E0D0; background: rgba(64,224,208,0.09)`
+- Language pill default: `border: 1px solid rgba(255,255,255,0.30); color: rgba(255,255,255,0.88)`
+- Answer choice cards: `background: #0C1A28; border: 1px solid rgba(255,255,255,0.24); color: rgba(255,255,255,0.90)`
+- Continue/Begin buttons: `background: #40E0D0; color: #060B12; font-weight: 700`
+- Skip link: `color: rgba(255,255,255,0.62); text-decoration: underline`
+- NEVER use HTML `<button>` tags — always `<div>` with `cursor: pointer`
+
+### Topographic contour lines
+- Include the SVG topo map on the language selection and intro screens
+- 8-9 nested irregular closed loops (not perfect circles, not straight lines)
+- Colour: rgba(64,224,208,0.03) to rgba(64,224,208,0.13) getting stronger inward
+- Positioned as background overlay, pointer-events: none
+
+---
+
+## FILES 4-7: v1.html, v2.html, v3.html, v4.html — IMPLEMENTATION
+
+### Language application in each website version
+Add to `<head>` of each file: `<script src="translations.js"></script>`
+
+At bottom of each file, before `</body>`:
+```javascript
+(function() {
+  var lang = new URLSearchParams(window.location.search).get('lang')
+           || localStorage.getItem('vv-lang')
+           || (navigator.language || 'en').split('-')[0];
+  if (!VV_WEB[lang]) lang = 'en';
+  localStorage.setItem('vv-lang', lang);
+  
+  var rtl = ['ar', 'ur'];
+  document.documentElement.setAttribute('dir', rtl.includes(lang) ? 'rtl' : 'ltr');
+  
+  // Apply translations
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    // Look in version-specific first, then shared
+    var ver = VV_WEB[lang] && VV_WEB[lang]['v1']; // replace v1 with actual version
+    var shared = VV_WEB[lang] && VV_WEB[lang].shared;
+    var val = (ver && ver[key]) || (shared && shared[key]);
+    if (val) {
+      el.innerHTML = val; // innerHTML to support <br>, <em>, <strong>
+    }
   });
-
-  // Update screen 1 static text
-  document.getElementById('lp-text').textContent = t('lp');
-  document.getElementById('ln-text').textContent = t('ln');
-  document.getElementById('s1-continue').textContent = t('ct');
-}
-
-// ═══════════════════════════════════════════════════════════
-// VERSION CARDS BUILD (browse screen)
-// ═══════════════════════════════════════════════════════════
-function buildVersionCards() {
-  var grid = document.getElementById('ver-grid');
-  grid.innerHTML = '';
-  ['v1','v2','v3','v4'].forEach(function(v) {
-    var card = document.createElement('div');
-    card.className = 'ver-card';
-    card.innerHTML = '<div class="ver-name">' + esc(t(v+'n')) + '</div>' +
-                     '<div class="ver-tag">' + esc(t(v+'t')) + '</div>' +
-                     '<div class="ver-desc">' + esc(t(v+'d')) + '</div>';
-    card.onclick = function() { goVersion(v); };
-    grid.appendChild(card);
-  });
-}
-
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-// ═══════════════════════════════════════════════════════════
-// SCREEN NAVIGATION
-// ═══════════════════════════════════════════════════════════
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(function(s) {
-    s.classList.remove('active');
-  });
-  document.getElementById(id).classList.add('active');
-  // Show topo only on s1 and s2
-  var topoEl = document.getElementById('topo-svg');
-  if (topoEl) topoEl.style.display = (id === 's1' || id === 's2') ? 'block' : 'none';
-  window.scrollTo(0,0);
-}
-
-function goIntro() {
-  applyS2();
-  showScreen('s2');
-}
-
-function applyS2() {
-  document.getElementById('eb-text').textContent = t('eb');
-  var tgEl = document.getElementById('tg-text');
-  tgEl.textContent = ''; // clear
-  var tgParts = t('tg').split('\n');
-  tgEl.innerHTML = tgParts.map(function(p) { return esc(p); }).join('<br>');
-  document.getElementById('sg-text').textContent = t('sg');
-  document.getElementById('bg-btn').textContent = t('bg');
-  document.getElementById('sk-text').textContent = t('sk');
-  document.getElementById('sn-text').textContent = t('sn');
-}
-
-function showBrowse() {
-  buildVersionCards();
-  document.getElementById('ec-text').textContent = t('ec');
-  document.getElementById('ar2-text').textContent = t('ar2');
-  document.getElementById('bs-text').textContent = t('bs');
-  document.getElementById('bk-text').textContent = t('bk');
-  showScreen('s3');
-}
-
-function showIntro() {
-  applyS2();
-  showScreen('s2');
-}
-
-// ═══════════════════════════════════════════════════════════
-// GAME LOGIC
-// ═══════════════════════════════════════════════════════════
-var currentQ = 0;
-var scores = {v1:0, v2:0, v3:0, v4:0};
-var resultVersion = '';
-
-function startGame() {
-  currentQ = 0;
-  scores = {v1:0, v2:0, v3:0, v4:0};
-  showScreen('s4');
-  renderQuestion();
-}
-
-function renderQuestion() {
-  var qi = QUESTIONS[currentQ];
-  // Progress dots
-  ['d0','d1','d2'].forEach(function(id, i) {
-    var dot = document.getElementById(id);
-    dot.className = 'dot' + (i === currentQ ? ' active' : '');
-  });
-  // Q number
-  document.getElementById('qnum-text').textContent = t('qo').replace('{n}', currentQ + 1);
-  // Question text
-  document.getElementById('q-text').textContent = t(qi.q);
-  // Choices
-  var choicesEl = document.getElementById('choices');
-  choicesEl.innerHTML = '';
-  qi.a.forEach(function(ans) {
-    var d = document.createElement('div');
-    d.className = 'choice';
-    d.textContent = t(ans.k);
-    d.onclick = function() { pickAnswer(ans.w); };
-    choicesEl.appendChild(d);
-  });
-}
-
-function pickAnswer(weights) {
-  Object.keys(weights).forEach(function(k) { scores[k] += weights[k]; });
-  currentQ++;
-  if (currentQ < QUESTIONS.length) {
-    renderQuestion();
-  } else {
-    showReveal();
-  }
-}
-
-function showReveal() {
-  // Find winner (highest score; ties go to earlier version)
-  var best = 'v1';
-  var bestScore = -1;
-  ['v1','v2','v3','v4'].forEach(function(v) {
-    if (scores[v] > bestScore) { bestScore = scores[v]; best = v; }
-  });
-  resultVersion = best;
-  var rn = 'r' + best.slice(1) + 'n';
-  var rt = 'r' + best.slice(1) + 't';
-  var rd = 'r' + best.slice(1) + 'd';
-
-  document.getElementById('yv-text').textContent = t('yv');
-  document.getElementById('r-name').textContent = t(rn);
-  document.getElementById('r-tag').textContent = t(rt);
-  document.getElementById('r-desc').textContent = t(rd);
-  document.getElementById('ta-text').textContent = t('ta');
-  document.getElementById('enter-btn').textContent = t('et');
-
-  showScreen('s5');
-  drawSpiral();
-}
-
-function resetGame() {
-  startGame();
-}
-
-function enterVersion() {
-  if (resultVersion) {
-    var url = VERSION_URLS[resultVersion] + '?lang=' + encodeURIComponent(lang);
-    window.location.href = url;
-  }
-}
-
-function goVersion(v) {
-  var url = VERSION_URLS[v] + '?lang=' + encodeURIComponent(lang);
-  window.location.href = url;
-}
-
-// ═══════════════════════════════════════════════════════════
-// GOLDEN RATIO SPIRAL
-// ═══════════════════════════════════════════════════════════
-function drawSpiral() {
-  var canvas = document.getElementById('spiral-canvas');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var W = canvas.width, H = canvas.height;
-  ctx.clearRect(0, 0, W, H);
-
-  var phi = 1.618033988749895;
-  var cx = W * 0.55, cy = H * 0.52;
-  var startSize = 8;
-
-  ctx.strokeStyle = 'rgba(64,224,208,0.75)';
-  ctx.lineWidth = 1.8;
-  ctx.lineCap = 'round';
-  ctx.beginPath();
-
-  // Draw golden spiral as series of arcs
-  var angle = 0;
-  var r = startSize;
-  var x = cx, y = cy;
-  var steps = 10;
-
-  for (var i = 0; i < steps; i++) {
-    var startAngle = angle * Math.PI / 180;
-    var endAngle = (angle + 90) * Math.PI / 180;
-    var nextR = r * phi;
-    var pivotX, pivotY;
-
-    // Calculate pivot based on quadrant
-    var q = i % 4;
-    if (q === 0) { pivotX = x + r; pivotY = y; }
-    else if (q === 1) { pivotX = x; pivotY = y + r; }
-    else if (q === 2) { pivotX = x - r; pivotY = y; }
-    else { pivotX = x; pivotY = y - r; }
-
-    ctx.arc(pivotX, pivotY, r, startAngle, endAngle, false);
-
-    // Move to next arc start
-    if (q === 0) { x = pivotX; y = pivotY - nextR; }
-    else if (q === 1) { x = pivotX + nextR; y = pivotY; }
-    else if (q === 2) { x = pivotX; y = pivotY + nextR; }
-    else { x = pivotX - nextR; y = pivotY; }
-
-    angle += 90;
-    r = nextR;
-
-    // Stop if spiral goes off canvas
-    if (r > Math.max(W, H) * 2) break;
-  }
-
-  ctx.stroke();
-
-  // Add subtle glow
-  ctx.strokeStyle = 'rgba(64,224,208,0.18)';
-  ctx.lineWidth = 5;
-  ctx.stroke();
-
-  // Draw phi symbol
-  ctx.fillStyle = 'rgba(64,224,208,0.35)';
-  ctx.font = '600 1.1rem -apple-system, BlinkMacSystemFont, system-ui, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('φ = 1.618', W / 2, H - 14);
-}
-
-// ═══════════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════════
-(function init() {
-  applyRTL();
-  buildLangGrid();
-
-  // Pre-select previously chosen language
-  var savedLang = localStorage.getItem('vv-lang');
-  if (savedLang && T[savedLang]) {
-    lang = savedLang;
-    // Update welcome word immediately
-    var ww = document.getElementById('ww');
-    var entry = LANGS.find(function(l) { return l.code === lang; });
-    if (entry) { ww.textContent = entry.w; stopCycle(); }
-    // Mark pill selected
-    document.querySelectorAll('.lp').forEach(function(el) {
-      el.classList.toggle('sel', el.getAttribute('data-code') === lang);
-    });
-    document.getElementById('lp-text').textContent = t('lp');
-    document.getElementById('ln-text').textContent = t('ln');
-    document.getElementById('s1-continue').textContent = t('ct');
-  } else {
-    // Start cycling
-    cycleTimer = setTimeout(cycleWelcome, CYCLE_VISIBLE);
-  }
 })();
-</script>
-</body>
-</html>
+```
+
+Add `data-i18n="key"` attributes to ALL text elements.
+
+### V4 special: the "Request a Brief" button
+```html
+<a href="brief.html" class="ba" download>Request a Brief</a>
+```
+The `download` attribute triggers download. brief.html should be a well-formatted
+single-page HTML investor brief that users can save as PDF via browser print.
+
+---
+
+## FILE 8: brief.html — INVESTOR BRIEF (V4 Download)
+
+A complete, printable investor brief. When printed to PDF, it should look professional.
+
+Include:
+- Cover: VibeVault Africa, Investor Brief 2026
+- Executive summary (2 paragraphs)
+- The problem (with the 3 verified stats)
+- The solution (pod system, all features)
+- Revenue model (3 streams with projected figures)
+- The market (Cape Town tourism + nightlife)
+- The founder (Dasha Mohlala, background, why she's the right person)
+- Investment opportunity + contact
+
+Print styles:
+```css
+@media print {
+  nav, .no-print { display: none; }
+  body { background: white; color: black; }
+  * { font-family: 'Times New Roman', serif; }
+}
+```
+
+---
+
+## V1, V2, V3, V4 CONTENT (What each version says)
+
+### V1 — YOUR VAULT (warm, human, friend)
+**Hero**: "Drop your bag. Go live." / "We carry the load. You get the night."
+**Founder**: "The best nights are simple: you show up, stay present, go home safe. A great city makes that easy for everyone — not just people who planned better or have more options. I watched too many people leave early, not because they wanted to, but because they had no other option. VibeVault exists so the night stays yours, all the way to the end. For all of us."
+**Problem framing**: "Going out shouldn't feel like project management."
+**Pillars**: Hold your load / Top you up / Get you home
+
+### V2 — THE INEVITABLE (elegant, poetic, invisible)
+**Hero**: "A city where safety never becomes a thought."
+**Founder**: "The best infrastructure is invisible — you don't notice roads when they work, only when they don't. I've always been more interested in what cities could be than what they are. VibeVault is my answer to that: care so well-designed into Cape Town's streets that you simply feel it as ease."
+**Problem framing**: "The best cities don't remind you they're safe."
+**Pillars**: Present / Always on / Invisible
+
+### V3 — THE EXPLORER (open, free, for everyone)
+**Hero**: "Cape Town belongs to everyone in it."
+**Hero sub**: "You. Me. The tourist, the student, the neighbour. VibeVault moves when you move."
+**Founder**: "The most alive I've ever felt in this city is when I've been fully part of it — no hesitation, no half-measures. The city I've grown to love deserves to feel that way for everyone: as welcoming at 2am as it is at 2pm. For tourists, for students, for families. VibeVault exists so more people can have that experience, on their own terms."
+**Problem framing**: "Not a warning system. A companion."
+**Pillars**: Carry / Connect / Explore
+**UNIQUE SECTION**: "Who we're for" — 4 persona cards (Tourist, Student, Family, Local)
+  Note: persona card changed from "Explorer" to "Local" — avoids confusion with the version name.
+
+### V4 — INFRASTRUCTURE CASE (investor/institutional)
+**Hero**: "The infrastructure Cape Town has been building toward."
+**Founder quote 1**: "Cape Town's infrastructure has carried this city far. VibeVault is what the next chapter looks like — systems built for how people actually move through this city, not how we imagined they would."
+**Founder — The origin**: "VibeVault emerged from moving through this city with open eyes — watching the gap between Cape Town's promise and its infrastructure, and deciding that closing it was worth building a company around. The founder knows this city not from research, but from living it at every hour."
+**Founder — Why it matters**: "Founder-market fit is the single most reliable predictor of startup success. VibeVault is built by the person who knows this city at every hour, in every condition — and has the systems thinking to turn that knowledge into infrastructure. The kind of insight that cannot be acquired from a desk."
+**V4 nav amber accent**: use #C9A84C (warm amber) for nav border, eyebrow text, credential labels
+**Credentials strip**: Entity type / B-BBEE status / Procurement recognition / Financial year end
+
+---
+
+## VERIFIED STATISTICS (use exactly as written — DO NOT change)
+1. "43% of all stranded assistance cases in Cape Town involve a flat phone battery" — Source: Cape Town CCID · 2023
+2. "24 million annual visits to the V&A Waterfront — more than the Colosseum, Sagrada Família and Louvre individually" — Source: V&A Waterfront Official · 2024
+3. "R24.5 billion generated by Cape Town's tourism economy in 2024" — Source: Wesgro · 2024
+
+---
+
+## IMAGES — HOW TO HANDLE
+
+The images/ folder will contain real Grok-AI-generated images of VibeVault pods.
+In the HTML, reference them as:
+
+```html
+<!-- V1 hero -->
+<div class="hi" style="background-image: url('images/hero-pod.jpg')"></div>
+
+<!-- Always have a dark fallback for when images aren't uploaded yet -->
+```
+
+Each image slot has a dark background fallback so the site looks complete without images.
+The CSS background property should always have `var(--ink)` before the `url()`.
+
+Image assignments:
+- `hero-pod.jpg` = mushroom-shaped teal pod at Camps Bay sunset (rename IMG_5175.jpeg)
+- `hero-promenade.jpg` = Camps Bay promenade with pod at dusk (rename IMG_5160.jpeg)
+- `hero-solar.jpg` = solar panels at sunrise, sea visible (rename IMG_5179.jpeg)
+- `hero-row.jpg` = row of solar-canopied lockers at fiery sunset (rename IMG_5176.jpeg)
+- `seating.jpg` = teal glowing seating area at dusk with trees (rename IMG_5162.jpeg)
+- `stranded-screen.jpg` = "I'm Stranded" touchscreen close-up (rename IMG_5163.jpeg)
+
+---
+
+## SCROLL REVEAL ANIMATION
+
+Apply to every major content block:
+```css
+.rv { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.rv.in { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.08s; } /* stagger */
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+```
+
+```javascript
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.rv').forEach(function(el) { io.observe(el); });
+```
+
+Hero elements animate on page load (not scroll):
+```javascript
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.hero .rv').forEach(function(el, i) {
+    setTimeout(function() { el.classList.add('in'); }, 100 + i * 120);
+  });
+});
+```
+
+---
+
+## FORMSPREE FORM
+
+All contact forms use: `action="https://formspree.io/f/YOUR_FORM_ID" method="POST"`
+Hidden spam field: `<input type="text" name="_gotcha" style="display:none" />`
+Hidden subject: `<input type="hidden" name="_subject" value="New VibeVault enquiry" />`
+
+---
+
+## QUALITY REQUIREMENTS
+
+1. All files must pass basic HTML validation (no unclosed tags)
+2. No broken JavaScript (no undefined references)  
+3. All internal links must work (v1.html → v1.html, etc.)
+4. All 26 languages must render correctly in the game without any visible English text leaking through
+5. RTL languages (ar, ur) must have proper text direction applied
+6. The site must look complete even without the images (dark fallback)
+7. No Google Fonts. No external font CDNs. System fonts only.
+8. Formspree placeholder must be clearly visible in code with a comment saying REPLACE
+9. Brief.html must be a complete, printable document
+
+---
+
+## GITHUB PUSH INSTRUCTIONS (for Claude Code to add as README.md)
+
+After building all files, create README.md with:
+```
+# VibeVault Africa — Website
+
+Live at vibevaultafrica.co.za via GitHub Pages.
+
+## Image Setup (one-time)
+1. Rename your Grok images as follows and upload to images/:
+   - IMG_5175.jpeg → hero-pod.jpg
+   - IMG_5160.jpeg → hero-promenade.jpg
+   - IMG_5179.jpeg → hero-solar.jpg
+   - IMG_5176.jpeg → hero-row.jpg
+   - IMG_5162.jpeg → seating.jpg
+   - IMG_5163.jpeg → stranded-screen.jpg
+
+## Formspree Setup (one-time)
+1. Go to formspree.io, create a form for dasha@vibevaultafrica.co.za
+2. Copy your Form ID (looks like: xyzabcde)
+3. Find and replace YOUR_FORM_ID in v1.html, v2.html, v3.html, v4.html
+
+## Deployment
+git add .
+git commit -m "Update"
+git push origin main
+```
+
+---
+
+## CLAUDE CODE: EXECUTION ORDER
+
+Do these in order. Do not skip steps. Do not stop until all are done.
+
+1. READ this entire CLAUDE.md file first.
+2. CREATE translations.js with all 26 languages, all website content.
+3. CREATE index.html (the game) with all 26 languages embedded.
+4. CREATE v1.html using translations.js, with data-i18n attributes.
+5. CREATE v2.html using translations.js, with data-i18n attributes.
+6. CREATE v3.html using translations.js, with data-i18n attributes.
+7. CREATE v4.html using translations.js, with data-i18n attributes.
+8. CREATE brief.html (printable investor brief).
+9. CREATE images/ directory and a placeholder README inside it.
+10. CREATE README.md at root level.
+11. DELETE the old index.html content (it is being replaced).
+12. VERIFY: open each HTML file and check for JS errors, broken links.
+13. Report: list all files created and their sizes.
+
+---
+
+END OF SPEC

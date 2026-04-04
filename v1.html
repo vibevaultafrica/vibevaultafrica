@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VibeVault Africa — Your Vault</title>
+  <meta name="description" content="VibeVault Africa — Your Vault. We carry the load. You get the night. Secure pods for bags, phone charging, and safe rides home across Cape Town." />
+  <meta property="og:title" content="VibeVault Africa — Your Vault" />
+  <meta property="og:description" content="Drop your bag. Go live. VibeVault pods hold your load, top you up, and get you home." />
+  <meta property="og:url" content="https://vibevaultafrica.co.za/v1.html" />
+  <link rel="canonical" href="https://vibevaultafrica.co.za/v1.html" />
+  <style>
+    /* ── Reset ────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── CSS Variables ────────────────────────── */
+    :root {
+      --teal:       #40E0D0;
+      --deep-teal:  #00CED1;
+      --ink:        #080E18;
+      --navy:       #0D1B2A;
+      --surface:    #0D1824;
+      --card:       #111F30;
+      --text:       #E5E5E5;
+      --dim:        rgba(255,255,255,0.55);
+      --font:       -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+      --radius:     12px;
+      --radius-sm:  8px;
+    }
+
+    /* ── Base ─────────────────────────────────── */
+    body {
+      font-family: var(--font);
+      background: var(--ink);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Nav ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.25rem, 5vw, 3rem);
+      height: 64px;
+      background: rgba(8, 14, 24, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(64, 224, 208, 0.10);
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .nav-logo .vibe { color: #ffffff; }
+    .nav-logo .vault { color: #40E0D0; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.62);
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: #40E0D0; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Language switcher */
+    .lang-switcher {
+      position: relative;
+    }
+    .lang-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 6px;
+      color: rgba(255,255,255,0.75);
+      font-family: var(--font);
+      font-size: 0.8125rem;
+      padding: 0.3rem 0.65rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { border-color: #40E0D0; color: #40E0D0; }
+    .lang-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: #111F30;
+      border: 1px solid rgba(64, 224, 208, 0.18);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem;
+      min-width: 200px;
+      max-height: 320px;
+      overflow-y: auto;
+      z-index: 200;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-dropdown button {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.75);
+      font-family: var(--font);
+      font-size: 0.8125rem;
+      text-align: left;
+      padding: 0.45rem 0.75rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-dropdown button:hover { background: rgba(64,224,208,0.09); color: #40E0D0; }
+    .lang-dropdown button.selected { color: #40E0D0; }
+
+    /* Mobile nav toggle */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      color: var(--text);
+    }
+    .nav-hamburger svg { display: block; }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(8,14,24,0.97);
+      padding: 1.25rem clamp(1.25rem, 5vw, 3rem);
+      z-index: 99;
+      border-bottom: 1px solid rgba(64,224,208,0.10);
+    }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a {
+      display: block;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:hover, .nav-mobile a.active { color: #40E0D0; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+    }
+
+    /* ── Scroll Reveal ────────────────────────── */
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .rv.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+
+    /* ── Shared layout ────────────────────────── */
+    section { padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 5vw, 3rem); }
+    .container { max-width: 1120px; margin: 0 auto; }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #40E0D0;
+      margin-bottom: 0.85rem;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 1.1rem;
+    }
+
+    .section-intro {
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      color: var(--dim);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Hero ─────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 clamp(1.25rem, 5vw, 3rem);
+      padding-bottom: clamp(3.5rem, 8vw, 5rem);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--ink) url('images/hero-pod.jpg') center center / cover no-repeat;
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(8,14,24,0.97) 0%,
+        rgba(8,14,24,0.72) 40%,
+        rgba(8,14,24,0.28) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero .eyebrow { color: #40E0D0; margin-bottom: 1rem; }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6.5vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      color: #fff;
+      white-space: pre-line;
+      margin-bottom: 1.25rem;
+      max-width: 700px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.72);
+      max-width: 500px;
+      margin-bottom: 2.25rem;
+      line-height: 1.6;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.75rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      border: none;
+      letter-spacing: -0.01em;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn:active { transform: none; }
+
+    .btn-solid {
+      background: #40E0D0;
+      color: #060B12;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.38);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.7); }
+
+    /* ── Problem section ──────────────────────── */
+    .section-problem {
+      background: var(--surface);
+    }
+
+    /* ── Pillars ──────────────────────────────── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid rgba(64,224,208,0.12);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .pillar-card:hover {
+      border-color: rgba(64,224,208,0.35);
+      transform: translateY(-3px);
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(64,224,208,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .pillar-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #40E0D0;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pillar-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.015em;
+    }
+    .pillar-card p {
+      font-size: 0.9375rem;
+      color: var(--dim);
+      line-height: 1.65;
+    }
+
+    /* ── How it works ─────────────────────────── */
+    .section-how { background: var(--navy); }
+
+    .steps-list {
+      display: grid;
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+      counter-reset: steps;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      counter-increment: steps;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(64,224,208,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #40E0D0;
+      margin-top: 0.1rem;
+    }
+
+    .step-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+    .step-body p {
+      font-size: 0.9375rem;
+      color: var(--dim);
+      line-height: 1.65;
+    }
+
+    /* ── Stats ────────────────────────────────── */
+    .section-stats { background: var(--surface); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid rgba(64,224,208,0.12);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+    }
+
+    .stat-number {
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      font-weight: 800;
+      color: #40E0D0;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .stat-desc {
+      font-size: 0.9375rem;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+
+    .stat-source {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+    }
+
+    /* ── Founder quote ────────────────────────── */
+    .section-founder { background: var(--ink); }
+
+    .founder-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    blockquote {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      line-height: 1.75;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+      position: relative;
+      padding: 0 1rem;
+      margin-bottom: 2rem;
+    }
+
+    blockquote::before {
+      content: '\201C';
+      font-size: 4rem;
+      line-height: 0;
+      position: absolute;
+      top: 0.55rem;
+      left: -0.25rem;
+      color: rgba(64,224,208,0.30);
+      font-style: normal;
+    }
+
+    .founder-attr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .founder-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .founder-title {
+      font-size: 0.8125rem;
+      color: var(--dim);
+    }
+
+    /* ── Pricing ──────────────────────────────── */
+    .section-pricing { background: var(--navy); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .price-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s;
+    }
+    .price-card:hover { border-color: rgba(64,224,208,0.28); }
+    .price-card.featured {
+      border-color: rgba(64,224,208,0.45);
+      background: rgba(64,224,208,0.05);
+    }
+
+    .price-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(64,224,208,0.15);
+      color: #40E0D0;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      align-self: flex-start;
+    }
+
+    .price-tier {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dim);
+      margin-bottom: 0.4rem;
+    }
+
+    .price-amount {
+      font-size: 1.875rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .price-period {
+      font-size: 0.75rem;
+      color: var(--dim);
+      margin-bottom: 1.25rem;
+    }
+
+    .price-perks {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .price-perks li {
+      font-size: 0.875rem;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.45;
+    }
+    .price-perks li::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #40E0D0;
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+
+    .price-cta {
+      display: block;
+      text-align: center;
+      padding: 0.65rem 1rem;
+      border-radius: 7px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      border: 1.5px solid rgba(64,224,208,0.35);
+      color: #40E0D0;
+      background: transparent;
+    }
+    .price-cta:hover { opacity: 0.78; }
+    .price-card.featured .price-cta {
+      background: #40E0D0;
+      color: #060B12;
+      border-color: transparent;
+    }
+
+    .free-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.50);
+      font-style: italic;
+    }
+    .free-note strong {
+      color: rgba(64,224,208,0.80);
+    }
+
+    /* ── Contact ──────────────────────────────── */
+    .section-contact { background: var(--surface); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .contact-info h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .contact-info p, .contact-info a {
+      font-size: 0.9375rem;
+      color: var(--dim);
+      text-decoration: none;
+      line-height: 1.7;
+      display: block;
+    }
+    .contact-info a:hover { color: #40E0D0; }
+    .contact-info-block { margin-bottom: 1.5rem; }
+
+    .form-field {
+      margin-bottom: 1.1rem;
+    }
+    .form-field label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.60);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.9375rem;
+      padding: 0.75rem 1rem;
+      transition: border-color 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: rgba(64,224,208,0.5);
+    }
+    .form-field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: rgba(255,255,255,0.28);
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #40E0D0;
+      color: #060B12;
+      font-family: var(--font);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: opacity 0.2s;
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+    .form-submit:hover { opacity: 0.88; }
+
+    .form-note {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.65rem;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ── Footer ───────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: 2.5rem clamp(1.25rem, 5vw, 3rem);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .footer-logo .vibe { color: #fff; }
+    .footer-logo .vault { color: #40E0D0; }
+
+    .footer-versions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+    .footer-versions a {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      padding: 0.25rem 0.6rem;
+      transition: color 0.2s;
+    }
+    .footer-versions a:hover { color: #40E0D0; }
+    .footer-versions a.active { color: rgba(64,224,208,0.75); }
+
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .footer-contact a {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: #40E0D0; }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-legal {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.6;
+    }
+
+    /* ── Responsive tweaks ────────────────────── */
+    @media (max-width: 600px) {
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .price-badge { display: none; }
+    }
+    @media (max-width: 420px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── RTL adjustments ──────────────────────── */
+    [dir="rtl"] blockquote::before { left: auto; right: -0.25rem; }
+    [dir="rtl"] .price-perks li { flex-direction: row-reverse; }
+    [dir="rtl"] .step { flex-direction: row-reverse; }
+
+    /* ── Utility ──────────────────────────────── */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ────────────────────────────── NAV ────────────────────────── -->
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="VibeVault Africa home">
+    <span class="vibe">Vibe</span><span class="vault">Vault</span>
+  </a>
+
+  <!-- Desktop nav links -->
+  <ul class="nav-links" role="navigation" aria-label="Site versions">
+    <li><a href="v1.html" class="active" data-i18n="nav_v1">Your Vault</a></li>
+    <li><a href="v2.html" data-i18n="nav_v2">The Inevitable</a></li>
+    <li><a href="v3.html" data-i18n="nav_v3">The Explorer</a></li>
+    <li><a href="v4.html" data-i18n="nav_v4">Infrastructure Case</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <!-- Language switcher -->
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span id="langLabel">EN</span>
+        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox" aria-label="Language options">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav menu -->
+<div class="nav-mobile" id="navMobile" role="navigation" aria-label="Mobile navigation">
+  <a href="v1.html" class="active" data-i18n="nav_v1">Your Vault</a>
+  <a href="v2.html" data-i18n="nav_v2">The Inevitable</a>
+  <a href="v3.html" data-i18n="nav_v3">The Explorer</a>
+  <a href="v4.html" data-i18n="nav_v4">Infrastructure Case</a>
+</div>
+
+
+<!-- ────────────────────────────── HERO ───────────────────────── -->
+<section class="hero" id="top">
+  <div class="hero-bg" role="img" aria-label="VibeVault pod at Cape Town waterfront at sunset"></div>
+  <div class="hero-content">
+    <p class="eyebrow rv" data-i18n="hero_eyebrow">Your Vault</p>
+    <h1 class="rv d1" data-i18n="hero_h1">Drop your bag.
+Go live.</h1>
+    <p class="hero-sub rv d2" data-i18n="hero_sub">We carry the load. You get the night.</p>
+    <div class="hero-ctas rv d3">
+      <a href="#how-it-works" class="btn btn-outline" data-i18n="hero_cta1">How it works</a>
+      <a href="#contact" class="btn btn-solid" data-i18n="hero_cta2">Get VibeVault</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ────────────────────────────── PROBLEM ────────────────────── -->
+<section class="section-problem" id="problem">
+  <div class="container">
+    <p class="eyebrow rv" data-i18n="section_problem_ey">The problem</p>
+    <h2 class="rv d1" data-i18n="section_problem_h2">Going out shouldn't feel like project management.</h2>
+    <p class="section-intro rv d2" data-i18n="section_problem_p">
+      You shouldn't have to think about where your bag is, whether your phone will last, or how you're getting home. But right now, you do.
+    </p>
+
+    <!-- Pillars -->
+    <div class="pillars-grid">
+
+      <div class="pillar-card rv d1">
+        <div class="pillar-icon" aria-hidden="true">
+          <!-- Bag / hold icon -->
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="3"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <h3 data-i18n="pillar1_h3">Hold your load</h3>
+        <p data-i18n="pillar1_p">Secure, solar-powered pods hold your bag, jacket, shoes — whatever you brought but don't want to carry.</p>
+      </div>
+
+      <div class="pillar-card rv d2">
+        <div class="pillar-icon" aria-hidden="true">
+          <!-- Battery / charge icon -->
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M20 11v2"/><path d="M6 11h8"/></svg>
+        </div>
+        <h3 data-i18n="pillar2_h3">Top you up</h3>
+        <p data-i18n="pillar2_p">Every pod has USB-C and Lightning charging built in. Your phone stays alive. Your night stays yours.</p>
+      </div>
+
+      <div class="pillar-card rv d3">
+        <div class="pillar-icon" aria-hidden="true">
+          <!-- Car / ride icon -->
+          <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14l4 4v4a2 2 0 0 1-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+        </div>
+        <h3 data-i18n="pillar3_h3">Get you home</h3>
+        <p data-i18n="pillar3_p">One tap on the pod screen connects you to a verified ride. No searching, no surge surprises.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ────────────────────────────── HOW IT WORKS ───────────────── -->
+<section class="section-how" id="how-it-works">
+  <div class="container">
+    <p class="eyebrow rv" data-i18n="section_how_ey">How it works</p>
+    <h2 class="rv d1" data-i18n="section_how_h2">Three things. That's it.</h2>
+
+    <div class="steps-list" role="list">
+
+      <div class="step rv d1" role="listitem">
+        <div class="step-number" aria-hidden="true">1</div>
+        <div class="step-body">
+          <h3>Find a pod</h3>
+          <p>VibeVault pods are positioned across Cape Town's promenades, waterfronts, and nightlife corridors. Look for the teal glow.</p>
+        </div>
+      </div>
+
+      <div class="step rv d2" role="listitem">
+        <div class="step-number" aria-hidden="true">2</div>
+        <div class="step-body">
+          <h3>Drop, charge, sort</h3>
+          <p>Tap the screen. Lock your bag. Plug in your phone. Done. The pod handles the rest while you handle the night.</p>
+        </div>
+      </div>
+
+      <div class="step rv d3" role="listitem">
+        <div class="step-number" aria-hidden="true">3</div>
+        <div class="step-body">
+          <h3>Go home when you're ready</h3>
+          <p>Collect your things, or book a ride directly from the pod screen. No apps to download, no accounts needed for basics.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ────────────────────────────── STATS ──────────────────────── -->
+<section class="section-stats" id="stats">
+  <div class="container">
+    <p class="eyebrow rv" data-i18n="section_stats_ey">The numbers</p>
+    <h2 class="rv d1" data-i18n="section_stats_h2">Cape Town already needs this.</h2>
+
+    <div class="stats-grid">
+
+      <div class="stat-card rv d1">
+        <div class="stat-number" data-i18n="stat1_label">43%</div>
+        <p class="stat-desc" data-i18n="stat1_value">of all stranded assistance cases in Cape Town involve a flat phone battery</p>
+        <p class="stat-source" data-i18n="stat1_source">Cape Town CCID · 2023</p>
+      </div>
+
+      <div class="stat-card rv d2">
+        <div class="stat-number" data-i18n="stat2_label">24 million</div>
+        <p class="stat-desc" data-i18n="stat2_value">annual visits to the V&amp;A Waterfront — more than the Colosseum, Sagrada Família and Louvre individually</p>
+        <p class="stat-source" data-i18n="stat2_source">V&amp;A Waterfront Official · 2024</p>
+      </div>
+
+      <div class="stat-card rv d3">
+        <div class="stat-number" data-i18n="stat3_label">R24.5 billion</div>
+        <p class="stat-desc" data-i18n="stat3_value">generated by Cape Town's tourism economy in 2024</p>
+        <p class="stat-source" data-i18n="stat3_source">Wesgro · 2024</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ────────────────────────────── FOUNDER QUOTE ──────────────── -->
+<section class="section-founder" id="founder">
+  <div class="container">
+    <div class="founder-inner">
+      <blockquote class="rv">
+        <span data-i18n="founder_quote">The best nights are simple: you show up, stay present, go home safe. A great city makes that easy for everyone — not just people who planned better or have more options. I watched too many people leave early, not because they wanted to, but because they had no other option. VibeVault exists so the night stays yours, all the way to the end. For all of us.</span>
+      </blockquote>
+      <div class="founder-attr rv d1">
+        <span class="founder-name" data-i18n="founder_name">Dasha Mohlala</span>
+        <span class="founder-title" data-i18n="founder_title">Founder, VIBEVAULT AFRICA (PTY) LTD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ────────────────────────────── PRICING ────────────────────── -->
+<section class="section-pricing" id="pricing">
+  <div class="container">
+    <p class="eyebrow rv" data-i18n="section_pricing_ey">Pricing</p>
+    <h2 class="rv d1" data-i18n="section_pricing_h2">Start free. Stay free. Or go further.</h2>
+
+    <div class="pricing-grid">
+
+      <!-- Pay as you go -->
+      <div class="price-card rv d1">
+        <span class="price-tier" data-i18n="tier_payg">Pay as you go</span>
+        <div class="price-amount" data-i18n="tier_payg_price">R0</div>
+        <p class="price-period">per session</p>
+        <ul class="price-perks">
+          <li>Secure bag storage</li>
+          <li>USB-C charging</li>
+          <li>Ride booking</li>
+          <li>No subscription</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get started</a>
+      </div>
+
+      <!-- Student -->
+      <div class="price-card rv d2">
+        <span class="price-tier" data-i18n="tier_student">Student</span>
+        <div class="price-amount" data-i18n="tier_student_price">R49<span style="font-size:1rem;font-weight:500">/mo</span></div>
+        <p class="price-period">valid student ID required</p>
+        <ul class="price-perks">
+          <li>Unlimited storage</li>
+          <li>Priority charging</li>
+          <li>Discounted rides</li>
+          <li>Safety features</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get started</a>
+      </div>
+
+      <!-- Lite -->
+      <div class="price-card rv d1">
+        <span class="price-tier" data-i18n="tier_lite">Lite</span>
+        <div class="price-amount" data-i18n="tier_lite_price">R99<span style="font-size:1rem;font-weight:500">/mo</span></div>
+        <p class="price-period">per month</p>
+        <ul class="price-perks">
+          <li>10 storage sessions</li>
+          <li>Full charging access</li>
+          <li>Ride booking</li>
+          <li>Monthly rollover</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get started</a>
+      </div>
+
+      <!-- Vibe — featured -->
+      <div class="price-card featured rv d2">
+        <span class="price-badge">Most popular</span>
+        <span class="price-tier" data-i18n="tier_vibe">Vibe</span>
+        <div class="price-amount" data-i18n="tier_vibe_price">R199<span style="font-size:1rem;font-weight:500">/mo</span></div>
+        <p class="price-period">per month</p>
+        <ul class="price-perks">
+          <li>Unlimited storage</li>
+          <li>Priority charging</li>
+          <li>3 included rides/mo</li>
+          <li>Concierge safety line</li>
+          <li>Guest passes ×2</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get started</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="price-card rv d3">
+        <span class="price-tier" data-i18n="tier_premium">Premium</span>
+        <div class="price-amount" data-i18n="tier_premium_price">R299<span style="font-size:1rem;font-weight:500">/mo</span></div>
+        <p class="price-period">per month</p>
+        <ul class="price-perks">
+          <li>Unlimited everything</li>
+          <li>10 included rides/mo</li>
+          <li>VIP pod reservations</li>
+          <li>Priority support</li>
+          <li>Guest passes ×5</li>
+        </ul>
+        <a href="#contact" class="price-cta">Get started</a>
+      </div>
+
+    </div>
+
+    <p class="free-note rv">
+      <span data-i18n="free_note"><strong>Storage is always free.</strong> Always.</span>
+    </p>
+  </div>
+</section>
+
+
+<!-- ────────────────────────────── CONTACT ────────────────────── -->
+<section class="section-contact" id="contact">
+  <div class="container">
+    <p class="eyebrow rv" data-i18n="section_contact_ey">Get in touch</p>
+    <h2 class="rv d1" data-i18n="section_contact_h2">Say hello.</h2>
+
+    <div class="contact-grid">
+
+      <!-- Info column -->
+      <div>
+        <div class="contact-info-block rv d1">
+          <h3>Email</h3>
+          <a href="mailto:dasha@vibevaultafrica.co.za">dasha@vibevaultafrica.co.za</a>
+        </div>
+        <div class="contact-info-block rv d2">
+          <h3>Phone</h3>
+          <a href="tel:+27730129314">+27 73 012 9314</a>
+        </div>
+        <div class="contact-info-block rv d3">
+          <h3>Location</h3>
+          <p>Cape Town, South Africa</p>
+        </div>
+        <div class="rv d4" style="margin-top:1.5rem;">
+          <a href="v4.html" style="color:#40E0D0;text-decoration:none;font-size:0.9rem;font-weight:600;">
+            Looking to invest or partner? See the Infrastructure Case →
+          </a>
+        </div>
+      </div>
+
+      <!-- Form column -->
+      <div class="rv d1">
+        <!-- REPLACE YOUR_FORM_ID with your Formspree form ID -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <!-- Honeypot anti-spam -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <!-- Subject line -->
+          <input type="hidden" name="_subject" value="New VibeVault enquiry" />
+
+          <div class="form-field">
+            <label for="contactName" data-i18n="contact_name">Your name</label>
+            <input type="text" id="contactName" name="name" placeholder="Dasha Mohlala" required autocomplete="name" />
+          </div>
+          <div class="form-field">
+            <label for="contactEmail" data-i18n="contact_email">Your email</label>
+            <input type="email" id="contactEmail" name="email" placeholder="hello@example.com" required autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label for="contactMessage" data-i18n="contact_message">Your message</label>
+            <textarea id="contactMessage" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit" data-i18n="contact_send">Send</button>
+          <p class="form-note" data-i18n="contact_note">We read every message.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ────────────────────────────── FOOTER ─────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo">
+        <span class="vibe">Vibe</span><span class="vault">Vault</span>
+      </a>
+      <nav class="footer-versions" aria-label="All versions">
+        <a href="v1.html" class="active" data-i18n="nav_v1">Your Vault</a>
+        <a href="v2.html" data-i18n="nav_v2">The Inevitable</a>
+        <a href="v3.html" data-i18n="nav_v3">The Explorer</a>
+        <a href="v4.html" data-i18n="nav_v4">Infrastructure Case</a>
+      </nav>
+    </div>
+
+    <div class="footer-contact">
+      <a href="mailto:dasha@vibevaultafrica.co.za">dasha@vibevaultafrica.co.za</a>
+      <a href="tel:+27730129314">+27 73 012 9314</a>
+      <a href="https://vibevaultafrica.co.za">vibevaultafrica.co.za</a>
+    </div>
+
+    <hr class="footer-divider" />
+
+    <p class="footer-legal" data-i18n="footer_legal">
+      VIBEVAULT AFRICA (PTY) LTD · Enterprise No. 2025/958585/07 · Level 1 B-BBEE · 100% Black Woman Owned
+    </p>
+  </div>
+</footer>
+
+
+<!-- ────────────────────────────── SCRIPTS ────────────────────── -->
+<script src="translations.js"></script>
+<script>
+(function () {
+
+  // ── Language setup ──────────────────────────────────────────────
+  var LANGS = [
+    { code: 'en',    label: 'English',             display: 'EN' },
+    { code: 'af',    label: 'Afrikaans',            display: 'AF' },
+    { code: 'zu',    label: 'isiZulu',              display: 'ZU' },
+    { code: 'xh',    label: 'isiXhosa',             display: 'XH' },
+    { code: 'st',    label: 'SeSotho',              display: 'ST' },
+    { code: 'tn',    label: 'SeTswana',             display: 'TN' },
+    { code: 've',    label: 'TshiVenda',            display: 'VE' },
+    { code: 'de',    label: 'Deutsch',              display: 'DE' },
+    { code: 'de-CH', label: 'Schweizerdeutsch',     display: 'DE-CH' },
+    { code: 'fr',    label: 'Français',             display: 'FR' },
+    { code: 'es',    label: 'Español',              display: 'ES' },
+    { code: 'pt',    label: 'Português',            display: 'PT' },
+    { code: 'it',    label: 'Italiano',             display: 'IT' },
+    { code: 'nl',    label: 'Nederlands',           display: 'NL' },
+    { code: 'sv',    label: 'Svenska',              display: 'SV' },
+    { code: 'el',    label: 'Ελληνικά',             display: 'EL' },
+    { code: 'ru',    label: 'Русский',              display: 'RU' },
+    { code: 'ar',    label: 'العربية',              display: 'AR' },
+    { code: 'ur',    label: 'اردو',                 display: 'UR' },
+    { code: 'zh',    label: '中文',                  display: 'ZH' },
+    { code: 'zh-TW', label: '繁體中文',              display: 'ZH-TW' },
+    { code: 'yue',   label: '廣東話',               display: 'YUE' },
+    { code: 'ja',    label: '日本語',               display: 'JA' },
+    { code: 'ko',    label: '한국어',               display: 'KO' },
+    { code: 'sw',    label: 'Kiswahili',            display: 'SW' },
+    { code: 'yo',    label: 'Yorùbá',               display: 'YO' }
+  ];
+
+  // Detect language
+  var langParam = new URLSearchParams(window.location.search).get('lang');
+  var langStored = localStorage.getItem('vv-lang');
+  var langBrowser = (navigator.language || 'en').split('-')[0];
+  var lang = langParam || langStored || langBrowser;
+
+  // Validate — for de-CH check against 'de' in VV_WEB
+  var resolved = (lang === 'de-CH') ? 'de' : lang;
+  if (!VV_WEB[resolved]) lang = 'en';
+  localStorage.setItem('vv-lang', lang);
+
+  // RTL
+  var RTL = ['ar', 'ur'];
+  document.documentElement.setAttribute('dir', RTL.indexOf(lang) > -1 ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', lang);
+
+  // ── Apply translations ──────────────────────────────────────────
+  function applyTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      var val = VV_WEB.get(lang, 'v1', key);
+      if (val !== undefined && val !== key) {
+        // hero_h1 uses \n for line breaks
+        if (key === 'hero_h1') {
+          el.textContent = val;
+        } else {
+          el.innerHTML = val;
+        }
+      }
+    });
+  }
+  applyTranslations();
+
+  // ── Language dropdown ───────────────────────────────────────────
+  var langBtn = document.getElementById('langBtn');
+  var langLabel = document.getElementById('langLabel');
+  var langDropdown = document.getElementById('langDropdown');
+
+  // Find current lang display
+  var current = LANGS.find(function (l) { return l.code === lang; });
+  if (current) langLabel.textContent = current.display;
+
+  // Build dropdown
+  LANGS.forEach(function (l) {
+    var btn = document.createElement('button');
+    btn.textContent = l.label;
+    btn.setAttribute('role', 'option');
+    btn.setAttribute('aria-selected', l.code === lang ? 'true' : 'false');
+    if (l.code === lang) btn.classList.add('selected');
+    btn.addEventListener('click', function () {
+      lang = l.code;
+      var res = (lang === 'de-CH') ? 'de' : lang;
+      if (!VV_WEB[res]) lang = 'en';
+      localStorage.setItem('vv-lang', lang);
+      langLabel.textContent = l.display;
+
+      var rtlNow = RTL.indexOf(lang) > -1;
+      document.documentElement.setAttribute('dir', rtlNow ? 'rtl' : 'ltr');
+      document.documentElement.setAttribute('lang', lang);
+
+      applyTranslations();
+      closeLangMenu();
+
+      // Update selected state in dropdown
+      langDropdown.querySelectorAll('button').forEach(function (b) {
+        b.classList.remove('selected');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('selected');
+      btn.setAttribute('aria-selected', 'true');
+    });
+    langDropdown.appendChild(btn);
+  });
+
+  function closeLangMenu() {
+    langDropdown.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+  }
+  function openLangMenu() {
+    langDropdown.classList.add('open');
+    langBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  langBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (langDropdown.classList.contains('open')) {
+      closeLangMenu();
+    } else {
+      openLangMenu();
+    }
+  });
+
+  document.addEventListener('click', function () { closeLangMenu(); });
+  langDropdown.addEventListener('click', function (e) { e.stopPropagation(); });
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLangMenu();
+  });
+
+  // ── Mobile nav ──────────────────────────────────────────────────
+  var hamburger = document.getElementById('navHamburger');
+  var mobileNav = document.getElementById('navMobile');
+
+  hamburger.addEventListener('click', function () {
+    var isOpen = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // ── Scroll reveal ───────────────────────────────────────────────
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+
+  document.querySelectorAll('.rv').forEach(function (el) {
+    io.observe(el);
+  });
+
+  // Hero elements animate on page load
+  window.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.hero .rv').forEach(function (el, i) {
+      setTimeout(function () {
+        el.classList.add('in');
+      }, 100 + i * 120);
+    });
+  });
+  // Fallback if DOMContentLoaded already fired
+  if (document.readyState !== 'loading') {
+    document.querySelectorAll('.hero .rv').forEach(function (el, i) {
+      setTimeout(function () {
+        el.classList.add('in');
+      }, 100 + i * 120);
+    });
+  }
+
+})();
+</script>
+
+</body>
+</html>

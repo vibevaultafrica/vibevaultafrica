@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VibeVault Africa — Infrastructure Case. Civic-grade safety infrastructure for Cape Town's R24.5 billion economy." />
+  <meta name="theme-color" content="#080E18" />
+  <meta property="og:title" content="VibeVault Africa — Infrastructure Case" />
+  <meta property="og:description" content="The infrastructure Cape Town has been building toward." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vibevaultafrica.co.za/v4.html" />
+  <meta property="og:image" content="https://vibevaultafrica.co.za/images/hero-solar.jpg" />
+  <title>VibeVault Africa — Infrastructure Case</title>
+  <script src="translations.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:    #40E0D0;
+      --dteal:   #00CED1;
+      --ink:     #080E18;
+      --navy:    #0D1B2A;
+      --surface: #0D1824;
+      --card:    #111F30;
+      --amber:   #C9A84C;
+      --amber-dim: rgba(201,168,76,0.15);
+      --text:    rgba(255,255,255,0.90);
+      --muted:   rgba(255,255,255,0.56);
+      --ff:      -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html, body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: var(--ff);
+      min-height: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* ── SCROLL REVEAL ────────────────────────── */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .rv.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,14,24,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--amber);
+      padding: 0 1.5rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .nav-logo .vv { color: #fff; }
+    .nav-logo .vt { color: var(--teal); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      padding: 0.3rem 0.65rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: var(--amber); }
+
+    .nav-lang {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--amber);
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 4px;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .nav-lang:hover { background: var(--amber-dim); }
+
+    /* Lang panel */
+    #lang-panel {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(8,14,24,0.97);
+      overflow-y: auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    #lang-panel.open { display: block; }
+    .lp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .lp-header h2 { font-size: 1.1rem; color: var(--teal); }
+    .lp-close {
+      font-size: 1.4rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem 0.5rem;
+    }
+    .lp-close:hover { color: #fff; }
+    .lp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.5rem;
+    }
+    .lp-btn {
+      padding: 0.6rem 0.75rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.82);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      text-align: center;
+    }
+    .lp-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .lp-btn.selected { border-color: var(--teal); color: var(--teal); background: rgba(64,224,208,0.08); }
+
+    /* ── CREDENTIALS STRIP ────────────────────── */
+    .cred-strip {
+      margin-top: 60px;
+      background: rgba(201,168,76,0.06);
+      border-bottom: 1px solid rgba(201,168,76,0.22);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      justify-content: center;
+    }
+    .cred-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      text-align: center;
+    }
+    .cred-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    .cred-value {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 1.5rem 5rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--ink) url('images/hero-solar.jpg') center/cover no-repeat;
+      z-index: 0;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(8,14,24,0.35) 0%,
+        rgba(8,14,24,0.55) 50%,
+        rgba(8,14,24,0.90) 100%
+      );
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.11;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      white-space: pre-line;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+      max-width: 540px;
+      margin-bottom: 2rem;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+
+    .btn-amber {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      background: var(--amber);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #080E18;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .btn-amber:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── SECTION COMMON ───────────────────────── */
+    section {
+      padding: 6rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .section-ey {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.75rem;
+    }
+    .section-h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .section-p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      max-width: 640px;
+    }
+
+    /* ── PROBLEM ──────────────────────────────── */
+    .problem-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .problem-img {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface) url('images/stranded-screen.jpg') center/cover no-repeat;
+      min-height: 340px;
+    }
+    @media (max-width: 700px) {
+      .problem-wrap { grid-template-columns: 1fr; }
+      .problem-img { min-height: 220px; }
+    }
+
+    /* ── PILLARS ──────────────────────────────── */
+    .pillars {
+      background: var(--surface);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .pillars section {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 700px) { .pillars-grid { grid-template-columns: 1fr; } }
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 1.75rem 1.5rem;
+    }
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+    }
+    .pillar-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+    .pillar-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.60);
+      line-height: 1.7;
+    }
+
+    /* ── INVESTMENT SECTION ───────────────────── */
+    .investment-section {
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, rgba(8,14,24,0) 60%);
+      border: 1px solid rgba(201,168,76,0.14);
+      border-radius: 16px;
+      padding: 3.5rem;
+      margin-top: 2rem;
+    }
+    .investment-section p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.8;
+      max-width: 700px;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) { .investment-section { padding: 2rem 1.5rem; } }
+
+    /* ── STATS ────────────────────────────────── */
+    .stats-wrap { background: var(--navy); }
+    .stats-wrap section { padding-top: 5rem; padding-bottom: 5rem; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 700px) { .stats-grid { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+    }
+    .stat-number {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
+    }
+    .stat-desc {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.65;
+      margin-bottom: 0.6rem;
+    }
+    .stat-source {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOUNDER ──────────────────────────────── */
+    .founder-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 780px) { .founder-wrap { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .founder-left blockquote {
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.84);
+      font-style: italic;
+      border-left: 3px solid var(--amber);
+      padding-left: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .founder-left blockquote::before { content: '\201C'; }
+    .founder-left blockquote::after  { content: '\201D'; }
+    .founder-attr {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: 0.04em;
+    }
+    .founder-attr span {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      letter-spacing: 0.01em;
+    }
+
+    .founder-right .origin-block,
+    .founder-right .why-block {
+      margin-bottom: 2.5rem;
+    }
+    .founder-right .origin-block:last-child,
+    .founder-right .why-block:last-child { margin-bottom: 0; }
+
+    .founder-panel-ey {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.6rem;
+    }
+    .founder-panel-p {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.78;
+    }
+
+    /* ── PRICING ──────────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 900px) { .pricing-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 580px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+    .price-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .price-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
+    .price-card.featured {
+      border-color: var(--amber);
+      background: linear-gradient(145deg, rgba(201,168,76,0.07), var(--card));
+    }
+    .price-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--amber);
+      color: #080E18;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .price-tier {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.4rem;
+    }
+    .price-amount {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.8rem;
+    }
+    .price-perks {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .price-perks li {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.60);
+      padding: 0.28rem 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-left: 1.1em;
+      position: relative;
+    }
+    .price-perks li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+    }
+    .pricing-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--amber);
+      margin-top: 2rem;
+      font-weight: 600;
+    }
+
+    /* ── BRIEF CTA ────────────────────────────── */
+    .brief-section {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(8,14,24,0) 70%);
+      border-top: 1px solid rgba(201,168,76,0.18);
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+    }
+    .brief-section section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .brief-section .section-ey { text-align: center; }
+    .brief-section .section-h2 { text-align: center; }
+    .brief-section .section-p { text-align: center; margin: 0 auto 2.5rem; }
+    .brief-section .ba {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2.2rem;
+      background: var(--amber);
+      color: #080E18;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .brief-section .ba:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* ── CONTACT ──────────────────────────────── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 720px) { .contact-wrap { grid-template-columns: 1fr; } }
+    .contact-info p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 0.5rem;
+    }
+    .contact-info a {
+      color: var(--amber);
+      text-decoration: none;
+    }
+    .contact-info a:hover { text-decoration: underline; }
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    .contact-detail a {
+      font-size: 0.92rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-detail a:hover { color: #fff; }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    form input,
+    form textarea {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--ff);
+      font-size: 0.92rem;
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    form input:focus,
+    form textarea:focus { border-color: var(--amber); }
+    form textarea { min-height: 130px; resize: vertical; }
+    form button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
+      background: var(--amber);
+      color: #080E18;
+      font-family: var(--ff);
+      font-size: 0.92rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    form button:hover { opacity: 0.88; }
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      background: #050A10;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer-nav a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: #fff; }
+    .footer-legal {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.30);
+      line-height: 1.8;
+    }
+    .footer-sars {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.22);
+      margin-top: 0.4rem;
+    }
+
+    /* ── SECTION DIVIDER ──────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,168,76,0.18), transparent);
+    }
+
+    /* ── RTL SUPPORT ──────────────────────────── */
+    [dir="rtl"] .founder-left blockquote { border-left: none; border-right: 3px solid var(--amber); padding-left: 0; padding-right: 1.5rem; }
+    [dir="rtl"] .price-perks li { padding-left: 0; padding-right: 1.1em; }
+    [dir="rtl"] .price-perks li::before { left: auto; right: 0; }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 480px) {
+      .hero { min-height: 80vh; padding-bottom: 4rem; }
+      .cred-strip { gap: 1rem 1.5rem; }
+      nav { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ────────────────────────────────────────── -->
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="VibeVault Africa home">
+      <span class="vv">Vibe</span><span class="vt">Vault</span>
+    </a>
+    <div class="nav-links">
+      <a href="v1.html" data-i18n="nav_v1">Your Vault</a>
+      <a href="v2.html" data-i18n="nav_v2">The Inevitable</a>
+      <a href="v3.html" data-i18n="nav_v3">The Explorer</a>
+      <a href="v4.html" class="active" data-i18n="nav_v4">Infrastructure Case</a>
+    </div>
+    <div class="nav-lang" id="lang-toggle" aria-label="Change language">EN</div>
+  </nav>
+
+  <!-- ── LANG PANEL ──────────────────────────────────── -->
+  <div id="lang-panel" role="dialog" aria-modal="true" aria-label="Language selection">
+    <div class="lp-header">
+      <h2>Select your language</h2>
+      <div class="lp-close" id="lang-close" aria-label="Close">&#x2715;</div>
+    </div>
+    <div class="lp-grid" id="lp-grid"></div>
+  </div>
+
+  <!-- ── CREDENTIALS STRIP ──────────────────────────── -->
+  <div class="cred-strip">
+    <div class="cred-item rv">
+      <span class="cred-label" data-i18n="cred1_label">Entity type</span>
+      <span class="cred-value" data-i18n="cred1_value">(PTY) LTD</span>
+    </div>
+    <div class="cred-item rv d1">
+      <span class="cred-label" data-i18n="cred2_label">B-BBEE status</span>
+      <span class="cred-value" data-i18n="cred2_value">Level 1 · 100% Black Woman Owned</span>
+    </div>
+    <div class="cred-item rv d2">
+      <span class="cred-label" data-i18n="cred3_label">Procurement</span>
+      <span class="cred-value" data-i18n="cred3_value">Enhanced recognition</span>
+    </div>
+    <div class="cred-item rv d3">
+      <span class="cred-label" data-i18n="cred4_label">Financial year</span>
+      <span class="cred-value" data-i18n="cred4_value">February</span>
+    </div>
+  </div>
+
+  <!-- ── HERO ───────────────────────────────────────── -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="eyebrow rv" data-i18n="hero_eyebrow">Infrastructure Case</div>
+      <h1 class="rv d1" data-i18n="hero_h1">The infrastructure Cape Town has been building toward.</h1>
+      <p class="hero-sub rv d2" data-i18n="hero_sub">A civic-grade system for a R24.5 billion economy.</p>
+      <div class="hero-ctas rv d3">
+        <a href="#investment" class="btn-outline" data-i18n="hero_cta1">The case</a>
+        <a href="brief.html" class="btn-amber" data-i18n="hero_cta2" download>Request a brief</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── PROBLEM ────────────────────────────────────── -->
+  <section id="problem" style="padding-top:7rem; padding-bottom:7rem;">
+    <div class="problem-wrap">
+      <div>
+        <p class="section-ey rv" data-i18n="section_problem_ey">The gap</p>
+        <h2 class="section-h2 rv d1" data-i18n="section_problem_h2">A world-class economy missing world-class infrastructure.</h2>
+        <p class="section-p rv d2" data-i18n="section_problem_p">Cape Town attracts 24 million visitors to the V&amp;A Waterfront alone. The nighttime economy generates billions. The infrastructure hasn't kept up.</p>
+      </div>
+      <div class="problem-img rv d2" role="img" aria-label="VibeVault stranded screen interface"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── PILLARS ────────────────────────────────────── -->
+  <div class="pillars">
+    <section id="pillars">
+      <p class="section-ey rv">System components</p>
+      <h2 class="section-h2 rv d1">Three pillars. One infrastructure.</h2>
+      <div class="pillars-grid">
+        <div class="pillar-card rv d1">
+          <div class="pillar-icon" aria-hidden="true">&#9728;</div>
+          <h3 data-i18n="pillar1_h3">Solar-powered pods</h3>
+          <p data-i18n="pillar1_p">Off-grid, maintenance-light, positioned at high-traffic nodes across the city's entertainment corridors.</p>
+        </div>
+        <div class="pillar-card rv d2">
+          <div class="pillar-icon" aria-hidden="true">&#128681;</div>
+          <h3 data-i18n="pillar2_h3">Integrated safety mesh</h3>
+          <p data-i18n="pillar2_p">Each pod connects to a verified transport network, emergency services integration, and real-time monitoring.</p>
+        </div>
+        <div class="pillar-card rv d3">
+          <div class="pillar-icon" aria-hidden="true">&#128200;</div>
+          <h3 data-i18n="pillar3_h3">Revenue infrastructure</h3>
+          <p data-i18n="pillar3_p">Three revenue streams: direct consumer subscriptions, B2B venue partnerships, and municipal licensing.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── INVESTMENT SECTION ─────────────────────────── -->
+  <section id="investment">
+    <p class="section-ey rv" data-i18n="section_investment_ey">The opportunity</p>
+    <h2 class="section-h2 rv d1" data-i18n="section_investment_h2">Investment-grade civic infrastructure.</h2>
+    <div class="investment-section rv d2">
+      <p>VibeVault is positioned at the intersection of Cape Town's nighttime economy, safety infrastructure, and green energy — three sectors with strong public and private mandate. The pod network operates off-grid via solar, removing dependency on municipal power supply. Each deployment generates recurring revenue from day one across three independent streams.</p>
+      <p style="margin-top:1rem;">The B-BBEE Level 1 designation and 100% Black Woman Owned status position VibeVault for preferential procurement with City of Cape Town and provincial government, alongside private venue and hospitality partners. This is not a speculative play — it is infrastructure filling a gap that the city already acknowledges.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── STATS ──────────────────────────────────────── -->
+  <div class="stats-wrap">
+    <section id="stats">
+      <p class="section-ey rv" data-i18n="section_stats_ey">Market validation</p>
+      <h2 class="section-h2 rv d1" data-i18n="section_stats_h2">The numbers speak.</h2>
+      <div class="stats-grid">
+        <div class="stat-card rv d1">
+          <div class="stat-number" data-i18n="stat1_label">43%</div>
+          <p class="stat-desc" data-i18n="stat1_value">of all stranded assistance cases in Cape Town involve a flat phone battery</p>
+          <p class="stat-source" data-i18n="stat1_source">Cape Town CCID · 2023</p>
+        </div>
+        <div class="stat-card rv d2">
+          <div class="stat-number" data-i18n="stat2_label">24 million</div>
+          <p class="stat-desc" data-i18n="stat2_value">annual visits to the V&amp;A Waterfront — more than the Colosseum, Sagrada Família and Louvre individually</p>
+          <p class="stat-source" data-i18n="stat2_source">V&A Waterfront Official · 2024</p>
+        </div>
+        <div class="stat-card rv d3">
+          <div class="stat-number" data-i18n="stat3_label">R24.5 billion</div>
+          <p class="stat-desc" data-i18n="stat3_value">generated by Cape Town's tourism economy in 2024</p>
+          <p class="stat-source" data-i18n="stat3_source">Wesgro · 2024</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── FOUNDER ────────────────────────────────────── -->
+  <section id="founder">
+    <div class="founder-wrap">
+      <!-- Left: main quote -->
+      <div class="founder-left rv">
+        <blockquote data-i18n="founder_quote1">
+          Cape Town's infrastructure has carried this city far. VibeVault is what the next chapter looks like — systems built for how people actually move through this city, not how we imagined they would.
+        </blockquote>
+        <p class="founder-attr" data-i18n="founder_name">Dasha Mohlala
+          <span data-i18n="founder_title">Founder, VIBEVAULT AFRICA (PTY) LTD</span>
+        </p>
+      </div>
+      <!-- Right: origin + why it matters -->
+      <div class="founder-right">
+        <div class="origin-block rv d1">
+          <p class="founder-panel-ey" data-i18n="founder_origin_ey">The origin</p>
+          <p class="founder-panel-p" data-i18n="founder_origin_p">VibeVault emerged from moving through this city with open eyes — watching the gap between Cape Town's promise and its infrastructure, and deciding that closing it was worth building a company around. The founder knows this city not from research, but from living it at every hour.</p>
+        </div>
+        <div class="why-block rv d2">
+          <p class="founder-panel-ey" data-i18n="founder_why_ey">Why it matters</p>
+          <p class="founder-panel-p" data-i18n="founder_why_p">Founder-market fit is the single most reliable predictor of startup success. VibeVault is built by the person who knows this city at every hour, in every condition — and has the systems thinking to turn that knowledge into infrastructure. The kind of insight that cannot be acquired from a desk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── PRICING / REVENUE MODEL ───────────────────── -->
+  <section id="pricing">
+    <p class="section-ey rv" data-i18n="section_pricing_ey">Revenue model</p>
+    <h2 class="section-h2 rv d1" data-i18n="section_pricing_h2">Three streams. One system.</h2>
+    <div class="pricing-grid">
+      <!-- Pay as you go -->
+      <div class="price-card rv d1">
+        <div class="price-tier" data-i18n="tier_payg">Pay as you go</div>
+        <div class="price-amount" data-i18n="tier_payg_price">R0</div>
+        <ul class="price-perks">
+          <li>Bag storage · per use</li>
+          <li>USB-C charging</li>
+          <li>Ride connect</li>
+          <li>No commitment</li>
+        </ul>
+      </div>
+      <!-- Student -->
+      <div class="price-card rv d1">
+        <div class="price-tier" data-i18n="tier_student">Student</div>
+        <div class="price-amount" data-i18n="tier_student_price">R49/mo</div>
+        <ul class="price-perks">
+          <li>10 storage sessions</li>
+          <li>Unlimited charging</li>
+          <li>Ride connect</li>
+          <li>Valid student ID</li>
+        </ul>
+      </div>
+      <!-- Lite -->
+      <div class="price-card rv d2">
+        <div class="price-tier" data-i18n="tier_lite">Lite</div>
+        <div class="price-amount" data-i18n="tier_lite_price">R99/mo</div>
+        <ul class="price-perks">
+          <li>20 storage sessions</li>
+          <li>Unlimited charging</li>
+          <li>Priority ride connect</li>
+          <li>1 guest pass / mo</li>
+        </ul>
+      </div>
+      <!-- Vibe (featured) -->
+      <div class="price-card featured rv d3">
+        <div class="price-badge">Popular</div>
+        <div class="price-tier" data-i18n="tier_vibe">Vibe</div>
+        <div class="price-amount" data-i18n="tier_vibe_price">R199/mo</div>
+        <ul class="price-perks">
+          <li>Unlimited storage</li>
+          <li>Unlimited charging</li>
+          <li>Priority ride connect</li>
+          <li>3 guest passes / mo</li>
+          <li>Emergency SOS</li>
+        </ul>
+      </div>
+      <!-- Premium -->
+      <div class="price-card rv d4">
+        <div class="price-tier" data-i18n="tier_premium">Premium</div>
+        <div class="price-amount" data-i18n="tier_premium_price">R299/mo</div>
+        <ul class="price-perks">
+          <li>Unlimited everything</li>
+          <li>Concierge ride booking</li>
+          <li>5 guest passes / mo</li>
+          <li>Emergency SOS + GPS</li>
+          <li>Annual billing option</li>
+        </ul>
+      </div>
+    </div>
+    <p class="pricing-note rv" data-i18n="free_note">Storage is always free. Always.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── BRIEF CTA ──────────────────────────────────── -->
+  <div class="brief-section" id="brief">
+    <section>
+      <p class="section-ey rv">Investor brief</p>
+      <h2 class="section-h2 rv d1">The full picture.</h2>
+      <p class="section-p rv d2">Download the VibeVault Africa investor brief — market analysis, revenue model, founder credentials, and the civic case for Cape Town's R24.5 billion economy.</p>
+      <a href="brief.html" class="ba rv d3" data-i18n="brief_cta" download>Request a Brief ↓</a>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── CONTACT ────────────────────────────────────── -->
+  <section id="contact">
+    <div class="contact-wrap">
+      <div class="contact-info rv">
+        <p class="section-ey" data-i18n="section_contact_ey">Partner with us</p>
+        <h2 class="section-h2" data-i18n="section_contact_h2">Let's build this together.</h2>
+        <p>For institutional enquiries, investment discussions, and municipal partnership conversations.</p>
+        <div class="contact-detail">
+          <a href="mailto:dasha@vibevaultafrica.co.za">dasha@vibevaultafrica.co.za</a>
+          <a href="tel:+27730129314">+27 73 012 9314</a>
+          <a href="https://vibevaultafrica.co.za" target="_blank" rel="noopener">vibevaultafrica.co.za</a>
+        </div>
+      </div>
+      <div class="rv d1">
+        <!-- Formspree — REPLACE YOUR_FORM_ID with your actual Formspree form ID -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="text" name="_gotcha" style="display:none" />
+          <input type="hidden" name="_subject" value="New VibeVault investor enquiry" />
+          <input type="text"  name="name"    required placeholder="" data-ph-i18n="contact_name" />
+          <input type="email" name="email"   required placeholder="" data-ph-i18n="contact_email" />
+          <textarea            name="message" required placeholder="" data-ph-i18n="contact_message"></textarea>
+          <button type="submit" data-i18n="contact_send">Send</button>
+          <p class="form-note" data-i18n="contact_note">We read every message.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo">
+      <span style="color:#fff">Vibe</span><span style="color:#40E0D0">Vault</span>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="v1.html" data-i18n="nav_v1">Your Vault</a>
+      <a href="v2.html" data-i18n="nav_v2">The Inevitable</a>
+      <a href="v3.html" data-i18n="nav_v3">The Explorer</a>
+      <a href="v4.html" data-i18n="nav_v4">Infrastructure Case</a>
+      <a href="brief.html" download data-i18n="brief_cta">Request a Brief</a>
+    </nav>
+    <p class="footer-legal" data-i18n="footer_legal">VIBEVAULT AFRICA (PTY) LTD · Enterprise No. 2025/958585/07 · Level 1 B-BBEE · 100% Black Woman Owned</p>
+    <p class="footer-sars">SARS Tax Ref: 9332914259</p>
+  </footer>
+
+  <!-- ── SCRIPTS ────────────────────────────────────── -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── 1. LANGUAGE SETUP ──────────────────────── */
+    var LANGS = [
+      { code: 'en',    name: 'English' },
+      { code: 'af',    name: 'Afrikaans' },
+      { code: 'zu',    name: 'isiZulu' },
+      { code: 'xh',    name: 'isiXhosa' },
+      { code: 'st',    name: 'SeSotho' },
+      { code: 'tn',    name: 'SeTswana' },
+      { code: 've',    name: 'TshiVenda' },
+      { code: 'de',    name: 'Deutsch' },
+      { code: 'de-CH', name: 'Schweizerdeutsch' },
+      { code: 'fr',    name: 'Français' },
+      { code: 'es',    name: 'Español' },
+      { code: 'pt',    name: 'Português' },
+      { code: 'it',    name: 'Italiano' },
+      { code: 'nl',    name: 'Nederlands' },
+      { code: 'sv',    name: 'Svenska' },
+      { code: 'el',    name: 'Ελληνικά' },
+      { code: 'ru',    name: 'Русский' },
+      { code: 'ar',    name: 'العربية' },
+      { code: 'ur',    name: 'اردو' },
+      { code: 'zh',    name: '中文' },
+      { code: 'zh-TW', name: '繁體中文' },
+      { code: 'yue',   name: '廣東話' },
+      { code: 'ja',    name: '日本語' },
+      { code: 'ko',    name: '한국어' },
+      { code: 'sw',    name: 'Kiswahili' },
+      { code: 'yo',    name: 'Yorùbá' }
+    ];
+
+    var RTL_LANGS = ['ar', 'ur'];
+
+    /* Detect language */
+    var params  = new URLSearchParams(window.location.search);
+    var urlLang = params.get('lang');
+    var stored  = localStorage.getItem('vv-lang');
+    var browser = (navigator.language || 'en').split('-')[0];
+    var lang    = urlLang || stored || browser;
+
+    /* Swiss German fallback */
+    function resolveCode(code) {
+      if (code === 'de-CH') return 'de';
+      return code;
+    }
+
+    /* Confirm language exists in translation file */
+    if (!VV_WEB[resolveCode(lang)] && !VV_WEB[lang]) {
+      lang = 'en';
+    }
+    localStorage.setItem('vv-lang', lang);
+
+    /* Get translation value: check v4 first, then shared */
+    function tv(key) {
+      var base = resolveCode(lang);
+      var block = VV_WEB[base] || VV_WEB['en'];
+      var v4    = (block && block.v4)     || (VV_WEB['en'] && VV_WEB['en'].v4)     || {};
+      var sh    = (block && block.shared) || (VV_WEB['en'] && VV_WEB['en'].shared) || {};
+      var fallback_v4 = (VV_WEB['en'] && VV_WEB['en'].v4)     || {};
+      var fallback_sh = (VV_WEB['en'] && VV_WEB['en'].shared) || {};
+      return v4[key] || sh[key] || fallback_v4[key] || fallback_sh[key] || key;
+    }
+
+    /* ── 2. APPLY RTL ──────────────────────────── */
+    document.documentElement.setAttribute(
+      'dir',
+      RTL_LANGS.indexOf(lang) !== -1 ? 'rtl' : 'ltr'
+    );
+
+    /* ── 3. APPLY TRANSLATIONS ─────────────────── */
+    function applyTranslations() {
+      /* data-i18n → textContent */
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        var val = tv(key);
+        if (val && val !== key) el.textContent = val;
+      });
+
+      /* data-ph-i18n → placeholder */
+      document.querySelectorAll('[data-ph-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-ph-i18n');
+        var val = tv(key);
+        if (val && val !== key) el.setAttribute('placeholder', val);
+      });
+
+      /* Lang toggle button label */
+      var toggle = document.getElementById('lang-toggle');
+      if (toggle) toggle.textContent = lang.toUpperCase();
+
+      /* html lang attribute */
+      document.documentElement.setAttribute('lang', lang);
+    }
+
+    /* ── 4. LANG PANEL ─────────────────────────── */
+    var panel  = document.getElementById('lang-panel');
+    var toggle = document.getElementById('lang-toggle');
+    var close  = document.getElementById('lang-close');
+    var grid   = document.getElementById('lp-grid');
+
+    /* Populate grid */
+    LANGS.forEach(function (l) {
+      var btn = document.createElement('div');
+      btn.className = 'lp-btn' + (l.code === lang ? ' selected' : '');
+      btn.textContent = l.name;
+      btn.setAttribute('role', 'button');
+      btn.setAttribute('tabindex', '0');
+      btn.addEventListener('click', function () {
+        lang = l.code;
+        localStorage.setItem('vv-lang', lang);
+        document.documentElement.setAttribute(
+          'dir',
+          RTL_LANGS.indexOf(lang) !== -1 ? 'rtl' : 'ltr'
+        );
+        applyTranslations();
+        /* Update selected state */
+        grid.querySelectorAll('.lp-btn').forEach(function (b, i) {
+          b.classList.toggle('selected', LANGS[i].code === lang);
+        });
+        /* Close panel */
+        panel.classList.remove('open');
+        document.body.style.overflow = '';
+        /* Update URL param without reload */
+        var url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        window.history.replaceState({}, '', url.toString());
+      });
+      grid.appendChild(btn);
+    });
+
+    toggle && toggle.addEventListener('click', function () {
+      panel.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    close && close.addEventListener('click', function () {
+      panel.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    panel && panel.addEventListener('click', function (e) {
+      if (e.target === panel) {
+        panel.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ── 5. SCROLL REVEAL ──────────────────────── */
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+
+    document.querySelectorAll('.rv').forEach(function (el) {
+      io.observe(el);
+    });
+
+    /* Hero reveals immediately on load */
+    window.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.hero .rv').forEach(function (el, i) {
+        setTimeout(function () { el.classList.add('in'); }, 100 + i * 120);
+      });
+      /* Also fire cred-strip immediately */
+      document.querySelectorAll('.cred-strip .rv').forEach(function (el, i) {
+        setTimeout(function () { el.classList.add('in'); }, 200 + i * 80);
+      });
+    });
+
+    /* ── 6. SMOOTH SCROLL FOR ANCHOR LINKS ─────── */
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ── 7. INIT ───────────────────────────────── */
+    applyTranslations();
+
+  }());
+  </script>
+
+</body>
+</html>

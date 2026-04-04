@@ -1,25 +1,24 @@
-# VibeVault Africa
+# VibeVault Africa — Website
 
-Official GitHub profile for VibeVault Africa.
+Live at vibevaultafrica.co.za via GitHub Pages.
 
-We are building digital products, systems, and creative business infrastructure.
+## Image Setup (one-time)
+1. Rename your Grok images as follows and upload to images/:
+   - IMG_5175.jpeg → hero-pod.jpg
+   - IMG_5160.jpeg → hero-promenade.jpg
+   - IMG_5179.jpeg → hero-solar.jpg
+   - IMG_5176.jpeg → hero-row.jpg
+   - IMG_5162.jpeg → seating.jpg
+   - IMG_5163.jpeg → stranded-screen.jpg
 
-## Focus
-- Product development
-- Design systems
-- Business operations
-- Research and innovation
-<!--
-**vibevaultafrica/vibevaultafrica** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## Formspree Setup (one-time)
+1. Go to formspree.io, create a form for dasha@vibevaultafrica.co.za
+2. Copy your Form ID (looks like: xyzabcde)
+3. Find and replace YOUR_FORM_ID in v1.html, v2.html, v3.html, v4.html
 
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Deployment
+```
+git add .
+git commit -m "Update"
+git push origin main
+```
