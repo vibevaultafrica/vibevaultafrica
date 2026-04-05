@@ -3,13 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VibeVault Africa — The Inevitable. A city where safety never becomes a thought. Cape Town's invisible care infrastructure." />
+  <meta name="description" content="The Inevitable — VibeVault Africa. A city where safety never becomes a thought. Seamless urban infrastructure for Cape Town.">
+  <meta name="keywords" content="VibeVault The Inevitable, Cape Town urban infrastructure, invisible safety Cape Town, smart city Cape Town, seamless city safety">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080E18" />
-  <meta property="og:title" content="VibeVault Africa — The Inevitable" />
-  <meta property="og:description" content="A city where safety never becomes a thought. Not because you're careless. Because the city has already taken care of it." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://vibevaultafrica.co.za/v2.html" />
-  <meta property="og:image" content="https://vibevaultafrica.co.za/images/hero-promenade.jpg" />
+  <meta property="og:title" content="The Inevitable — VibeVault Africa">
+  <meta property="og:description" content="A city where safety never becomes a thought. Cape Town's next infrastructure layer.">
+  <meta property="og:image" content="https://vibevaultafrica.co.za/images/IMG_5179.JPG">
+  <meta property="og:url" content="https://vibevaultafrica.co.za/v2.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Inevitable — VibeVault Africa">
+  <meta name="twitter:description" content="Safety as something you never think about again. VibeVault Africa.">
+  <meta name="twitter:image" content="https://vibevaultafrica.co.za/images/IMG_5179.JPG">
+  <link rel="canonical" href="https://vibevaultafrica.co.za/v2.html">
+  <link rel="alternate" hreflang="en" href="https://vibevaultafrica.co.za/v2.html?lang=en" />
+  <link rel="alternate" hreflang="af" href="https://vibevaultafrica.co.za/v2.html?lang=af" />
+  <link rel="alternate" hreflang="fr" href="https://vibevaultafrica.co.za/v2.html?lang=fr" />
+  <link rel="alternate" hreflang="de" href="https://vibevaultafrica.co.za/v2.html?lang=de" />
+  <link rel="alternate" hreflang="es" href="https://vibevaultafrica.co.za/v2.html?lang=es" />
+  <link rel="alternate" hreflang="pt" href="https://vibevaultafrica.co.za/v2.html?lang=pt" />
+  <link rel="alternate" hreflang="zh" href="https://vibevaultafrica.co.za/v2.html?lang=zh" />
+  <link rel="alternate" hreflang="ar" href="https://vibevaultafrica.co.za/v2.html?lang=ar" />
+  <link rel="alternate" hreflang="ru" href="https://vibevaultafrica.co.za/v2.html?lang=ru" />
+  <link rel="alternate" hreflang="ja" href="https://vibevaultafrica.co.za/v2.html?lang=ja" />
+  <link rel="alternate" hreflang="ko" href="https://vibevaultafrica.co.za/v2.html?lang=ko" />
+  <link rel="alternate" hreflang="x-default" href="https://vibevaultafrica.co.za/" />
   <title>VibeVault Africa — The Inevitable</title>
   <script src="translations.js"></script>
   <style>
@@ -199,7 +218,7 @@
     .hero-img {
       position: absolute;
       inset: 0;
-      background: var(--ink) url('images/hero-promenade.jpg') center center / cover no-repeat;
+      background: var(--ink) url('images/IMG_5179.JPG') center top / cover no-repeat;
       z-index: 0;
     }
 
@@ -339,7 +358,8 @@
       border-radius: 20px;
       overflow: hidden;
       aspect-ratio: 4/3;
-      background: var(--surface) url('images/hero-solar.jpg') center / cover no-repeat;
+      background: var(--surface) url('images/IMG_5153.JPG') center / cover no-repeat;
+      box-shadow: 0 0 40px rgba(64,224,208,0.15);
     }
 
     .problem-visual::after {
@@ -897,9 +917,60 @@
       margin-top: 0.5rem;
     }
     .back-link:hover { color: #40E0D0; }
+    .infra-link {
+      display: inline-block;
+      color: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 4px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.015em;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .infra-link:hover {
+      color: #40E0D0;
+      border-color: #40E0D0;
+    }
+    .topo-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .topo-overlay svg {
+      width: 100%; height: 100%;
+      opacity: 1;
+    }
+    .vv-disclaimer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem 1.5rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .vv-disclaimer p {
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.01em;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+
+<div style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;" aria-hidden="true">
+  <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+    <path d="M700,450 C810,370 940,380 990,450 C1040,520 1005,620 910,655 C815,690 700,670 630,620 C560,570 540,480 585,425 C615,390 660,375 700,450Z" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <path d="M700,450 C840,340 1000,355 1060,450 C1120,545 1080,670 965,715 C850,760 700,735 610,665 C520,595 495,475 555,400 C595,350 650,330 700,450Z" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <path d="M700,450 C870,310 1060,330 1130,450 C1200,570 1155,720 1020,775 C885,830 700,800 590,710 C480,620 450,470 525,375 C575,310 640,285 700,450Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <path d="M700,450 C900,280 1120,305 1200,450 C1280,595 1230,770 1075,835 C920,900 700,865 570,755 C440,645 405,465 495,350 C555,270 630,240 700,450Z" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <path d="M700,450 C930,250 1180,280 1270,450 C1360,620 1305,820 1130,895 C955,970 700,930 550,800 C400,670 360,460 465,325 C535,230 620,195 700,450Z" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M700,450 C960,220 1240,255 1340,450 C1440,645 1380,870 1185,955 C990,1040 700,995 530,845 C360,695 315,455 435,300 C515,190 610,150 700,450Z" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  </svg>
+</div>
 
   <!-- ── LANGUAGE MODAL ──────────────────────── -->
   <div class="lang-overlay" id="langOverlay" role="dialog" aria-modal="true" aria-label="Select language">
@@ -1145,20 +1216,25 @@
       <div class="contact-wrap" style="margin-top: 3rem;">
         <div class="contact-info rv d1">
           <div class="contact-detail">
-            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-label" data-i18n="contact_email_label">Email</span>
             <a href="mailto:dasha@vibevaultafrica.co.za">dasha@vibevaultafrica.co.za</a>
           </div>
           <div class="contact-detail">
-            <span class="contact-detail-label">Phone</span>
+            <span class="contact-detail-label" data-i18n="contact_phone_label">Phone</span>
             <a href="tel:+27730129314">+27 73 012 9314</a>
           </div>
           <div class="contact-detail">
-            <span class="contact-detail-label">Location</span>
+            <span class="contact-detail-label" data-i18n="contact_location_label">Location</span>
             <span>Cape Town, South Africa</span>
           </div>
           <div class="contact-detail">
-            <span class="contact-detail-label">Website</span>
+            <span class="contact-detail-label" data-i18n="contact_website_label">Website</span>
             <span>vibevaultafrica.co.za</span>
+          </div>
+          <div class="rv d4" style="margin-top:1.5rem;">
+            <a href="v4.html" class="infra-link" data-i18n="infra_cta">
+              Looking to invest or partner? See the infrastructure case →
+            </a>
           </div>
         </div>
 
@@ -1206,6 +1282,14 @@
       </div>
     </div>
   </section>
+
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link" style="display:inline-block;font-size:0.80rem;color:rgba(255,255,255,0.40);text-decoration:none;padding:1.5rem 0;transition:color 0.2s;" onmouseover="this.style.color='#40E0D0'" onmouseout="this.style.color='rgba(255,255,255,0.40)'" data-i18n="fyv">← Find your VibeVault</a>
+  </div>
+
+<div class="vv-disclaimer">
+  <p data-i18n="disclaimer_v2">All imagery is AI-generated for illustrative purposes. Deployment locations, integrations and partnerships shown are part of the intended model and have not been confirmed. VibeVault is in development. Belief in what a city could be is how it gets built.</p>
+</div>
 
   <!-- ── FOOTER ────────────────────────────────── -->
   <footer role="contentinfo">
