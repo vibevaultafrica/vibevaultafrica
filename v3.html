@@ -3,13 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VibeVault Africa — The Explorer Edition. Cape Town belongs to everyone in it." />
+  <meta name="description" content="The Explorer — VibeVault Africa. Cape Town belongs to everyone in it. Storage, rides, care and safety for tourists, students, families and locals.">
+  <meta name="keywords" content="VibeVault Explorer, Cape Town for everyone, tourist safety Cape Town, student safety Cape Town, Camps Bay, V&A Waterfront, Cape Town explorer">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0D1B2A" />
-  <meta property="og:title" content="VibeVault Africa — The Explorer Edition" />
-  <meta property="og:description" content="Cape Town belongs to everyone in it. VibeVault moves when you move." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://vibevaultafrica.co.za/v3.html" />
-  <meta property="og:image" content="https://vibevaultafrica.co.za/images/hero-row.jpg" />
+  <meta property="og:title" content="The Explorer — VibeVault Africa">
+  <meta property="og:description" content="Cape Town belongs to everyone in it. VibeVault moves when you move.">
+  <meta property="og:image" content="https://vibevaultafrica.co.za/images/IMG_5163.JPG">
+  <meta property="og:url" content="https://vibevaultafrica.co.za/v3.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Explorer — VibeVault Africa">
+  <meta name="twitter:description" content="For everyone out in this city. VibeVault Africa.">
+  <meta name="twitter:image" content="https://vibevaultafrica.co.za/images/IMG_5163.JPG">
+  <link rel="canonical" href="https://vibevaultafrica.co.za/v3.html">
+  <link rel="alternate" hreflang="en" href="https://vibevaultafrica.co.za/v3.html?lang=en" />
+  <link rel="alternate" hreflang="af" href="https://vibevaultafrica.co.za/v3.html?lang=af" />
+  <link rel="alternate" hreflang="fr" href="https://vibevaultafrica.co.za/v3.html?lang=fr" />
+  <link rel="alternate" hreflang="de" href="https://vibevaultafrica.co.za/v3.html?lang=de" />
+  <link rel="alternate" hreflang="es" href="https://vibevaultafrica.co.za/v3.html?lang=es" />
+  <link rel="alternate" hreflang="pt" href="https://vibevaultafrica.co.za/v3.html?lang=pt" />
+  <link rel="alternate" hreflang="zh" href="https://vibevaultafrica.co.za/v3.html?lang=zh" />
+  <link rel="alternate" hreflang="ar" href="https://vibevaultafrica.co.za/v3.html?lang=ar" />
+  <link rel="alternate" hreflang="ru" href="https://vibevaultafrica.co.za/v3.html?lang=ru" />
+  <link rel="alternate" hreflang="ja" href="https://vibevaultafrica.co.za/v3.html?lang=ja" />
+  <link rel="alternate" hreflang="ko" href="https://vibevaultafrica.co.za/v3.html?lang=ko" />
+  <link rel="alternate" hreflang="x-default" href="https://vibevaultafrica.co.za/" />
   <title>VibeVault Africa — The Explorer Edition</title>
   <script src="translations.js"></script>
   <style>
@@ -187,7 +206,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: var(--ink-deep) url('images/hero-row.jpg') center/cover no-repeat;
+      background: var(--ink-deep) url('images/IMG_5163.JPG') center/cover no-repeat;
     }
     .hero-bg::after {
       content: '';
@@ -842,6 +861,68 @@
       background: linear-gradient(270deg, var(--teal) 0%, transparent 100%);
     }
     [dir="rtl"] .founder-byline { flex-direction: row-reverse; }
+    /* back to game link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.40);
+      text-decoration: none;
+      transition: color 0.2s;
+      margin-top: 0.5rem;
+    }
+    .back-link:hover { color: #40E0D0; }
+    .back-link-bottom {
+      display: block;
+      text-align: center;
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.40);
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 1.5rem 0;
+    }
+    .back-link-bottom:hover { color: #40E0D0; }
+    .infra-link {
+      display: inline-block;
+      color: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 4px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.015em;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .infra-link:hover {
+      color: #40E0D0;
+      border-color: #40E0D0;
+    }
+    .topo-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .topo-overlay svg {
+      width: 100%; height: 100%;
+      opacity: 1;
+    }
+    .vv-disclaimer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem 1.5rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .vv-disclaimer p {
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.01em;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -873,6 +954,15 @@
 
   <!-- ── HERO ─────────────────────────────────── -->
   <section class="hero" aria-labelledby="hero-h1">
+    <div class="topo-overlay" aria-hidden="true">
+      <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <path d="M620,380 C720,310 840,320 885,380 C930,440 895,535 805,565 C715,595 615,580 555,535 C495,490 480,420 520,375 C545,350 580,340 620,380Z" fill="none" stroke="rgba(64,224,208,0.06)" stroke-width="1.1"/>
+        <path d="M620,380 C750,280 890,295 945,380 C1000,465 960,580 855,620 C750,660 615,640 535,580 C455,520 435,425 485,360 C520,315 575,298 620,380Z" fill="none" stroke="rgba(64,224,208,0.07)" stroke-width="1.1"/>
+        <path d="M620,380 C780,250 940,270 1005,380 C1070,490 1025,625 905,675 C785,725 615,700 515,625 C415,550 390,430 450,345 C495,280 570,256 620,380Z" fill="none" stroke="rgba(64,224,208,0.09)" stroke-width="1.1"/>
+        <path d="M620,380 C810,220 990,245 1065,380 C1140,515 1090,670 955,730 C820,790 615,760 495,670 C375,580 345,435 415,330 C470,245 565,214 620,380Z" fill="none" stroke="rgba(64,224,208,0.10)" stroke-width="1.1"/>
+        <path d="M620,380 C840,190 1040,220 1125,380 C1210,540 1155,715 1005,785 C855,855 615,820 475,715 C335,610 300,440 380,315 C445,210 560,172 620,380Z" fill="none" stroke="rgba(64,224,208,0.12)" stroke-width="1.1"/>
+      </svg>
+    </div>
     <div class="hero-bg" role="img" aria-label="Row of solar-canopied VibeVault pods at sunset"></div>
     <div class="hero-content">
       <span class="eyebrow rv d1" data-i18n="hero_eyebrow">The Explorer Edition</span>
@@ -882,6 +972,7 @@
         <a href="#how-it-works" class="btn-primary" data-i18n="hero_cta1">Explore</a>
         <a href="#contact" class="btn-ghost" data-i18n="hero_cta2">Join us</a>
       </div>
+      <a href="index.html" class="back-link rv d4" data-i18n="fyv">← Find your VibeVault</a>
     </div>
   </section>
 
@@ -963,7 +1054,14 @@
   <!-- ── WHO WE'RE FOR (UNIQUE SECTION) ─────────── -->
   <div class="section-wrap alt">
     <div class="section-inner">
-      <section aria-labelledby="who-h2" style="padding:0">
+      <section aria-labelledby="who-h2" style="padding:0;position:relative;">
+        <div class="topo-overlay" aria-hidden="true">
+          <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <path d="M600,300 C710,230 830,240 880,300 C930,360 895,450 805,480 C715,510 610,495 550,450 C490,405 475,340 515,295 C540,265 570,255 600,300Z" fill="none" stroke="rgba(64,224,208,0.05)" stroke-width="1.1"/>
+            <path d="M600,300 C750,200 910,215 970,300 C1030,385 990,500 880,540 C770,580 605,560 510,490 C415,420 395,325 450,255 C490,205 555,188 600,300Z" fill="none" stroke="rgba(64,224,208,0.07)" stroke-width="1.1"/>
+            <path d="M600,300 C790,170 990,190 1060,300 C1130,410 1085,550 950,600 C815,650 600,625 475,535 C350,445 320,310 400,215 C450,150 545,125 600,300Z" fill="none" stroke="rgba(64,224,208,0.09)" stroke-width="1.1"/>
+          </svg>
+        </div>
         <div class="who-header">
           <span class="eyebrow rv" data-i18n="section_who_ey">Who we're for</span>
           <h2 class="section-h2 rv d1" id="who-h2" data-i18n="section_who_h2">Everyone moving through this city.</h2>
@@ -1156,15 +1254,15 @@
               <input type="hidden" name="_subject" value="New VibeVault enquiry (Explorer)" />
               <div class="form-field">
                 <label for="contact-name" data-i18n="contact_name">Your name</label>
-                <input type="text" id="contact-name" name="name" placeholder="Dasha Mohlala" autocomplete="name" required />
+                <input type="text" id="contact-name" name="name" placeholder="Dasha Mohlala" data-i18n-placeholder="contact_placeholder_name" autocomplete="name" required />
               </div>
               <div class="form-field">
                 <label for="contact-email" data-i18n="contact_email">Your email</label>
-                <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" required />
+                <input type="email" id="contact-email" name="email" placeholder="you@example.com" data-i18n-placeholder="contact_placeholder_email" autocomplete="email" required />
               </div>
               <div class="form-field">
                 <label for="contact-message" data-i18n="contact_message">Your message</label>
-                <textarea id="contact-message" name="message" placeholder="Tell us about yourself, your interest, or your idea..." required></textarea>
+                <textarea id="contact-message" name="message" placeholder="Tell us about yourself, your interest, or your idea..." data-i18n-placeholder="contact_placeholder_message" required></textarea>
               </div>
               <button type="submit" class="form-submit" data-i18n="contact_send">Send</button>
               <p class="form-note" data-i18n="contact_note">We read every message.</p>
@@ -1175,26 +1273,39 @@
             <h3>VibeVault Africa</h3>
             <div class="contact-detail">
               <div>
-                <span>Email</span>
+                <span data-i18n="contact_email_label">Email</span>
                 <a href="mailto:dasha@vibevaultafrica.co.za">dasha@vibevaultafrica.co.za</a>
               </div>
               <div>
-                <span>Phone</span>
+                <span data-i18n="contact_phone_label">Phone</span>
                 <a href="tel:+27730129314">+27 73 012 9314</a>
               </div>
               <div>
-                <span>Web</span>
+                <span data-i18n="contact_website_label">Web</span>
                 <a href="https://vibevaultafrica.co.za">vibevaultafrica.co.za</a>
               </div>
               <div>
-                <span>Location</span>
+                <span data-i18n="contact_location_label">Location</span>
                 <a href="https://maps.google.com/?q=Cape+Town,+South+Africa" target="_blank" rel="noopener">Cape Town, South Africa</a>
               </div>
+            </div>
+            <div class="rv d4" style="margin-top:1.5rem;">
+              <a href="v4.html" class="infra-link" data-i18n="infra_cta">
+                Looking to invest or partner? See the infrastructure case →
+              </a>
             </div>
           </div>
         </div>
       </section>
     </div>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link-bottom" data-i18n="fyv">← Find your VibeVault</a>
+  </div>
+
+  <div class="vv-disclaimer">
+    <p data-i18n="disclaimer_v3">All imagery is AI-generated for illustrative purposes. Locations, services and features shown represent the vision for VibeVault — none are yet confirmed. We are actively building. Your curiosity, support or connection could be part of what brings this to life.</p>
   </div>
 
   <!-- ── FOOTER ─────────────────────────────────── -->
@@ -1270,6 +1381,14 @@
           } else {
             el.innerHTML = val;
           }
+        }
+      });
+      // Handle form placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-placeholder');
+        var val = get(key);
+        if (val && val !== key) {
+          el.setAttribute('placeholder', val);
         }
       });
     }
