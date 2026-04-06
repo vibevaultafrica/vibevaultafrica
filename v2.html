@@ -199,7 +199,11 @@
     .hero-img {
       position: absolute;
       inset: 0;
+      width: 100%;
       background: var(--ink) url('images/hero-promenade.jpg') center center / cover no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       z-index: 0;
     }
 
@@ -1323,6 +1327,9 @@
     for (var k = 0; k < rvEls.length; k++) {
       io.observe(rvEls[k]);
     }
+
+    // Failsafe: reveal all sections even if IntersectionObserver fails
+    setTimeout(function() { var all = document.querySelectorAll('.rv'); for (var j = 0; j < all.length; j++) all[j].classList.add('in'); }, 800);
 
     // Hero elements animate immediately on load
     window.addEventListener('DOMContentLoaded', function () {

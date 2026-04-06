@@ -187,7 +187,11 @@
     .hero-bg {
       position: absolute;
       inset: 0;
+      width: 100%;
       background: var(--ink-deep) url('images/hero-row.jpg') center/cover no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
     .hero-bg::after {
       content: '';
@@ -1389,6 +1393,9 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
 
     document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+
+    // Failsafe: reveal all sections even if IntersectionObserver fails
+    setTimeout(function() { document.querySelectorAll('.rv').forEach(function(el) { el.classList.add('in'); }); }, 800);
 
     // Hero elements animate on load
     window.addEventListener('DOMContentLoaded', function () {
