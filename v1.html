@@ -1470,6 +1470,9 @@ Go live.</h1>
     io.observe(el);
   });
 
+  // Failsafe: reveal all sections even if IntersectionObserver fails
+  setTimeout(function() { document.querySelectorAll('.rv').forEach(function(el) { el.classList.add('in'); }); }, 800);
+
   // Hero elements animate on page load
   window.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.hero .rv').forEach(function (el, i) {

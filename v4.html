@@ -216,7 +216,11 @@
     .hero-bg {
       position: absolute;
       inset: 0;
+      width: 100%;
       background: var(--ink) url('images/IMG_5158.JPG') center/cover no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       z-index: 0;
     }
     .hero-bg::after {
@@ -1271,6 +1275,9 @@
     document.querySelectorAll('.rv').forEach(function (el) {
       io.observe(el);
     });
+
+    /* Failsafe: reveal all sections even if IntersectionObserver fails */
+    setTimeout(function() { document.querySelectorAll('.rv').forEach(function(el) { el.classList.add('in'); }); }, 800);
 
     /* Hero reveals immediately on load */
     window.addEventListener('DOMContentLoaded', function () {
